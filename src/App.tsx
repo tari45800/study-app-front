@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div>
-        안녕안녕 나는 지수야
+        안녕안녕 나는 지수야di
       </div>
     </>
   )
