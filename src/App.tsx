@@ -1,16 +1,8 @@
-import { useState } from 'react'
-
+import { useState } from "react";
+import StudyTypeScript from "./StudyTypeScript";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        안녕안녕 나는 지수야di
-      </div>
-    </>
-  )
+  return <StudyTypeScript />;
 }
 
-export default App
+export default App;
