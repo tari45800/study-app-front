@@ -32,6 +32,7 @@ const StudyTypeScript = () => {
   showName(user);
   showName(car);
   // showName(book); 애러 발생
+  //
 
   return (
     <>
