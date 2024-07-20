@@ -1,10 +1,18 @@
+import path from 'path';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import styled from 'styled-components';
 Outlet;
 
+const BaseLayoutContainer = styled.div`
+  border: 0.5rem solid black;
+  padding: 1rem;
+  color: var(--light-text-color);
+`;
+
 export const baseLayout = (
-  <>
-    <div>나는 배이스 레이아웃이야</div>
+  <BaseLayoutContainer>
+    <div> 계좌개설 | 카드발급 | 대출받기 </div>
     <Outlet />
-  </>
+  </BaseLayoutContainer>
 );

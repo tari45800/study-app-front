@@ -1,4 +1,4 @@
-import { Outlet, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import { baseLayout } from './layouts/baseLayout';
 import { LoginPage } from '../pages/login';
 import { MainPage } from '../pages/main';
