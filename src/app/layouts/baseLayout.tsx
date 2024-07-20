@@ -2,7 +2,7 @@ import path from 'path';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-Outlet;
+import { LayoutHeader } from '../../widget/LayoutHeader/LayoutHeader';
 
 const BaseLayoutContainer = styled.div`
   border: 0.5rem solid black;
@@ -12,7 +12,7 @@ const BaseLayoutContainer = styled.div`
 
 export const baseLayout = (
   <BaseLayoutContainer>
-    <div> 계좌개설 | 카드발급 | 대출받기 </div>
+    <LayoutHeader />
     <Outlet />
   </BaseLayoutContainer>
 );
