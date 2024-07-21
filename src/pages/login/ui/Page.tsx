@@ -1,8 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { LoginWidget } from '../../../widget/loginWidget';
 
 export const LoginPage = () => {
-  return <LoginPageContainer>나는 로그인 페이지</LoginPageContainer>;
+  return (
+    <LoginPageContainer>
+      <h1>나는 로그인 페이지</h1>
+      <LoginWidget />
+    </LoginPageContainer>
+  );
 };
 
 const LoginPageContainer = styled.div`
