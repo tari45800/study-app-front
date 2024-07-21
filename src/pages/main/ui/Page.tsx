@@ -12,7 +12,7 @@ export const MainPage = () => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
+    fetch('https://example.com/user')
       .then((res) => res.json())
       .then((json: Todo[]) => {
         // 처음 10개의 항목만 선택

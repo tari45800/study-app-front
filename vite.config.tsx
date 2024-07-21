@@ -7,6 +7,7 @@ export default defineConfig({
   // resolve: {
   //   alias: [{ find: '@', replacement: '/src' }],
   // },
+  optimizeDeps: {
+    include: ['msw'],
+  },
 });
-
-alert('h1');
