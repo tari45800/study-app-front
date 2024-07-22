@@ -6,6 +6,7 @@ export const LoginPage = () => {
   return (
     <LoginPageContainer>
       <h1>나는 로그인 페이지</h1>
+
       <LoginWidget />
     </LoginPageContainer>
   );

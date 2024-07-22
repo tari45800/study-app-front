@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { api } from '../../../shared/lib/server/api/api';
 import { getData } from '../../../shared/lib/server/api/apis';
+import { appStore } from '../../../app/appStore';
 
 interface Todo {
   userId: number;
@@ -12,6 +13,10 @@ interface Todo {
 }
 
 export const LoginWidget = () => {
+  const count = appStore((state) => state.count);
+  const incrementCount = appStore((state) => state.incrementCount);
+  const removeCount = appStore((state) => state.removeCount);
+
   const {
     isPending,
     error,
@@ -28,6 +33,12 @@ export const LoginWidget = () => {
   return (
     <LoginWidgetContainer>
       <div>로그인 위젯</div>
+
+      {count}
+      <div>
+        <button onClick={incrementCount}>카운트 증가</button>
+        <button onClick={removeCount}>카운트 리셋</button>
+      </div>
       <TodoContainer>
         {todoList &&
           todoList.map((todo) => (
@@ -48,6 +59,14 @@ const LoginWidgetContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  button {
+    background-color: var(--text-color);
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    padding: 1rem;
+    color: white;
+  }
 `;
 
 const TodoContainer = styled.div`
