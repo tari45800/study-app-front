@@ -1,7 +1,8 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import '../../assets/font/notoSans.css';
+import '../../assets/font/Pretendard/Pretendard.css';
+import '../../assets/font/notoSans/notoSans.css';
 
 export const GlobalStyles = createGlobalStyle`
   ${reset}
@@ -13,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
 
 
   body {
-    font-family: 'Noto Sans KR';
+    font-family: 'Pretendard-Regular';
     font-weight: 400;
     color: var(--text-color)
   }
