@@ -1,5 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { api } from '../../../shared/lib/server/api/api';
+import { getData } from '../../../shared/lib/server/api/apis';
 
 interface Todo {
   userId: number;
@@ -9,32 +12,46 @@ interface Todo {
 }
 
 export const MainTodo = () => {
-  const [todoList, setTodoList] = useState<Todo[]>([]);
+  const {
+    isPending,
+    error,
+    data: todoList,
+  } = useQuery<Todo[], Error>({
+    queryKey: ['main'],
+    queryFn: () => getData('user'),
+  });
 
-  useEffect(() => {
-    fetch('https://example.com/user')
-      .then((res) => res.json())
-      .then((json: Todo[]) => {
-        // 처음 10개의 항목만 선택
-        const limitedTodos = json.slice(0, 10);
-        setTodoList(limitedTodos);
-      });
-  }, []);
+  // const [todoList, setTodoList] = useState<Todo[]>([]);
+  //
+  // useEffect(() => {
+  //   fetch('https://example.com/user')
+  //     .then((res) => res.json())
+  //     .then((json: Todo[]) => {
+  //       // 처음 10개의 항목만 선택
+  //       const limitedTodos = json.slice(0, 10);
+  //       setTodoList(limitedTodos);
+  //     });
+  // }, []);
 
-  console.log(JSON.stringify(todoList));
+  // console.log(JSON.stringify(todoList));
+
+  if (isPending) return 'Loading...';
+
+  if (error) return 'Error...';
 
   return (
     <MainPageContainer>
       <div>나는 메인 투두 위젯</div>
       <TodoContainer>
-        {todoList.map((todo) => (
-          <div
-            className={`todoCard ${todo.completed ? 'completed' : ''}`}
-            key={todo.id}
-          >
-            {todo.title}
-          </div>
-        ))}
+        {todoList &&
+          todoList.map((todo) => (
+            <div
+              className={`todoCard ${todo.completed ? 'completed' : ''}`}
+              key={todo.id}
+            >
+              {todo.title}
+            </div>
+          ))}
       </TodoContainer>
     </MainPageContainer>
   );

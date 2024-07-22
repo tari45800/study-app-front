@@ -1,5 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { api } from '../../../shared/lib/server/api/api';
+import { getData } from '../../../shared/lib/server/api/apis';
 
 interface Todo {
   userId: number;
@@ -9,32 +12,32 @@ interface Todo {
 }
 
 export const LoginWidget = () => {
-  const [todoList, setTodoList] = useState<Todo[]>([]);
+  const {
+    isPending,
+    error,
+    data: todoList,
+  } = useQuery<Todo[], Error>({
+    queryKey: ['todoList'],
+    queryFn: () => getData('/login'),
+  });
 
-  useEffect(() => {
-    fetch('https://example.com/login')
-      .then((res) => res.json())
-      .then((json: Todo[]) => {
-        // 처음 10개의 항목만 선택
-        const limitedTodos = json.slice(0, 10);
-        setTodoList(limitedTodos);
-      });
-  }, []);
+  if (isPending) return 'Loading...';
 
-  console.log(JSON.stringify(todoList));
+  if (error) return 'Error...';
 
   return (
     <LoginWidgetContainer>
       <div>로그인 위젯</div>
       <TodoContainer>
-        {todoList.map((todo) => (
-          <div
-            className={`todoCard ${todo.completed ? 'completed' : ''}`}
-            key={todo.id}
-          >
-            {todo.title}
-          </div>
-        ))}
+        {todoList &&
+          todoList.map((todo) => (
+            <div
+              className={`todoCard ${todo.completed ? 'completed' : ''}`}
+              key={todo.id}
+            >
+              {todo.title}
+            </div>
+          ))}
       </TodoContainer>
     </LoginWidgetContainer>
   );
