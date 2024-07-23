@@ -1,8 +1,8 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import '../../assets/font/Pretendard/Pretendard.css';
-import '../../assets/font/notoSans/notoSans.css';
+import '../assets/font/Pretendard/Pretendard.css';
+import '../assets/font/notoSans/notoSans.css';
 
 export const GlobalStyles = createGlobalStyle`
   ${reset}

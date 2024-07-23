@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { api } from '../../../shared/lib/server/api/api';
 import { getData } from '../../../shared/lib/server/api/apis';
 import { appStore } from '../../../app/appStore';
+import { useAlertModal } from '../../../shared/lib';
+import { Navigate } from 'react-router-dom';
 
 interface Todo {
   userId: number;
@@ -26,6 +26,8 @@ export const MainTodo = () => {
     queryFn: () => getData('user'),
   });
 
+  const alertModal = useAlertModal(); // useAlertModal을 컴포넌트 최상위에서 호출
+
   // const [todoList, setTodoList] = useState<Todo[]>([]);
   //
   // useEffect(() => {
@@ -40,6 +42,16 @@ export const MainTodo = () => {
 
   // console.log(JSON.stringify(todoList));
 
+  const modal = () => {
+    alertModal.show({
+      title: '내가만든 모달',
+      buttonText: '살짜쿵',
+      onButtonClick: () => {
+        alertModal.remove();
+      },
+    });
+  };
+
   if (isPending) return 'Loading...';
 
   if (error) return 'Error...';
@@ -51,6 +63,7 @@ export const MainTodo = () => {
       <div>
         <button onClick={incrementCount}>카운트 증가</button>
         <button onClick={removeCount}>카운트 리셋</button>
+        <button onClick={modal}>모달</button>
       </div>
       <TodoContainer>
         {todoList &&
