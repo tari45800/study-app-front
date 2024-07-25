@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { getData } from '../../../shared/lib/server/api/apis';
 import { appStore } from '../../../app/appStore';
 import { useAlertModal } from '../../../shared/lib';
-import { Navigate } from 'react-router-dom';
+import { useConfirmModal } from '../../../shared/lib';
 
 interface Todo {
   userId: number;
@@ -27,7 +27,7 @@ export const MainTodo = () => {
   });
 
   const alertModal = useAlertModal(); // useAlertModal을 컴포넌트 최상위에서 호출
-
+  const confirmModal = useConfirmModal();
   // const [todoList, setTodoList] = useState<Todo[]>([]);
   //
   // useEffect(() => {
@@ -42,12 +42,27 @@ export const MainTodo = () => {
 
   // console.log(JSON.stringify(todoList));
 
+  // const modal = () => {
+  //   alertModal.show({
+  //     title: '내가만든 모달',
+  //     buttonText: '살짜쿵',
+  //     onButtonClick: () => {
+  //       alertModal.remove();
+  //     },
+  //   });
+  // };
+
   const modal = () => {
-    alertModal.show({
-      title: '내가만든 모달',
-      buttonText: '살짜쿵',
-      onButtonClick: () => {
-        alertModal.remove();
+    confirmModal.show({
+      title: '내가만든 컨펌 모달',
+      onConfirm: () => {
+        alert('쪼아');
+        confirmModal.remove();
+      },
+
+      onCancel: () => {
+        alert('취소');
+        confirmModal.remove();
       },
     });
   };
