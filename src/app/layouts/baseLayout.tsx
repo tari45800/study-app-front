@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import { LayoutHeader } from '../../widget/LayoutHeader';
 
 const BaseLayoutContainer = styled.div`
-  border: 0.5rem solid black;
+  /* border: 0.5rem solid black;
   padding: 1rem;
-  color: var(--light-text-color);
+  color: var(--light-text-color); */
 `;
 
 export const baseLayout = (
