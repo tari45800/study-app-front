@@ -8,8 +8,11 @@ export const GlobalStyles = createGlobalStyle`
   ${reset}
 
   :root {
-  --text-color: #303644;
-  --light-text-color: #848C98;
+    --text-color: #303644;
+    --light-text-color: #848C98;
+    --widget-color: #fb3eec;
+    --feature-color: #4aa838;
+    --entity-color: #5181e9;
   }
 
 

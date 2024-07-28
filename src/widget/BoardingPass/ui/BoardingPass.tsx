@@ -1,24 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
+import { formattedDate } from '../../../shared/lib';
+import { FSDLine } from '../../../shared/ui';
 
 export const BoardingPass = () => {
   return (
-    <BoardingPassContainer>
-      <RightCard>
-        <div className="boardingPassTop">탑승권</div>
-        <div className="contentBox">
-          <image>img</image>
-          <div className="boardingPassInFo">탑승정보 위젯</div>
-        </div>
-      </RightCard>
-      <LeftCard>
-        <div className="boardingPassTop">2024.07.27</div>
-        <div className="contentBox">
-          <div className="todoWedget">투두 위젯</div>
-          <div className="buttonBox">예약하기 피쳐</div>
-        </div>
-      </LeftCard>
-    </BoardingPassContainer>
+    <FSDLine color="widget">
+      <BoardingPassContainer>
+        <RightCard>
+          <div className="bPTop">탑승권</div>
+          <div className="bPContentBox">
+            <div className="image">img</div>
+            {/* <FSDLine color="widget"> */}
+            <div className="bPInFo">탑승정보 위젯</div>
+            {/* </FSDLine> */}
+          </div>
+        </RightCard>
+        <LeftCard>
+          <div className="bPTop">{formattedDate}</div>
+          <div className="bPContentBox">
+            <div className="bPtodoWidget">투두 위젯</div>
+            <div className="bPbuttonBox">예약하기 피쳐</div>
+          </div>
+        </LeftCard>
+      </BoardingPassContainer>
+    </FSDLine>
   );
 };
 
@@ -27,7 +33,7 @@ const BoardingPassContainer = styled.div`
   height: 15rem;
   display: flex;
 
-  .boardingPassTop {
+  .bPTop {
     border-bottom: 0.2rem solid black;
     padding: 0.5rem;
   }
@@ -41,17 +47,18 @@ const RightCard = styled.div`
   border: 0.2rem solid black;
   border-radius: 1rem;
 
-  > .contentBox {
-    flex: 1;
+  .bPContentBox {
     display: flex;
+    flex: 1;
     padding: 0.5rem;
+    border: 0.2rem solid red;
 
-    image {
+    .image {
       flex: 1;
       border: 0.2rem solid black;
     }
 
-    .boardingPassInFo {
+    .bPInFo {
       width: 15rem;
       border: 0.2rem solid black;
     }
@@ -66,18 +73,18 @@ const LeftCard = styled.div`
   border: 0.2rem solid black;
   border-radius: 1rem;
 
-  > .contentBox {
+  .bPContentBox {
     flex: 1;
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
 
-    .todoWedget {
+    .bPtodoWidget {
       flex: 1;
       border: 0.2rem solid black;
     }
 
-    .buttonBox {
+    .bPbuttonBox {
       border: 0.2rem solid black;
     }
   }
