@@ -36,13 +36,13 @@ const BaseLayoutContainer = styled.div`
 export const baseLayout = (
   <BaseLayoutContainer>
     <LayoutHeader />
-    <div className="container">
+    {/* <div className="container">
       <div className="top">탑</div>
       <div className="out">
         <div className="in">안1</div>
         <div className="in">안2</div>
       </div>
-    </div>
+    </div> */}
 
     <Outlet />
   </BaseLayoutContainer>
