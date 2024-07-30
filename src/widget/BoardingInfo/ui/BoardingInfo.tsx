@@ -11,7 +11,7 @@ export const BoardingInfo = () => {
     error,
     data: arrival,
   } = useQuery({
-    queryKey: ['arrival'],
+    queryKey: ['arrivalInfo'],
     queryFn: () => getData('/arrival'),
   });
 
@@ -24,16 +24,23 @@ export const BoardingInfo = () => {
     return <div>error</div>;
   }
 
-  const objArrival = arrival && arrival[0];
+  const arrivalInfo = arrival && arrival[0];
 
+  console.log(arrivalInfo);
   return (
     <BoardingInfoContainer>
       <div className="arrivalNameBox">
-        <DepatureArrival arrival={objArrival} />
+        <DepatureArrival arrivalInfo={arrivalInfo} />
       </div>
       <div className="arrivalTimeBox">
-        <CurrentTime />
-        <CurrentTime offset={objArrival.time} />
+        <div>
+          <div>출발 시간</div>
+          <CurrentTime />
+        </div>
+        <div>
+          <div>도착 시간</div>
+          <CurrentTime offset={arrivalInfo.time} />
+        </div>
       </div>
       <div className="arrivalCountBox">
         <div>인원</div>

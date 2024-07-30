@@ -2,6 +2,7 @@ import { createBrowserRouter, Link } from 'react-router-dom';
 import { baseLayout } from './layouts/baseLayout';
 import { LoginPage } from '../pages/login';
 import { MainPage } from '../pages/main';
+import { ChooseCitePage } from '../pages/chooseCite';
 
 export const appRouter = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const appRouter = createBrowserRouter([
       {
         path: '/login',
         element: <LoginPage />,
+      },
+      {
+        path: '/chooseCite',
+        element: <ChooseCitePage />,
       },
     ],
   },

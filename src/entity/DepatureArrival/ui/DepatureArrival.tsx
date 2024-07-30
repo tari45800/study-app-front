@@ -1,26 +1,33 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 interface Props {
+  arrivalInfo: arrivalInfoType;
+}
+
+interface arrivalInfoType {
   arrival: string;
   country: string;
   city: string;
   time: string;
 }
 
-export const DepatureArrival = ({ arrival }) => {
+export const DepatureArrival = ({ arrivalInfo }: Props) => {
   return (
     <DepatureArrivalContainer>
-      <div className="depatureBox">
-        <div className="depatureCite">출발지</div>
-        <div>대한민국 / 부산</div>
+      <div className="depatureBox ">
+        <div className="depatureCite ">ICN</div>
+        <div className="depatureInfo ">서울 / 인천</div>
       </div>
 
       <div className="arrowBox">→</div>
 
-      <div className="arrivalBox">
-        <div className="arrivalCite">{arrival.arrival}</div>
-        <div>{`${arrival.country} / ${arrival.city}`}</div>
-      </div>
+      <Link className="link" to="/chooseCite">
+        <div className="arrivalBox">
+          <div className="arrivalCite">{arrivalInfo.arrival}</div>
+          <div className="arrivalInfo">{`${arrivalInfo.country} / ${arrivalInfo.city}`}</div>
+        </div>
+      </Link>
     </DepatureArrivalContainer>
   );
 };
@@ -30,9 +37,14 @@ const DepatureArrivalContainer = styled.div`
   height: 100%;
   font-size: 0.7rem;
 
+  .link {
+    flex: 1;
+  }
+
   .depatureBox,
   .arrivalBox,
   .arrowBox {
+    height: 100%;
     /* border: 0.1rem solid black; */
     flex: 1;
     display: flex;

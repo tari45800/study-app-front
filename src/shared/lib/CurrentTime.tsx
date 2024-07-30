@@ -1,11 +1,11 @@
 // src/components/CurrentTime.tsx
 import React, { useState, useEffect } from 'react';
 
-interface CurrentTimeProps {
+type CurrentTimeProps = {
   offset?: string;
-}
+};
 
-export const CurrentTime: React.FC<CurrentTimeProps> = ({ offset }) => {
+export const CurrentTime = ({ offset }: CurrentTimeProps) => {
   const [time, setTime] = useState(getFormattedTime(offset));
 
   useEffect(() => {
