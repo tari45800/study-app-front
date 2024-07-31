@@ -13,7 +13,7 @@ export const BoardingPass = () => {
           <div className="image">img</div>
           {/* <FSDLine color="widget"> */}
           <div className="bPInFo">
-            <BoardingInfo></BoardingInfo>
+            <BoardingInfo />
           </div>
           {/* </FSDLine> */}
         </div>

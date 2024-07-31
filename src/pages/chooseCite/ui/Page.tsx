@@ -1,11 +1,14 @@
 import styled from 'styled-components';
+import { IconLayout } from '../../../shared/ui';
 
 export const ChooseCitePage = () => {
   return (
     <ChooseCitePageContainer>
       <div className="chooseCiteTop">여행지 선택 상단</div>
       <div className="chooseCiteBottom">
-        <div className="flightTime">비행시간</div>
+        <div className="flightTime">
+          <IconLayout></IconLayout>
+        </div>
         <div className="cityRanking">여행지 둘러보기</div>
       </div>
     </ChooseCitePageContainer>

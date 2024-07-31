@@ -1,1 +1,76 @@
-[{ "arrival": "NRT", "country": "Japan", "city": "Narita ", "time": "01:30" }]
+[
+  { "arrival": "PUS", "city": "부산", "airport": "김해", "time": "00:30" },
+  { "arrival": "CJU", "city": "제주", "airport": "제주", "time": "01:00" },
+  { "arrival": "GMP", "city": "서울", "airport": "김포", "time": "01:00" },
+  {
+    "arrival": "FUK",
+    "city": "후쿠오카",
+    "airport": "후쿠오카",
+    "time": "01:00"
+  },
+  { "arrival": "KIX", "city": "오사카", "airport": "간사이", "time": "01:30" },
+  { "arrival": "HND", "city": "도쿄", "airport": "하네다", "time": "01:50" },
+  { "arrival": "NRT", "city": "도쿄", "airport": "나리타", "time": "02:00" },
+  {
+    "arrival": "TPE",
+    "city": "타이베이",
+    "airport": "타오위안",
+    "time": "02:30"
+  },
+  { "arrival": "HKG", "city": "홍콩", "airport": "홍콩", "time": "03:00" },
+  { "arrival": "MNL", "city": "마닐라", "airport": "마닐라", "time": "03:30" },
+  {
+    "arrival": "KUL",
+    "city": "쿠알라룸푸르",
+    "airport": "쿠알라룸푸르",
+    "time": "04:00"
+  },
+  { "arrival": "SGN", "city": "호치민", "airport": "탄손낫", "time": "04:30" },
+  { "arrival": "BKK", "city": "방콕", "airport": "수완나품", "time": "05:00" },
+  {
+    "arrival": "CGK",
+    "city": "자카르타",
+    "airport": "수카르노하타",
+    "time": "05:30"
+  },
+  { "arrival": "SIN", "city": "싱가포르", "airport": "창이", "time": "06:00" },
+  { "arrival": "PER", "city": "퍼스", "airport": "퍼스", "time": "06:30" },
+  {
+    "arrival": "MEL",
+    "city": "멜버른",
+    "airport": "툴라마린",
+    "time": "07:00"
+  },
+  {
+    "arrival": "BNE",
+    "city": "브리즈번",
+    "airport": "브리즈번",
+    "time": "07:30"
+  },
+  { "arrival": "SYD", "city": "시드니", "airport": "시드니", "time": "08:30" },
+  {
+    "arrival": "AKL",
+    "city": "오클랜드",
+    "airport": "오클랜드",
+    "time": "09:00"
+  },
+  {
+    "arrival": "LAX",
+    "city": "로스앤젤레스",
+    "airport": "로스앤젤레스",
+    "time": "10:30"
+  },
+  {
+    "arrival": "SFO",
+    "city": "샌프란시스코",
+    "airport": "샌프란시스코",
+    "time": "11:00"
+  },
+  { "arrival": "SEA", "city": "시애틀", "airport": "시애틀", "time": "11:30" },
+  {
+    "arrival": "JFK",
+    "city": "뉴욕",
+    "airport": "존 F. 케네디",
+    "time": "12:00"
+  }
+]

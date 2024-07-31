@@ -6,7 +6,7 @@ import { LayoutHeader } from '../../widget/LayoutHeader';
 
 const BaseLayoutContainer = styled.div`
   /* color: var(--light-text-color); */
-  .container {
+  /* .container {
     border: 0.2rem solid black;
     width: 60rem;
     height: 15rem;
@@ -30,7 +30,7 @@ const BaseLayoutContainer = styled.div`
     // ?
     flex: 1;
     border: 0.2rem solid black;
-  }
+  } */
 `;
 
 export const baseLayout = (

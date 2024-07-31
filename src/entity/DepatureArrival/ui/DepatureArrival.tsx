@@ -7,8 +7,8 @@ interface Props {
 
 interface arrivalInfoType {
   arrival: string;
-  country: string;
   city: string;
+  airport: string;
   time: string;
 }
 
@@ -25,7 +25,7 @@ export const DepatureArrival = ({ arrivalInfo }: Props) => {
       <Link className="link" to="/chooseCite">
         <div className="arrivalBox">
           <div className="arrivalCite">{arrivalInfo.arrival}</div>
-          <div className="arrivalInfo">{`${arrivalInfo.country} / ${arrivalInfo.city}`}</div>
+          <div className="arrivalInfo">{`${arrivalInfo.city} / ${arrivalInfo.airport} `}</div>
         </div>
       </Link>
     </DepatureArrivalContainer>
