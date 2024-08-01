@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { IconLayout } from '../../../shared/ui';
+import { FlightTimeWidget } from '../../../widget/FlightTimeWidget';
 
 export const ChooseCitePage = () => {
   return (
     <ChooseCitePageContainer>
       <div className="chooseCiteTop">여행지 선택 상단</div>
       <div className="chooseCiteBottom">
-        <div className="flightTime">
-          <IconLayout></IconLayout>
+        <div className="flightTimeWidget">
+          <FlightTimeWidget></FlightTimeWidget>
         </div>
         <div className="cityRanking">여행지 둘러보기</div>
       </div>
@@ -34,7 +35,7 @@ const ChooseCitePageContainer = styled.div`
     gap: 1rem;
   }
 
-  .flightTime {
+  .flightTimeWidget {
     flex: 1;
     border: 2px solid red;
   }
