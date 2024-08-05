@@ -1,7 +1,18 @@
 import styled from 'styled-components';
+import { arrivalInfoType } from '../../../shared/model/type';
 
-export const FlightTimeCities = () => {
-  return <FlightTimeCitiesContainer>도시들</FlightTimeCitiesContainer>;
+interface Props {
+  cities: arrivalInfoType[];
+}
+
+export const FlightTimeCities = ({ cities }: Props) => {
+  return (
+    <FlightTimeCitiesContainer>
+      {cities.map((el, idx) => (
+        <div key={idx}>{el.city}</div>
+      ))}
+    </FlightTimeCitiesContainer>
+  );
 };
 
 const FlightTimeCitiesContainer = styled.div``;

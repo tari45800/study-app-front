@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { flight } from '../../../app/appStore';
 
 export const FlightTime = () => {
-  const [timeModal, setTimeModal] = useState(true);
+  const [timeModal, setTimeModal] = useState(false);
   const flightTime = flight((state) => state.flightTime);
   const changeFlightTime = flight((state) => state.changeFlightTime);
 

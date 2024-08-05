@@ -1,15 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { arrivalInfoType } from '../../../shared/model/type';
 
 interface Props {
   arrivalInfo: arrivalInfoType;
-}
-
-interface arrivalInfoType {
-  arrival: string;
-  city: string;
-  airport: string;
-  time: string;
 }
 
 export const DepatureArrival = ({ arrivalInfo }: Props) => {

@@ -13,7 +13,7 @@ export const FlightTimeWidget = () => {
     error,
     data: cities,
   } = useQuery({
-    queryKey: ['flightTimeCities'],
+    queryKey: ['flightTimeCities', flightTime],
     queryFn: () => getData(`/flights?flightTime=${flightTime}`),
   });
 
@@ -26,13 +26,11 @@ export const FlightTimeWidget = () => {
     return <div>error</div>;
   }
 
-  console.log(cities);
-
   return (
     <FlightTimeWidgetContainer>
       <div>{flightTime}</div>
-      <FlightTime></FlightTime>
-      <FlightTimeCities></FlightTimeCities>
+      <FlightTime />
+      <FlightTimeCities cities={cities}></FlightTimeCities>
     </FlightTimeWidgetContainer>
   );
 };
