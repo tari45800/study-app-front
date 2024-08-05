@@ -19,6 +19,6 @@ interface flightVal {
 }
 
 export const flight = create<flightVal>((set) => ({
-  flightTime: '01h30m',
+  flightTime: '00h30m',
   changeFlightTime: (newTime) => set(() => ({ flightTime: newTime })),
 }));

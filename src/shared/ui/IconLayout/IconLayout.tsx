@@ -1,30 +1,11 @@
 import styled from 'styled-components';
 
 type Props = {
-  top?: boolean;
-  bottom?: boolean;
-  right?: boolean;
-  left?: boolean;
+  children: React.ReactNode;
 };
 
-export const IconLayout = ({
-  top = true,
-  bottom = true,
-  right = true,
-  left = true,
-}: Props) => {
-  return (
-    <IconLayoutContainer>
-      {right && <div className="IconLayoutRight">🙂</div>}
-
-      <div className="IconLayoutMiddleBox">
-        {top && <div className="IconLayoutTop">비행시간</div>}
-        {bottom && <div className="IconLayoutBottom">1시간 30분</div>}
-      </div>
-
-      {left && <div className="IconLayoutLeft">〉</div>}
-    </IconLayoutContainer>
-  );
+export const IconLayout = ({ children }: Props) => {
+  return <IconLayoutContainer>{children}</IconLayoutContainer>;
 };
 
 const IconLayoutContainer = styled.div`

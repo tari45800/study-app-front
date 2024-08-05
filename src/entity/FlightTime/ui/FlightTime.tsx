@@ -1,22 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IconLayout } from '../../../shared/ui';
 import styled from 'styled-components';
 import { flight } from '../../../app/appStore';
-import { arrivalInfoType } from '../../../shared/model/type';
+import { convertTimeString } from '../../../shared/lib/convertTime';
 
 export const FlightTime = () => {
   const flightTime = flight((state) => state.flightTime);
   const changeFlightTime = flight((state) => state.changeFlightTime);
   const [timeModal, setTimeModal] = useState(false);
-  const [displayFLightTiem, setDisplayFLightTiem] = useState('');
-  const arrivalInfo = localStorage.getItem('arrivalInfo');
-
-  useEffect(() => {
-    if (arrivalInfo) {
-      const parsedArrivalInfo = JSON.parse(arrivalInfo) as arrivalInfoType;
-      setDisplayFLightTiem(parsedArrivalInfo.time || flightTime);
-    }
-  }, []);
 
   const flightTimModalcontroller = (e: string) => {
     setTimeModal(!timeModal);
@@ -24,8 +15,6 @@ export const FlightTime = () => {
       changeFlightTime(e);
     }
   };
-
-  // 로컬스토리지에 담긴 도시 시간 가져오기
 
   const FlightTimes: { [key: string]: string } = {
     '30분': '00h30m',
@@ -37,8 +26,16 @@ export const FlightTime = () => {
   return (
     <FlightTimeContainer>
       <div onClick={() => flightTimModalcontroller('')}>
-        <div>{displayFLightTiem}</div>
-        <IconLayout></IconLayout>
+        <IconLayout>
+          <div className="IconLayoutRight">🙂</div>
+          <div className="IconLayoutMiddleBox">
+            <div className="IconLayoutTop">비행시간</div>
+            <div className="IconLayoutBottom">
+              {convertTimeString(flightTime)}
+            </div>
+          </div>
+          <div className="IconLayoutLeft">〉</div>
+        </IconLayout>
         {timeModal && (
           <div className="flightTimeModal">
             {Object.keys(FlightTimes).map((el, idx) => {

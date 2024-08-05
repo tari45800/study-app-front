@@ -4,10 +4,23 @@ import { FlightTimeCities } from '../../../entity/FlightTimeCities';
 import { useQuery } from '@tanstack/react-query';
 import { getData } from '../../../shared/lib/server/api/apis';
 import { flight } from '../../../app/appStore';
-import { arrivalInfoType } from '../../../shared/model/type';
+import { useEffect } from 'react';
 
 export const FlightTimeWidget = () => {
   const flightTime = flight((state) => state.flightTime);
+  const changeFlightTime = flight((state) => state.changeFlightTime);
+
+  // const { data: arrival } = useQuery({
+  //   queryKey: ['arrivalInfo'],
+  //   queryFn: () => getData('/arrival'),
+  // });
+
+  // useEffect(() => {
+  //   if (arrival) {
+  //     console.log(arrival[0].time);
+  //     changeFlightTime(arrival[0].time);
+  //   }
+  // }, []);
 
   const {
     isPending,

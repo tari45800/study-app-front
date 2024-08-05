@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { formattedDate } from '../../../shared/lib';
-import { FSDLine } from '../../../shared/ui';
 import { BoardingInfo } from '../../BoardingInfo';
 
 export const BoardingPass = () => {
