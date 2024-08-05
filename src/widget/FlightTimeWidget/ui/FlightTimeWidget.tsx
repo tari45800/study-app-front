@@ -4,6 +4,7 @@ import { FlightTimeCities } from '../../../entity/FlightTimeCities';
 import { useQuery } from '@tanstack/react-query';
 import { getData } from '../../../shared/lib/server/api/apis';
 import { flight } from '../../../app/appStore';
+import { arrivalInfoType } from '../../../shared/model/type';
 
 export const FlightTimeWidget = () => {
   const flightTime = flight((state) => state.flightTime);
@@ -28,11 +29,14 @@ export const FlightTimeWidget = () => {
 
   return (
     <FlightTimeWidgetContainer>
-      <div>{flightTime}</div>
       <FlightTime />
       <FlightTimeCities cities={cities}></FlightTimeCities>
     </FlightTimeWidgetContainer>
   );
 };
 
-const FlightTimeWidgetContainer = styled.div``;
+const FlightTimeWidgetContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;

@@ -3,11 +3,16 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const LayoutHeader = () => {
+  const removeCite = () => {
+    localStorage.clear();
+    location.reload();
+  };
   return (
     <LayoutHeaderContainer>
       <Link to={'/'}>
         <div>로고</div>
       </Link>
+      <button onClick={removeCite}>로컬스토리지 값 삭제</button>
       <div className="headerFeatureContauner">
         <Link to={'/login'}>
           <div>로그인</div>

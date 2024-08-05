@@ -1,0 +1,11 @@
+[
+  { "arrival": "CJU", "city": "제중", "airport": "제중", "time": "01:00" },
+  { "arrival": "GMP", "city": "서울", "airport": "김퐁", "time": "01:00" },
+  { "arrival": "GMP", "city": "서울", "airport": "김포", "time": "01:00" },
+  {
+    "arrival": "FUK",
+    "city": "후쿠오캉",
+    "airport": "후쿠오카",
+    "time": "01:00"
+  }
+]

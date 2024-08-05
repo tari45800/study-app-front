@@ -4,6 +4,7 @@ import { DepatureArrival } from '../../../entity/DepatureArrival';
 import { CurrentTime } from '../../../shared/lib';
 import { getData } from '../../../shared/lib/server/api/apis';
 import { useQuery } from '@tanstack/react-query';
+import { arrivalInfoType } from '../../../shared/model/type';
 
 export const BoardingInfo = () => {
   const {
@@ -23,10 +24,13 @@ export const BoardingInfo = () => {
     console.log(error);
     return <div>error</div>;
   }
+  const storedArrivalInfo = localStorage.getItem('arrivalInfo');
 
-  const arrivalInfo = arrival && arrival[0];
+  // 로컬 스토리지에 값이 있으면 그것을 사용하고, 그렇지 않으면 arrival[0] 사용
+  const arrivalInfo: arrivalInfoType = storedArrivalInfo
+    ? JSON.parse(storedArrivalInfo)
+    : arrival && arrival[0];
 
-  console.log(arrivalInfo);
   return (
     <BoardingInfoContainer>
       <div className="arrivalNameBox">

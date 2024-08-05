@@ -20,8 +20,7 @@ const ChooseCitePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5rem;
-  border: 2px solid black;
-  height: 20rem;
+  border: 2px solid orange;
 
   .chooseCiteTop {
     flex: 1;
@@ -30,9 +29,9 @@ const ChooseCitePageContainer = styled.div`
 
   .chooseCiteBottom {
     border: 2px solid black;
-    flex: 3;
     display: flex;
     gap: 1rem;
+    height: 15rem;
   }
 
   .flightTimeWidget {

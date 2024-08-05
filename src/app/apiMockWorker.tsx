@@ -4,6 +4,7 @@ import { loginWidgetHandlers } from '../widget/loginWidget/api/__mocks__/loginWi
 loginWidgetHandlers;
 import { depatureArrivalHandlers } from '../entity/DepatureArrival/api/__mocks__/depatureArrivalHandlers';
 import { flightTimeCitiesHandlers } from '../entity/FlightTimeCities/__mocks__/flightTimeHandlers';
+
 export const worker = setupWorker(
   ...mainTodoHandlers,
   ...loginWidgetHandlers,
