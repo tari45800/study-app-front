@@ -31,6 +31,7 @@ const BaseLayoutContainer = styled.div`
     flex: 1;
     border: 0.2rem solid black;
   } */
+  background-color: #f3f4f6;
 `;
 
 export const baseLayout = (

@@ -13,7 +13,9 @@ const IconLayoutContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
 
   .IconLayoutMiddleBox {
     flex: 1;

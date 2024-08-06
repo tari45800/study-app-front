@@ -20,7 +20,6 @@ const ChooseCitePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5rem;
-  border: 2px solid orange;
 
   .chooseCiteTop {
     flex: 1;
@@ -36,11 +35,9 @@ const ChooseCitePageContainer = styled.div`
 
   .flightTimeWidget {
     flex: 1;
-    border: 2px solid red;
   }
 
   .cityRanking {
     flex: 1;
-    border: 2px solid orange;
   }
 `;

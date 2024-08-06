@@ -43,7 +43,7 @@ export const FlightTimeWidget = () => {
   return (
     <FlightTimeWidgetContainer>
       <FlightTime />
-      <FlightTimeCities cities={cities}></FlightTimeCities>
+      <FlightTimeCities cities={cities} />
     </FlightTimeWidgetContainer>
   );
 };

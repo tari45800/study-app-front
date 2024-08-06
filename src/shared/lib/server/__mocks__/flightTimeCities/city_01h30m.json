@@ -1,11 +1,4 @@
 [
-  { "arrival": "CJU", "city": "제중", "airport": "제중", "time": "01:00" },
-  { "arrival": "GMP", "city": "서울", "airport": "김퐁", "time": "01:00" },
-  { "arrival": "GMP", "city": "서울", "airport": "김포", "time": "01:00" },
-  {
-    "arrival": "FUK",
-    "city": "후쿠오캉",
-    "airport": "후쿠오카",
-    "time": "01:00"
-  }
+  { "arrival": "KIX", "city": "오사카", "airport": "간사이", "time": "01:30" },
+  { "arrival": "HND", "city": "도쿄", "airport": "하네다", "time": "01:30" }
 ]
