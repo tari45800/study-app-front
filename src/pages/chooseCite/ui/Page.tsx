@@ -77,7 +77,6 @@ const ChooseCitePageContainer = styled.div`
   .chooseCiteTop {
     flex: 1;
     display: flex;
-    padding: 1rem;
 
     .CCTDepatureArrival {
       width: 10rem;

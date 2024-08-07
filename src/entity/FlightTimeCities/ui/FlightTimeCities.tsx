@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { arrivalInfoType } from '../../../shared/model/type';
 import { useNavigate } from 'react-router-dom';
-import { BackGround, IconLayout } from '../../../shared/ui';
+import { IconLayout } from '../../../shared/ui';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 interface Props {
   cities: arrivalInfoType[];
@@ -15,34 +17,38 @@ export const FlightTimeCities = ({ cities }: Props) => {
   };
 
   return (
-    <FlightTimeCitiesContainer>
-      <BackGround>
-        {cities.map((el, idx) => (
-          <div
-            onClick={() => {
-              clickCity(el);
-            }}
-            className="flightTimeCity"
-            key={idx}
-          >
-            <IconLayout>
-              <div className="IconLayoutRight">🙂</div>
-              <div className="IconLayoutMiddleBox">
-                <div className="IconLayoutTop">비행시간</div>
-                <div className="IconLayoutBottom">{el.city}</div>
-              </div>
-              <div className="IconLayoutLeft">〉</div>
-            </IconLayout>
-          </div>
-        ))}
-      </BackGround>
+    <FlightTimeCitiesContainer className="scroll">
+      {cities.map((el, idx) => (
+        <div
+          onClick={() => {
+            clickCity(el);
+          }}
+          className="flightTimeCity"
+          key={idx}
+        >
+          <IconLayout>
+            <div className="IconLayoutRight">🙂</div>
+            <div className="IconLayoutMiddleBox">
+              <div className="IconLayoutTop">비행시간</div>
+              <div className="IconLayoutBottom">{el.city}</div>
+            </div>
+            <div className="IconLayoutLeft">
+              <FontAwesomeIcon className="faAngleRight" icon={faAngleRight} />
+            </div>
+          </IconLayout>
+        </div>
+      ))}
     </FlightTimeCitiesContainer>
   );
 };
 
 const FlightTimeCitiesContainer = styled.div`
-  overflow: auto;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  overflow-y: scroll;
 
   .flightTimeCity {
     cursor: pointer;

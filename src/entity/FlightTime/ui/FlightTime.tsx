@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { BackGround, IconLayout } from '../../../shared/ui';
+import { IconLayout } from '../../../shared/ui';
 import styled from 'styled-components';
 import { flightStore } from '../../../app/appStore';
 import { convertTimeString } from '../../../shared/lib/convertTime';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 export const FlightTime = () => {
   const { flightTime, changeFlightTime } = flightStore();
@@ -24,19 +26,20 @@ export const FlightTime = () => {
 
   return (
     <FlightTimeContainer>
-      <div onClick={() => flightTimModalcontroller('')}>
-        <BackGround>
-          <IconLayout>
-            <div className="IconLayoutRight">🙂</div>
-            <div className="IconLayoutMiddleBox">
-              <div className="IconLayoutTop">비행시간</div>
-              <div className="IconLayoutBottom">
-                {convertTimeString(flightTime)}
-              </div>
-            </div>
-            <div className="IconLayoutLeft">〉</div>
-          </IconLayout>
-        </BackGround>
+      <div
+        className="flightTimeContent"
+        onClick={() => flightTimModalcontroller('')}
+      >
+        <IconLayout>
+          <div className="IconLayoutRight">✈️</div>
+          <div className="IconLayoutMiddleBox">
+            <div className="IconLayoutBottom">비행시간</div>
+          </div>
+          <div className="IconLayoutLeft">
+            <div className="faAngleRight">{convertTimeString(flightTime)}</div>
+            <FontAwesomeIcon className="faAngleRight" icon={faAngleRight} />
+          </div>
+        </IconLayout>
         {timeModal && (
           <div className="flightTimeModal">
             {Object.keys(FlightTimes).map((el, idx) => {
@@ -60,6 +63,10 @@ export const FlightTime = () => {
 const FlightTimeContainer = styled.div`
   position: relative;
 
+  .flightTimeContent {
+    cursor: pointer;
+  }
+
   .flightTimeModal {
     position: absolute;
     top: 0;
@@ -76,5 +83,10 @@ const FlightTimeContainer = styled.div`
     border-bottom: 0.2rem solid white;
     background-color: lightgray;
     cursor: pointer;
+  }
+
+  .IconLayoutLeft {
+    display: flex;
+    gap: 0.5rem;
   }
 `;

@@ -6,6 +6,7 @@ import { getData } from '../../../shared/lib/server/api/apis';
 import { flightStore } from '../../../app/appStore';
 import { useEffect } from 'react';
 import { arrivalInfoType } from '../../../shared/model/type';
+import { Line } from '../../../shared/ui';
 
 export const FlightTimeWidget = () => {
   const { flightTime, changeFlightTime } = flightStore();
@@ -46,6 +47,7 @@ export const FlightTimeWidget = () => {
   return (
     <FlightTimeWidgetContainer>
       <FlightTime />
+      <Line />
       <FlightTimeCities cities={cities} />
     </FlightTimeWidgetContainer>
   );
@@ -55,5 +57,7 @@ const FlightTimeWidgetContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 0.7rem;
+  gap: 1rem;
+
+  min-height: 10rem;
 `;

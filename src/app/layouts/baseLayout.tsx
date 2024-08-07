@@ -6,8 +6,12 @@ import { LayoutHeader } from '../../widget/LayoutHeader';
 
 const BaseLayoutContainer = styled.div`
   border: 2px solid black;
-  background-color: #f3f4f6;
+  background-color: var(--background-color);
   min-height: 100vh;
+
+  .faAngleRight {
+    color: var(--light-text-color);
+  }
 `;
 
 export const baseLayout = (

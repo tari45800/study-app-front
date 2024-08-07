@@ -7,6 +7,7 @@ export const GlobalStyles = createGlobalStyle`
   ${reset}
 
   :root {
+    --background-color:#F3F4F6;
     --text-color: #303644;
     --light-text-color: #848C98;
     --widget-color: #fb3eec;
@@ -14,8 +15,8 @@ export const GlobalStyles = createGlobalStyle`
     --entity-color: #5181e9;
 
     --spacing-small: 0.7rem;
-    --spacing-medium: 0.1rem;
-    --spacing-large: 1rem;
+    --spacing-medium: 1rem;
+    --spacing-large: 1.5rem;
 
     --background-radius: 1rem;
 
@@ -25,11 +26,25 @@ export const GlobalStyles = createGlobalStyle`
     --large-desktop: 1440px;
   }
 
+  
+  /* ( 크롬, 사파리, 오페라, 엣지 ) 동작 */
+  .scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll {
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+  }
 
   body {
     font-family: 'Pretendard-Regular';
     font-weight: 400;
-    color: var(--text-color)
+    color: var(--text-color);
+    -webkit-user-select: none; /* Chrome, Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
   }
 
   * {
