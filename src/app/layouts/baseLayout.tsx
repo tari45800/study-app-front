@@ -32,6 +32,7 @@ const BaseLayoutContainer = styled.div`
     border: 0.2rem solid black;
   } */
   background-color: #f3f4f6;
+  height: 100%;
 `;
 
 export const baseLayout = (

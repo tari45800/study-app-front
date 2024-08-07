@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { IconLayout } from '../../../shared/ui';
+import { BackGround, IconLayout } from '../../../shared/ui';
 import styled from 'styled-components';
-import { flight } from '../../../app/appStore';
+import { flightStore } from '../../../app/appStore';
 import { convertTimeString } from '../../../shared/lib/convertTime';
 
 export const FlightTime = () => {
-  const flightTime = flight((state) => state.flightTime);
-  const changeFlightTime = flight((state) => state.changeFlightTime);
+  const { flightTime, changeFlightTime } = flightStore();
   const [timeModal, setTimeModal] = useState(false);
 
   const flightTimModalcontroller = (e: string) => {
@@ -17,25 +16,27 @@ export const FlightTime = () => {
   };
 
   const FlightTimes: { [key: string]: string } = {
-    '30분': '00h30m',
-    '1시간': '01h00m',
-    '1시간 30분': '01h30m',
-    '2시간': '02h00m',
+    '30분': '00:30',
+    '1시간': '01:00',
+    '1시간 30분': '01:30',
+    '2시간': '02:00',
   };
 
   return (
     <FlightTimeContainer>
       <div onClick={() => flightTimModalcontroller('')}>
-        <IconLayout>
-          <div className="IconLayoutRight">🙂</div>
-          <div className="IconLayoutMiddleBox">
-            <div className="IconLayoutTop">비행시간</div>
-            <div className="IconLayoutBottom">
-              {convertTimeString(flightTime)}
+        <BackGround>
+          <IconLayout>
+            <div className="IconLayoutRight">🙂</div>
+            <div className="IconLayoutMiddleBox">
+              <div className="IconLayoutTop">비행시간</div>
+              <div className="IconLayoutBottom">
+                {convertTimeString(flightTime)}
+              </div>
             </div>
-          </div>
-          <div className="IconLayoutLeft">〉</div>
-        </IconLayout>
+            <div className="IconLayoutLeft">〉</div>
+          </IconLayout>
+        </BackGround>
         {timeModal && (
           <div className="flightTimeModal">
             {Object.keys(FlightTimes).map((el, idx) => {

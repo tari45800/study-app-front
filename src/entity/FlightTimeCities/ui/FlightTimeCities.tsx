@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { arrivalInfoType } from '../../../shared/model/type';
 import { useNavigate } from 'react-router-dom';
-import { IconLayout } from '../../../shared/ui';
+import { BackGround, IconLayout } from '../../../shared/ui';
 
 interface Props {
   cities: arrivalInfoType[];
@@ -16,24 +16,26 @@ export const FlightTimeCities = ({ cities }: Props) => {
 
   return (
     <FlightTimeCitiesContainer>
-      {cities.map((el, idx) => (
-        <div
-          onClick={() => {
-            clickCity(el);
-          }}
-          className="flightTimeCity"
-          key={idx}
-        >
-          <IconLayout>
-            <div className="IconLayoutRight">🙂</div>
-            <div className="IconLayoutMiddleBox">
-              <div className="IconLayoutTop">비행시간</div>
-              <div className="IconLayoutBottom">{el.city}</div>
-            </div>
-            <div className="IconLayoutLeft">〉</div>
-          </IconLayout>
-        </div>
-      ))}
+      <BackGround>
+        {cities.map((el, idx) => (
+          <div
+            onClick={() => {
+              clickCity(el);
+            }}
+            className="flightTimeCity"
+            key={idx}
+          >
+            <IconLayout>
+              <div className="IconLayoutRight">🙂</div>
+              <div className="IconLayoutMiddleBox">
+                <div className="IconLayoutTop">비행시간</div>
+                <div className="IconLayoutBottom">{el.city}</div>
+              </div>
+              <div className="IconLayoutLeft">〉</div>
+            </IconLayout>
+          </div>
+        ))}
+      </BackGround>
     </FlightTimeCitiesContainer>
   );
 };
@@ -43,7 +45,6 @@ const FlightTimeCitiesContainer = styled.div`
   flex: 1;
 
   .flightTimeCity {
-    padding: 1rem;
     cursor: pointer;
   }
 `;

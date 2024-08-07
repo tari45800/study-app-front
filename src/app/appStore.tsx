@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { create } from 'zustand';
 
 interface Store {
@@ -18,7 +19,17 @@ interface flightVal {
   changeFlightTime: (newTime: string) => void;
 }
 
-export const flight = create<flightVal>((set) => ({
-  flightTime: '00h30m',
+const getInitialFlightTime = () => {
+  const storedArrivalInfo = localStorage.getItem('arrivalInfo');
+  if (storedArrivalInfo) {
+    const arrivalInfo = JSON.parse(storedArrivalInfo);
+    return arrivalInfo.time;
+  }
+
+  return '01:30'; // 기본값
+};
+
+export const flightStore = create<flightVal>((set) => ({
+  flightTime: getInitialFlightTime(),
   changeFlightTime: (newTime) => set(() => ({ flightTime: newTime })),
 }));

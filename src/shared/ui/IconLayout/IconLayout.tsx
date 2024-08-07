@@ -9,13 +9,9 @@ export const IconLayout = ({ children }: Props) => {
 };
 
 const IconLayoutContainer = styled.div`
-  max-width: 20rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  background-color: #ffffff;
-  border-radius: 1rem;
 
   .IconLayoutMiddleBox {
     flex: 1;

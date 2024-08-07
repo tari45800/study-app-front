@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { formattedDate } from '../../../shared/lib';
 import { BoardingInfo } from '../../BoardingInfo';

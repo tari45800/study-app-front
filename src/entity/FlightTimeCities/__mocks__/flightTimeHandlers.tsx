@@ -12,15 +12,15 @@ export const flightTimeCitiesHandlers = [
     const url = new URL(request.url);
     const flightTime = url.searchParams.get('flightTime');
 
-    if (flightTime === '00h30m') {
+    if (flightTime === '00:30') {
       return HttpResponse.json([...city_00h30m]);
     }
 
-    if (flightTime === '01h00m') {
+    if (flightTime === '01:00') {
       return HttpResponse.json([...city_01h00m]);
     }
 
-    if (flightTime === '01h30m') {
+    if (flightTime === '01:30') {
       return HttpResponse.json([...city_01h30m]);
     }
 

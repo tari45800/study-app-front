@@ -3,24 +3,27 @@ import { FlightTime } from '../../../entity/FlightTime';
 import { FlightTimeCities } from '../../../entity/FlightTimeCities';
 import { useQuery } from '@tanstack/react-query';
 import { getData } from '../../../shared/lib/server/api/apis';
-import { flight } from '../../../app/appStore';
+import { flightStore } from '../../../app/appStore';
 import { useEffect } from 'react';
+import { arrivalInfoType } from '../../../shared/model/type';
 
 export const FlightTimeWidget = () => {
-  const flightTime = flight((state) => state.flightTime);
-  const changeFlightTime = flight((state) => state.changeFlightTime);
+  const { flightTime, changeFlightTime } = flightStore();
 
-  // const { data: arrival } = useQuery({
-  //   queryKey: ['arrivalInfo'],
-  //   queryFn: () => getData('/arrival'),
-  // });
+  const { isPending: flightPending, data: arrival } = useQuery<
+    arrivalInfoType[]
+  >({
+    queryKey: ['arrivalInfo'],
+    queryFn: () => getData('/arrival'),
+  });
 
-  // useEffect(() => {
-  //   if (arrival) {
-  //     console.log(arrival[0].time);
-  //     changeFlightTime(arrival[0].time);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const localStorageArrivalInfo = localStorage.getItem('arrivalInfo');
+
+    if (!localStorageArrivalInfo && !flightPending && arrival) {
+      changeFlightTime(arrival[0].time);
+    }
+  }, [flightPending, arrival]);
 
   const {
     isPending,
@@ -52,4 +55,5 @@ const FlightTimeWidgetContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  gap: 0.7rem;
 `;
