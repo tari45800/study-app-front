@@ -12,6 +12,17 @@ export const GlobalStyles = createGlobalStyle`
     --widget-color: #fb3eec;
     --feature-color: #4aa838;
     --entity-color: #5181e9;
+
+    --spacing-small: 0.7rem;
+    --spacing-medium: 0.1rem;
+    --spacing-large: 1rem;
+
+    --background-radius: 1rem;
+
+    --mobile: 480px;
+    --tablet: 768px;
+    --desktop: 1024px;
+    --large-desktop: 1440px;
   }
 
 

@@ -10,9 +10,10 @@ export const BackGround = ({ children }: Props) => {
 
 const BackGroundContainer = styled.div`
   background-color: white;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  padding: var(--spacing-large);
+  border-radius: var(--background-radius);
 
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1rem;

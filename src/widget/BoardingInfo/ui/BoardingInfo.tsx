@@ -24,10 +24,11 @@ export const BoardingInfo = () => {
     console.log(error);
     return <div>error</div>;
   }
+
   const storedArrivalInfo = localStorage.getItem('arrivalInfo');
 
   // 로컬 스토리지에 값이 있으면 그것을 사용하고, 그렇지 않으면 arrival[0] 사용
-  const arrivalInfo: arrivalInfoType = storedArrivalInfo
+  const arrivalInfo = storedArrivalInfo
     ? JSON.parse(storedArrivalInfo)
     : arrival && arrival[0];
 
@@ -57,7 +58,7 @@ const BoardingInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 0.5rem;
+  padding: var(--spacing-medium);
 
   > div {
     flex: 1;

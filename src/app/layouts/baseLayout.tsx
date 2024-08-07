@@ -5,34 +5,9 @@ import styled from 'styled-components';
 import { LayoutHeader } from '../../widget/LayoutHeader';
 
 const BaseLayoutContainer = styled.div`
-  /* color: var(--light-text-color); */
-  /* .container {
-    border: 0.2rem solid black;
-    width: 60rem;
-    height: 15rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .top {
-    padding: 0.5rem;
-    border: 0.2rem solid red;
-  }
-
-  .out {
-    flex: 1;
-    padding: 0.5rem;
-    border: 0.2rem solid blue;
-    display: flex;
-  }
-
-  .in {
-    // ?
-    flex: 1;
-    border: 0.2rem solid black;
-  } */
+  border: 2px solid black;
   background-color: #f3f4f6;
-  height: 100%;
+  min-height: 100vh;
 `;
 
 export const baseLayout = (

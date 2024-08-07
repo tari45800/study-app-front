@@ -14,7 +14,6 @@ export const MainPage = () => {
   return (
     <MainPageContainer>
       <BoardingPass />
-      {/* <MainTodo></MainTodo> */}
     </MainPageContainer>
   );
 };
