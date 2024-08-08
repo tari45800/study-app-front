@@ -13,7 +13,6 @@ const BackGroundContainer = styled.div`
   padding: var(--spacing-large);
   border-radius: var(--background-radius);
 
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1rem;

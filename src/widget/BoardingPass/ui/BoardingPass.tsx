@@ -28,13 +28,15 @@ export const BoardingPass = () => {
 };
 
 const BoardingPassContainer = styled.div`
-  width: 60rem;
+  width: 100%;
+  max-width: var(--desktop);
   height: 15rem;
   display: flex;
+  gap: 0.1rem;
 
   .bPTop {
-    border-bottom: 0.2rem solid black;
-    padding: 0.5rem;
+    border-bottom: 0.1rem solid var(--background-color);
+    padding: 1rem;
   }
 `;
 
@@ -43,22 +45,20 @@ const RightCard = styled.div`
   display: flex;
   flex-direction: column;
 
-  border: 0.2rem solid black;
-  border-radius: 1rem;
+  background-color: white;
+  border-radius: var(--background-radius);
 
   .bPContentBox {
     display: flex;
     flex: 1;
-    padding: 0.5rem;
+    padding: 1rem;
 
     .image {
       flex: 1;
-      border: 0.2rem solid black;
     }
 
     .bPInFo {
-      width: 15rem;
-      border: 0.2rem solid black;
+      width: 12rem;
     }
   }
 `;
@@ -68,22 +68,20 @@ const LeftCard = styled.div`
   display: flex;
   flex-direction: column;
 
-  border: 0.2rem solid black;
-  border-radius: 1rem;
+  background-color: white;
+  border-radius: var(--background-radius);
 
   .bPContentBox {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0.5rem;
+    padding: 1rem;
 
     .bPtodoWidget {
       flex: 1;
-      border: 0.2rem solid black;
     }
 
     .bPbuttonBox {
-      border: 0.2rem solid black;
     }
   }
 `;

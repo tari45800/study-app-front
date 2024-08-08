@@ -4,7 +4,6 @@ import { DepatureArrival } from '../../../entity/DepatureArrival';
 import { CurrentTime } from '../../../shared/lib';
 import { getData } from '../../../shared/lib/server/api/apis';
 import { useQuery } from '@tanstack/react-query';
-import { arrivalInfoType } from '../../../shared/model/type';
 
 export const BoardingInfo = () => {
   const {
@@ -38,17 +37,29 @@ export const BoardingInfo = () => {
         <DepatureArrival arrivalInfo={arrivalInfo} />
       </div>
       <div className="arrivalTimeBox">
-        <div>
-          <div>출발 시간</div>
-          <CurrentTime />
+        <div className="arrivalTimeContent">
+          <div className="arrivalInfoTItle">출발 시간</div>
+          <div className="arrivalInfoContent">
+            <CurrentTime />
+          </div>
         </div>
-        <div>
-          <div>도착 시간</div>
-          <CurrentTime offset={arrivalInfo.time} />
+        <div className="arrivalTimeContent"></div>
+        <div className="arrivalTimeContent">
+          <div className="arrivalInfoTItle">도착 시간</div>
+          <div className="arrivalInfoContent">
+            <CurrentTime offset={arrivalInfo.time} />
+          </div>
         </div>
       </div>
       <div className="arrivalCountBox">
-        <div>인원</div>
+        <div className="arrivalTimeContent">
+          <div className="arrivalInfoTItle">인원</div>
+          <div className="arrivalInfoContent">1</div>
+        </div>
+        <div className="arrivalTimeContent"></div>
+        <div className="arrivalTimeContent">
+          <div className="arrivalInfoContent">QR</div>
+        </div>
       </div>
     </BoardingInfoContainer>
   );
@@ -58,19 +69,29 @@ const BoardingInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: var(--spacing-medium);
+  justify-content: space-between;
 
-  > div {
-    flex: 1;
-  }
-  .arrivalNameBox {
-    border: 0.1rem solid black;
-  }
   .arrivalTimeBox,
   .arrivalCountBox {
-    border: 0.1rem solid black;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .arrivalTimeContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .arrivalInfoTItle {
+    font-size: 0.7rem;
+    color: var(--light-text-color);
+    margin-bottom: 0.2rem;
+  }
+
+  .arrivalInfoContent {
+    font-size: 1.1rem;
   }
 `;
