@@ -15,20 +15,23 @@ const IconLayoutContainer = styled.div`
 
   .IconLayoutMiddleBox {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
   }
 
   .IconLayoutRight {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-right: 0.5rem;
   }
 
   .IconLayoutTop {
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     color: var(--light-text-color);
   }
 
   .IconLayoutBottom {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
   }
 `;
