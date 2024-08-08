@@ -4,7 +4,8 @@ import { BoardingInfo } from '../../BoardingInfo';
 import { Button } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlane } from '@fortawesome/free-solid-svg-icons';
-import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
+
+import { Link } from 'react-router-dom';
 
 export const BoardingPass = () => {
   return (
@@ -30,7 +31,9 @@ export const BoardingPass = () => {
         <div className="bPContentBox">
           <div className="bPtodoWidget">투두 위젯</div>
           <div className="bPbuttonBox">
-            <Button theme="primary">예약하기</Button>
+            <Link className="link" to="/timerPage">
+              <Button theme="primary">예약하기</Button>
+            </Link>
           </div>
         </div>
         {/* <div className="bPBottom"></div> */}

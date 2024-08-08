@@ -3,6 +3,7 @@ import { baseLayout } from './layouts/baseLayout';
 import { LoginPage } from '../pages/login';
 import { MainPage } from '../pages/main';
 import { ChooseCitePage } from '../pages/chooseCite';
+import { TimerPage } from '../pages/timer';
 
 export const appRouter = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const appRouter = createBrowserRouter([
       {
         path: '/chooseCite',
         element: <ChooseCitePage />,
+      },
+      {
+        path: '/timerPage',
+        element: <TimerPage />,
       },
     ],
   },

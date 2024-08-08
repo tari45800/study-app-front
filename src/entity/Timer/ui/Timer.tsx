@@ -1,0 +1,39 @@
+import { useEffect } from 'react';
+import styled from 'styled-components';
+import { useTimerStore } from '../../../app/appStore';
+
+export const Timer = () => {
+  const { seconds, startTimer, stopTimer, isRunning } = useTimerStore();
+
+  useEffect(() => {
+    if (isRunning) {
+      startTimer();
+    }
+    return () => stopTimer();
+  }, [isRunning]);
+
+  const formatTime = (seconds: number): string => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    if (hours > 0) {
+      return `${hours}시간 ${minutes}분 ${remainingSeconds}초`;
+    } else if (minutes > 0) {
+      return `${minutes}분 ${remainingSeconds}초`;
+    } else {
+      return `${remainingSeconds}초`;
+    }
+  };
+
+  return (
+    <TimerContainer>
+      <div>{formatTime(seconds)} 공부 중...</div>
+    </TimerContainer>
+  );
+};
+
+const TimerContainer = styled.div`
+  font-size: 1.5rem;
+  font-weight: bold;
+`;

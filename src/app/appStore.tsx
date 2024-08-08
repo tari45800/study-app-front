@@ -33,3 +33,46 @@ export const flightStore = create<flightVal>((set) => ({
   flightTime: getInitialFlightTime(),
   changeFlightTime: (newTime) => set(() => ({ flightTime: newTime })),
 }));
+
+interface TimerState {
+  seconds: number;
+  isRunning: boolean;
+  startTimer: () => void;
+  stopTimer: () => void;
+  resetTimer: () => void;
+  incrementTimer: () => void;
+}
+
+export const useTimerStore = create<TimerState>((set, get) => ({
+  seconds: parseInt(localStorage.getItem('timerSeconds') || '0', 10),
+  isRunning: false,
+
+  startTimer: () => {
+    set({ isRunning: true });
+    const timerId = setInterval(() => {
+      const { incrementTimer, isRunning } = get();
+      if (isRunning) {
+        incrementTimer();
+      }
+    }, 1000);
+    localStorage.setItem('timerId', String(timerId));
+  },
+
+  stopTimer: () => {
+    set({ isRunning: false });
+    clearInterval(Number(localStorage.getItem('timerId')));
+  },
+
+  resetTimer: () => {
+    set({ seconds: 0 });
+    localStorage.setItem('timerSeconds', '0');
+  },
+
+  incrementTimer: () => {
+    set((state) => {
+      const newSeconds = state.seconds + 1;
+      localStorage.setItem('timerSeconds', String(newSeconds));
+      return { seconds: newSeconds };
+    });
+  },
+}));
