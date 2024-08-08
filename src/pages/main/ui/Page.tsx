@@ -19,12 +19,7 @@ export const MainPage = () => {
 };
 
 const MainPageContainer = styled.div`
-  /* border: 0.5rem solid red;
-  padding: 1rem;
-  .mainName {
-    font-size: 2rem;
-    font-weight: bold;
-  } */
   display: flex;
   justify-content: center;
+  padding: var(--spacing-small);
 `;

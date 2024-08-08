@@ -39,7 +39,7 @@ export const ChooseCitePage = () => {
             <div className="CCTDepatureArrival">
               <DepatureArrival arrivalInfo={arrivalInfo} />
             </div>
-            <div className="image">img</div>
+            <div className="image"></div>
           </div>
         </BackGround>
 
@@ -79,7 +79,7 @@ const ChooseCitePageContainer = styled.div`
     display: flex;
 
     .CCTDepatureArrival {
-      width: 10rem;
+      width: 17rem;
     }
 
     .image {

@@ -8,8 +8,14 @@ export const GlobalStyles = createGlobalStyle`
 
   :root {
     --background-color:#F3F4F6;
+    --prime-color:#3182F7;
+    --button-color:#F9FAFC;
+    --header-icon-color:#B0B9C2;
+
     --text-color: #303644;
     --light-text-color: #848C98;
+    --button-text-color: #545869;
+
     --widget-color: #fb3eec;
     --feature-color: #4aa838;
     --entity-color: #5181e9;
