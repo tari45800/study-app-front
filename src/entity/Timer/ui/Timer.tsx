@@ -6,11 +6,10 @@ export const Timer = () => {
   const { seconds, startTimer, stopTimer, isRunning } = useTimerStore();
 
   useEffect(() => {
-    if (isRunning) {
-      startTimer();
-    }
-    return () => stopTimer();
-  }, [isRunning]);
+    startTimer(); // 컴포넌트 마운트 시 타이머 자동 시작
+
+    return () => stopTimer(); // 컴포넌트 언마운트 시 타이머 정리
+  }, []);
 
   const formatTime = (seconds: number): string => {
     const hours = Math.floor(seconds / 3600);

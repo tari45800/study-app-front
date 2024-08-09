@@ -45,17 +45,19 @@ interface TimerState {
 
 export const useTimerStore = create<TimerState>((set, get) => ({
   seconds: parseInt(localStorage.getItem('timerSeconds') || '0', 10),
-  isRunning: false,
+  isRunning: true, // 기본적으로 타이머가 자동으로 시작
 
   startTimer: () => {
-    set({ isRunning: true });
-    const timerId = setInterval(() => {
-      const { incrementTimer, isRunning } = get();
-      if (isRunning) {
-        incrementTimer();
-      }
-    }, 1000);
-    localStorage.setItem('timerId', String(timerId));
+    if (!get().isRunning) {
+      set({ isRunning: true });
+      const timerId = setInterval(() => {
+        const { incrementTimer, isRunning } = get();
+        if (isRunning) {
+          incrementTimer();
+        }
+      }, 1000);
+      localStorage.setItem('timerId', String(timerId));
+    }
   },
 
   stopTimer: () => {
@@ -64,8 +66,9 @@ export const useTimerStore = create<TimerState>((set, get) => ({
   },
 
   resetTimer: () => {
-    set({ seconds: 0 });
+    set({ seconds: 0, isRunning: false });
     localStorage.setItem('timerSeconds', '0');
+    clearInterval(Number(localStorage.getItem('timerId')));
   },
 
   incrementTimer: () => {

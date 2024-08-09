@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { BackGround } from '../../../shared/ui';
 import { Timer } from '../../../entity/Timer';
+import {
+  ResetTimerButton,
+  StopTimerButton,
+} from '../../../widget/TimerConTrols';
 
 export const TimerPage = () => {
   return (
@@ -11,14 +15,21 @@ export const TimerPage = () => {
             <div className="timerBox">
               <Timer />
             </div>
-            <div>재생 버튼</div>
+            <div>
+              <StopTimerButton />
+            </div>
           </div>
         </BackGround>
         <div className="timerPageWindow">햇님이요</div>
         <BackGround>
           <div className="timerPageBottom">
             <div className="todoBox">투두</div>
-            <div>그룹, 그만두기</div>
+            <div>
+              그룹,
+              <div>
+                <ResetTimerButton />
+              </div>
+            </div>
           </div>
         </BackGround>
       </div>
