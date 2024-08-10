@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { MainTodo } from '../../../widget/mainTodo';
 import { BoardingPass } from '../../../widget/BoardingPass';
-
 interface Todo {
   userId: number;
   id: number;
