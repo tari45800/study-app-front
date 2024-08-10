@@ -90,6 +90,7 @@ const RightCard = styled.div`
 
   background-color: white;
   border-radius: var(--background-radius);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
 
   .bPContentBox {
     display: flex;
@@ -116,6 +117,7 @@ const LeftCard = styled.div`
 
   background-color: white;
   border-radius: var(--background-radius);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
 
   .bPContentBox {
     flex: 1;

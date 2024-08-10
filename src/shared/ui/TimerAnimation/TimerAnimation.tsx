@@ -49,8 +49,8 @@ const TimerAnimationContainer = styled.div`
     transform: translate(-50%, -50%);
     z-index: 103;
 
-    width: calc(100% - 4rem);
-    height: calc(100% - 4rem);
+    width: calc(100% - 2rem);
+    height: calc(100% - 2rem);
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(4px);
@@ -81,9 +81,9 @@ const TimerAnimationContainer = styled.div`
 const generateRandomValue = (min: number, max: number) =>
   Math.random() * (max - min) + min;
 
-const cloudsArray = Array.from({ length: 10 }, (_, index) => ({
+const cloudsArray = Array.from({ length: 30 }, (_, index) => ({
   top: generateRandomValue(0, 100), // 0%에서 80% 사이의 무작위 위치
-  delay: generateRandomValue(0, 15), // 0초에서 15초 사이의 무작위 딜레이
+  delay: generateRandomValue(0, 20), // 0초에서 15초 사이의 무작위 딜레이
   key: index,
 }));
 
