@@ -16,7 +16,7 @@ const BaseLayoutContainer = styled.div`
 
 export const baseLayout = (
   <BaseLayoutContainer>
-    <PageTransition />
+    {/* <PageTransition /> */}
     <LayoutHeader />
     <Outlet />
   </BaseLayoutContainer>

@@ -5,6 +5,7 @@ import {
   ResetTimerButton,
   StopTimerButton,
 } from '../../../widget/TimerConTrols';
+import { TimerAnimation } from '../../../shared/ui/TimerAnimation/TimerAnimation';
 
 export const TimerPage = () => {
   return (
@@ -20,7 +21,9 @@ export const TimerPage = () => {
             </div>
           </div>
         </BackGround>
-        <div className="timerPageWindow">햇님이요</div>
+        <div className="timerPageWindow">
+          <TimerAnimation />
+        </div>
         <BackGround>
           <div className="timerPageBottom">
             <div className="todoBox">투두</div>
@@ -61,7 +64,6 @@ const TimerPageContainer = styled.div`
   }
 
   .timerPageWindow {
-    border: 2px solid orange;
     height: 30rem;
   }
 
