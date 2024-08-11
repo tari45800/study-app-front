@@ -18,8 +18,10 @@ export const DepatureArrival = ({ arrivalInfo }: Props) => {
 
       <Link className="link" to="/chooseCite">
         <div className="arrivalBox">
-          <div className="arrivalInfoTItle">{`${arrivalInfo.city} / ${arrivalInfo.airport} `}</div>
-          <div className="arrivalCite">{arrivalInfo.arrival}</div>
+          <div className="arrival">
+            <div className="arrivalInfoTItle">{`${arrivalInfo.city} / ${arrivalInfo.airport} `}</div>
+            <div className="arrivalCite">{arrivalInfo.arrival}</div>
+          </div>
         </div>
       </Link>
     </DepatureArrivalContainer>
@@ -50,5 +52,42 @@ const DepatureArrivalContainer = styled.div`
   .arrivalCite {
     font-size: 1.5rem;
     font-weight: 700;
+  }
+
+  .arrivalBox {
+    width: 100%;
+    height: 3.5rem;
+  }
+
+  .arrival {
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--background-color);
+    border-radius: var(--background-radius);
+    border: 1px solid var(--light-text-color);
+    padding: 0.5rem;
+    transition: 0.2s;
+  }
+
+  .arrivalInfoTItle,
+  .arrivalCite {
+    transition: 0.2s;
+  }
+
+  .arrival:hover {
+    width: calc(100% - 0.2rem);
+    height: 3.3rem;
+    .arrivalInfoTItle {
+      font-size: 0.65rem;
+    }
+    .arrivalCite {
+      font-size: 1.45rem;
+    }
   }
 `;
