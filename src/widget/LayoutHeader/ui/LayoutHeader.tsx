@@ -4,12 +4,19 @@ import styled from 'styled-components';
 import { Button } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
+import { useThemeStore } from '../../../app/appStore';
 
 export const LayoutHeader = () => {
+  // useThemeStore를 훅처럼 호출하여 상태와 함수를 가져옵니다.
+  const { toggleDarkMode } = useThemeStore((state) => ({
+    toggleDarkMode: state.toggleDarkMode,
+  }));
+
   const removeCite = () => {
     localStorage.clear();
     location.reload();
   };
+
   return (
     <LayoutHeaderContainer>
       <div className="layoutHeaderContent">
@@ -24,6 +31,7 @@ export const LayoutHeader = () => {
         </Link>
 
         <div className="headerFeatureContauner">
+          <div onClick={toggleDarkMode}>다크모드</div>
           <Link className="headerIcon" to={'/login'}>
             <div>로그인</div>
           </Link>

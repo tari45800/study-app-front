@@ -4,14 +4,15 @@ import { arrivalInfoType } from '../../../shared/model/type';
 
 interface Props {
   arrivalInfo: arrivalInfoType;
+  displayUi?: boolean;
 }
 
-export const DepatureArrival = ({ arrivalInfo }: Props) => {
+export const DepatureArrival = ({ arrivalInfo, displayUi = false }: Props) => {
   return (
-    <DepatureArrivalContainer>
-      <div className="depatureBox ">
-        <div className="arrivalInfoTItle ">서울 / 인천</div>
-        <div className="depatureCite ">ICN</div>
+    <DepatureArrivalContainer displayUi={displayUi}>
+      <div className="depatureBox">
+        <div className="arrivalInfoTItle">서울 / 인천</div>
+        <div className="depatureCite">ICN</div>
       </div>
 
       <div className="arrowBox">→</div>
@@ -19,7 +20,7 @@ export const DepatureArrival = ({ arrivalInfo }: Props) => {
       <Link className="link" to="/chooseCite">
         <div className="arrivalBox">
           <div className="arrival">
-            <div className="arrivalInfoTItle">{`${arrivalInfo.city} / ${arrivalInfo.airport} `}</div>
+            <div className="arrivalInfoTItle">{`${arrivalInfo.city} / ${arrivalInfo.airport}`}</div>
             <div className="arrivalCite">{arrivalInfo.arrival}</div>
           </div>
         </div>
@@ -28,7 +29,7 @@ export const DepatureArrival = ({ arrivalInfo }: Props) => {
   );
 };
 
-const DepatureArrivalContainer = styled.div`
+const DepatureArrivalContainer = styled.div<{ displayUi: boolean }>`
   display: flex;
   align-items: center;
   font-size: 0.7rem;
@@ -68,26 +69,36 @@ const DepatureArrivalContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    background: var(--background-color);
-    border-radius: var(--background-radius);
-    border: 1px solid var(--light-text-color);
-    padding: 0.5rem;
-    transition: 0.2s;
-  }
+    ${({ displayUi }) =>
+      displayUi &&
+      `
+      background: var(--background-color);
+      border-radius: var(--background-radius);
+      border: 1px solid var(--light-text-color);
+      padding: 0.5rem;
+      transition: 0.2s;
+    `}
 
-  .arrivalInfoTItle,
-  .arrivalCite {
-    transition: 0.2s;
-  }
-
-  .arrival:hover {
-    width: calc(100% - 0.2rem);
-    height: 3.3rem;
-    .arrivalInfoTItle {
-      font-size: 0.65rem;
-    }
+    .arrivalInfoTItle,
     .arrivalCite {
-      font-size: 1.45rem;
+      ${({ displayUi }) => displayUi && 'transition: 0.2s;'}
     }
+
+    ${({ displayUi }) =>
+      displayUi &&
+      `
+      &:hover {
+        width: calc(100% - 0.2rem);
+        height: 3.3rem;
+
+        .arrivalInfoTItle {
+          font-size: 0.65rem;
+        }
+        
+        .arrivalCite {
+          font-size: 1.45rem;
+        }
+      }
+    `}
   }
 `;

@@ -9,7 +9,7 @@ export const BackGround = ({ children }: Props) => {
 };
 
 const BackGroundContainer = styled.div`
-  background-color: white;
+  background-color: var(--background-ui-color);
   padding: var(--spacing-large);
   border-radius: var(--background-radius);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;

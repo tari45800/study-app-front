@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { DepatureArrival } from '../../../entity/DepatureArrival';
 import { CurrentTime } from '../../../shared/lib';
@@ -34,7 +33,7 @@ export const BoardingInfo = () => {
   return (
     <BoardingInfoContainer>
       <div className="arrivalNameBox">
-        <DepatureArrival arrivalInfo={arrivalInfo} />
+        <DepatureArrival arrivalInfo={arrivalInfo} displayUi={true} />
       </div>
       <div className="arrivalTimeBox">
         <div className="arrivalTimeContent">

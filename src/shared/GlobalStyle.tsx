@@ -3,16 +3,32 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import '../assets/font/Pretendard/Pretendard.css';
 import '../assets/font/notoSans/notoSans.css';
-export const GlobalStyles = createGlobalStyle`
+
+interface GlobalStylesProps {
+  isDarkMode: boolean;
+}
+
+export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
   ${reset}
 
   :root {
-    --background-color:#F3F4F6;
+    ${({ isDarkMode }) =>
+      isDarkMode
+        ? `
+      --background-ui-color: #303644;
+      --background-color: #303644;
+      --text-color: #FFFFFF;
+    `
+        : `
+      --background-ui-color: #FFFFFF;
+      --background-color: #F3F4F6;
+      --text-color: #303644;
+    `}
+
     --prime-color:#3182F7;
     --button-color:#F9FAFC;
     --header-icon-color:#B0B9C2;
 
-    --text-color: #303644;
     --light-text-color: #848C98;
     --button-text-color: #545869;
 

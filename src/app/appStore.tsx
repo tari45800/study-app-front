@@ -13,8 +13,18 @@ export const appStore = create<Store>((set) => ({
   removeCount: () => set({ count: 0 }),
 }));
 
+interface ThemeState {
+  isDarkMode: boolean; // boolean 타입으로 수정
+  toggleDarkMode: () => void;
+}
+
+export const useThemeStore = create<ThemeState>((set) => ({
+  isDarkMode: false, // 초기 상태는 라이트 모드로 설정
+  toggleDarkMode: () => set((state) => ({ isDarkMode: !state.isDarkMode })), // 토글 기능
+}));
+
 // flightVal 타입 정의
-interface flightVal {
+interface FlightState {
   flightTime: string;
   changeFlightTime: (newTime: string) => void;
 }
@@ -29,7 +39,7 @@ const getInitialFlightTime = () => {
   return '01:30'; // 기본값
 };
 
-export const flightStore = create<flightVal>((set) => ({
+export const flightStore = create<FlightState>((set) => ({
   flightTime: getInitialFlightTime(),
   changeFlightTime: (newTime) => set(() => ({ flightTime: newTime })),
 }));
