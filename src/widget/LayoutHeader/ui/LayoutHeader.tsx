@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Button } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
+import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { useThemeStore } from '../../../app/appStore';
 
 export const LayoutHeader = () => {
@@ -31,13 +32,15 @@ export const LayoutHeader = () => {
         </Link>
 
         <div className="headerFeatureContauner">
-          <div onClick={toggleDarkMode}>다크모드</div>
           <Link className="headerIcon" to={'/login'}>
             <div>로그인</div>
           </Link>
           <Link className="headerIcon" to={'/notice'}>
             <div>알림</div>
           </Link>
+          <div className="headerIcon darkModeIcon" onClick={toggleDarkMode}>
+            <FontAwesomeIcon icon={faMoon} />
+          </div>
           <div className="HeaderButtonBox">
             <Button theme="icon" onClick={removeCite}>
               값 삭제
@@ -92,5 +95,9 @@ const LayoutHeaderContainer = styled.div`
   .faPlaneDeparture {
     font-size: 1.7rem;
     margin-right: 0.5rem;
+  }
+
+  .darkModeIcon {
+    cursor: pointer;
   }
 `;
