@@ -8,7 +8,7 @@ export const Timer = () => {
   useEffect(() => {
     startTimer(); // 컴포넌트 마운트 시 타이머 자동 시작
 
-    return () => stopTimer(); // 컴포넌트 언마운트 시 타이머 정리
+    // return () => stopTimer(); // 컴포넌트 언마운트 시 타이머 정리
   }, []);
 
   const formatTime = (seconds: number): string => {
@@ -27,7 +27,7 @@ export const Timer = () => {
 
   return (
     <TimerContainer>
-      <div>{formatTime(seconds)} 공부 중...</div>
+      <div>{formatTime(seconds)}</div>
     </TimerContainer>
   );
 };
