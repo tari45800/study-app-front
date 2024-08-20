@@ -1,5 +1,6 @@
 import { useModal, create as createModal } from '@ebay/nice-modal-react';
 import { Button, Modal } from '../ui';
+import styled from 'styled-components';
 
 type Props = {
   title: string;
@@ -14,20 +15,38 @@ const ConfirmModalPresenter = (props: Props) => {
     title,
     onConfirm,
     onCancel,
-    confirmText = 'Yes',
-    cancelText = 'No',
+    confirmText = '네',
+    cancelText = '아니요',
   } = props;
 
   return (
     <Modal>
-      <span className="text_base text_bold">{title}</span>
-      <Button onClick={onConfirm}>{confirmText}</Button>
-      <Button theme="secondary" onClick={onCancel}>
-        {cancelText}
-      </Button>
+      <ConfirmModalPresenterContainer>
+        <div>{title}</div>
+        <div className="modalButtonBox">
+          <Button onClick={onConfirm}>{confirmText}</Button>
+          <Button theme="icon" onClick={onCancel}>
+            {cancelText}
+          </Button>
+        </div>
+      </ConfirmModalPresenterContainer>
     </Modal>
   );
 };
+
+const ConfirmModalPresenterContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  .modalButtonBox {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+  }
+`;
 
 export const ConfirmModal = createModal(ConfirmModalPresenter);
 

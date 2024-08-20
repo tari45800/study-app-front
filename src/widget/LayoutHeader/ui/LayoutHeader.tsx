@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { useThemeStore } from '../../../app/appStore';
+import { TimerEndModal } from '../../../shared/lib/TimerEndModal';
 
 export const LayoutHeader = () => {
   // useThemeStore를 훅처럼 호출하여 상태와 함수를 가져옵니다.
@@ -20,23 +21,21 @@ export const LayoutHeader = () => {
   return (
     <LayoutHeaderContainer>
       <div className="layoutHeaderContent">
-        <Link to={'/'}>
-          <div className="headerIcon headerIconLeft">
-            <FontAwesomeIcon
-              className="faPlaneDeparture"
-              icon={faPlaneDeparture}
-            />
-            타이머
-          </div>
-        </Link>
+        <div className="headerIcon headerIconLeft">
+          <FontAwesomeIcon
+            className="faPlaneDeparture"
+            icon={faPlaneDeparture}
+          />
+          <TimerEndModal title="타이머" to="/" />
+        </div>
 
         <div className="headerFeatureContauner">
-          <Link className="headerIcon" to={'/login'}>
-            <div>로그인</div>
-          </Link>
-          <Link className="headerIcon" to={'/notice'}>
-            <div>알림</div>
-          </Link>
+          <div className="headerIcon">
+            <TimerEndModal title="로그인" to="/login" />
+          </div>
+          <div className="headerIcon">
+            <TimerEndModal title="알림" to="/noticen" />
+          </div>
           <div className="headerIcon darkModeIcon" onClick={toggleDarkMode}>
             <FontAwesomeIcon icon={faMoon} />
           </div>

@@ -23,9 +23,7 @@ export const TimerPage = () => {
             </div>
           </BackGround>
         </div>
-        <div className="timerPageWindow">
-          <TimerAnimation />
-        </div>
+        <div className="timerPageWindow">{/* <TimerAnimation /> */}</div>
         <div className="timerLeftAbsoluteBox">
           <BackGround>
             <div className="timerPageBottom">

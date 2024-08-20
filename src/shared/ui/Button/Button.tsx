@@ -68,7 +68,7 @@ const ButtonContainer = styled.div`
 
   .secondary {
     background-color: var(--button-color);
-    border: 0.1rem solid var(--background-color);
+    border: 0.1rem solid var(--header-icon-color);
 
     button {
       color: var(--button-text-color);

@@ -24,7 +24,7 @@ export function Modal(props: Props) {
       <div className="overlay" onClick={() => modal.remove()}></div>
       <div className="modal">
         <button className="x" onClick={() => modal.remove()}>
-          닫기
+          x
         </button>
         {props.children}
       </div>
@@ -43,9 +43,7 @@ const ModalContainer = styled.div`
   .modal {
     min-height: 200px;
     width: 320px;
-
-    text-align: center;
-    padding: 20px 60px;
+    padding: var(--spacing-large);
 
     position: fixed;
     top: 50%;
