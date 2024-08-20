@@ -14,16 +14,6 @@ const BaseLayoutContainer = styled.div`
   .faAngleRight {
     color: var(--light-text-color);
   }
-
-  .absoluteFeatureBox {
-    position: fixed;
-    bottom: var(--spacing-small);
-    left: var(--spacing-small);
-  }
-
-  @media (max-height: 45rem) {
-    background-color: red;
-  }
 `;
 
 export const baseLayout = (
@@ -31,10 +21,5 @@ export const baseLayout = (
     {/* <PageTransition /> */}
     <LayoutHeader />
     <Outlet />
-    <div className="absoluteFeatureBox">
-      <BackGround>
-        <Timer />
-      </BackGround>
-    </div>
   </BaseLayoutContainer>
 );

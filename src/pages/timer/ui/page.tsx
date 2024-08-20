@@ -11,30 +11,34 @@ export const TimerPage = () => {
   return (
     <TimerPageContainer>
       <div className="timePageContent">
-        <BackGround>
-          <div className="timerPageTop">
-            <div className="timerBox">
-              <Timer />
+        <div className="timerRightAbsoluteBox">
+          <BackGround>
+            <div className="timerPageTop">
+              <div className="timerBox">
+                <Timer />
+              </div>
+              <div>
+                <StopTimerButton />
+              </div>
             </div>
-            <div>
-              <StopTimerButton />
-            </div>
-          </div>
-        </BackGround>
+          </BackGround>
+        </div>
         <div className="timerPageWindow">
           <TimerAnimation />
         </div>
-        <BackGround>
-          <div className="timerPageBottom">
-            <div className="todoBox">투두</div>
-            <div>
-              그룹,
+        <div className="timerLeftAbsoluteBox">
+          <BackGround>
+            <div className="timerPageBottom">
+              <div className="todoBox">투두</div>
               <div>
-                <ResetTimerButton />
+                그룹,
+                <div>
+                  <ResetTimerButton />
+                </div>
               </div>
             </div>
-          </div>
-        </BackGround>
+          </BackGround>
+        </div>
       </div>
     </TimerPageContainer>
   );
@@ -74,6 +78,27 @@ const TimerPageContainer = styled.div`
       flex: 1;
       font-size: 1.5rem;
       font-weight: bold;
+    }
+  }
+
+  @media (max-height: 45rem) {
+    .timerRightAbsoluteBox,
+    .timerLeftAbsoluteBox {
+      position: fixed;
+      bottom: var(--spacing-small);
+      z-index: 200;
+
+      width: 100%;
+      max-width: var(--desktop);
+      padding-right: 1.4rem;
+    }
+
+    .timerRightAbsoluteBox {
+      display: flex;
+    }
+    .timerLeftAbsoluteBox {
+      display: flex;
+      justify-content: end;
     }
   }
 `;

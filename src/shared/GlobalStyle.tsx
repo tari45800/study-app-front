@@ -15,7 +15,7 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
     ${({ isDarkMode }) =>
       isDarkMode
         ? `
-      --background-ui-color: #303644;
+      --background-ui-color: #3b414f;
       --background-color: #303644;
       --text-color: #FFFFFF;
     `
@@ -25,6 +25,7 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
       --text-color: #303644;
     `}
 
+    // 컬러
     --prime-color:#3182F7;
     --button-color:#F9FAFC;
     --header-icon-color:#B0B9C2;
@@ -36,6 +37,7 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
     --feature-color: #4aa838;
     --entity-color: #5181e9;
 
+    // 단위
     --spacing-small: 0.7rem;
     --spacing-medium: 1rem;
     --spacing-large: 1.5rem;

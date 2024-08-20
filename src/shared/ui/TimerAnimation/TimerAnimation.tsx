@@ -74,6 +74,16 @@ const TimerAnimationContainer = styled.div`
     z-index: 101;
     animation: ${cloudShadowAnimation} 20s forwards ease-in-out infinite;
   }
+
+  @media (max-height: 45rem) {
+    .fly-window {
+      border-radius: var(--background-radius);
+    }
+
+    .fly-background {
+      border-radius: 1rem;
+    }
+  }
 `;
 
 const generateRandomValue = (min: number, max: number) =>
