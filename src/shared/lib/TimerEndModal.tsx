@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const TimerEndModal = ({ children, to }: Props) => {
-  const { seconds, resetTimer } = useTimerStore();
+  const { isRunning, resetTimer } = useTimerStore();
 
   const logoutModal = useConfirmModal();
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export const TimerEndModal = ({ children, to }: Props) => {
     e.stopPropagation();
     e.preventDefault();
 
-    if (seconds !== 0) {
+    if (isRunning) {
       logoutModal.show({
         title: '타이머가 종료됩니다!',
         onConfirm: () => {

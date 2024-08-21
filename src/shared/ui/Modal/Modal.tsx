@@ -37,7 +37,7 @@ const ModalContainer = styled.div`
     position: fixed;
     inset: 0;
     background: #0007;
-    z-index: 100;
+    z-index: 1000;
   }
 
   .modal {
@@ -52,7 +52,7 @@ const ModalContainer = styled.div`
     background: white;
     box-shadow: 0 2px 8px 0 rgba(34, 60, 80, 0.4);
     color: var(--text-color);
-    z-index: 101;
+    z-index: 1001;
 
     display: flex;
     flex-direction: column;

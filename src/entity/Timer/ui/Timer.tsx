@@ -31,13 +31,7 @@ export const Timer = () => {
     return `${totalMinutes}:${formattedSeconds}`;
   };
 
-  return (
-    <TimerContainer>
-      <div>
-        <div>{formatTime(seconds)}</div>
-      </div>
-    </TimerContainer>
-  );
+  return <TimerContainer>{formatTime(seconds)}</TimerContainer>;
 };
 
 const TimerContainer = styled.div`
@@ -47,6 +41,12 @@ const TimerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+
+  width: 6rem;
+  background-color: var(--background-color);
+  padding: 0.5rem;
+  border-radius: var(--background-radius);
+  box-shadow: inset rgba(0, 0, 0, 0.1) 0px 1px 3px;
 
   button {
     font-size: 1rem;

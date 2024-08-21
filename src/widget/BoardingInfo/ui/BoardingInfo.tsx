@@ -3,6 +3,7 @@ import { DepatureArrival } from '../../../entity/DepatureArrival';
 import { CurrentTime } from '../../../shared/lib';
 import { getData } from '../../../shared/lib/server/api/apis';
 import { useQuery } from '@tanstack/react-query';
+import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
 
 export const BoardingInfo = () => {
   const {
@@ -35,21 +36,10 @@ export const BoardingInfo = () => {
       <div className="arrivalNameBox">
         <DepatureArrival arrivalInfo={arrivalInfo} displayUi={true} />
       </div>
-      <div className="arrivalTimeBox">
-        <div className="arrivalTimeContent">
-          <div className="arrivalInfoTItle">출발 시간</div>
-          <div className="arrivalInfoContent">
-            <CurrentTime />
-          </div>
-        </div>
-        <div className="arrivalTimeContent"></div>
-        <div className="arrivalTimeContent">
-          <div className="arrivalInfoTItle">도착 시간</div>
-          <div className="arrivalInfoContent">
-            <CurrentTime offset={arrivalInfo.time} />
-          </div>
-        </div>
-      </div>
+      <ArrivalTimeBox
+        departureComponent={<CurrentTime />}
+        arrivalComponent={<CurrentTime offset={arrivalInfo.time} />}
+      />
       <div className="arrivalCountBox">
         <div className="arrivalTimeContent">
           <div className="arrivalInfoTItle">인원</div>

@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { CurrentTime } from '../../../shared/lib';
 import { DelayTime } from '../../../shared/lib/DelayTime';
+import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
 
 DelayTime;
 
@@ -30,23 +31,15 @@ export const TimerPage = () => {
               </div>
 
               <div className="timerPageTopRight">
-                <div className="arrivalTimeBox">
-                  <div className="arrivalTimeContent">
-                    <div className="arrivalInfoTItle">출발 시간</div>
-                    <div className="arrivalInfoContent">
-                      <DelayTime />
-                    </div>
-                  </div>
-                  <div className="arrivalTimeContent">
-                    <div className="arrivalInfoTItle">도착 시간</div>
-                    <div className="arrivalInfoContent">
-                      <DelayTime
-                        includePausedTimerSeconds={true}
-                        offset={arrivalInfo.time}
-                      />
-                    </div>
-                  </div>
-                </div>
+                <ArrivalTimeBox
+                  departureComponent={<DelayTime />}
+                  arrivalComponent={
+                    <DelayTime
+                      includePausedTimerSeconds={true}
+                      offset={arrivalInfo.time}
+                    />
+                  }
+                />
                 <div>
                   <StopTimerButton />
                 </div>
@@ -54,13 +47,13 @@ export const TimerPage = () => {
             </div>
           </BackGround>
         </div>
-        <div className="timerPageWindow">{/* <TimerAnimation /> */}</div>
+        <div className="timerPageWindow">{<TimerAnimation />}</div>
         <div className="timerLeftAbsoluteBox">
           <BackGround>
             <div className="timerPageBottom">
               <div className="todoBox">투두</div>
               {/* <div>그룸가기</div> */}
-              <TimerEndModal to="/">
+              <TimerEndModal to="/resultPage">
                 <FontAwesomeIcon
                   className="resetTimeIcon"
                   icon={faCircleXmark}
@@ -78,28 +71,8 @@ const TimerPageContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  // 도착 정보
   .arrivalTimeBox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 10rem;
-    .arrivalTimeContent {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .arrivalInfoTItle {
-      font-size: 0.7rem;
-      color: var(--light-text-color);
-      margin-bottom: 0.2rem;
-    }
-
-    .arrivalInfoContent {
-      font-size: 1.1rem;
-    }
   }
 
   .resetTimeIcon {

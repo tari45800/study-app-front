@@ -4,6 +4,7 @@ import { LoginPage } from '../pages/login';
 import { MainPage } from '../pages/main';
 import { ChooseCitePage } from '../pages/chooseCite';
 import { TimerPage } from '../pages/timer';
+import { ResultPage } from '../pages/result';
 
 export const appRouter = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const appRouter = createBrowserRouter([
       {
         path: '/timerPage',
         element: <TimerPage />,
+      },
+      {
+        path: '/resultPage',
+        element: <ResultPage />,
       },
     ],
   },

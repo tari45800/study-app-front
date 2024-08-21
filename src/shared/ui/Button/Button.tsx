@@ -7,7 +7,7 @@ type Props = {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
   theme?: ButtonTheme;
-  size?: 'm' | 's';
+  size?: 'l' | 'm' | 's';
   type?: 'submit';
   isLoading?: boolean;
   disabled?: boolean;
@@ -17,7 +17,7 @@ export const Button = ({
   onClick,
   children,
   isLoading,
-  size = 'm',
+  size = 'l',
   theme = 'secondary',
   disabled,
   type,
@@ -39,6 +39,13 @@ const ButtonContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 2.5rem;
+
+  .l {
+  }
+  .m {
+  }
+  .s {
+  }
 
   .buttonHover {
     display: flex;
@@ -70,7 +77,7 @@ const ButtonContainer = styled.div`
 
   .secondary {
     background-color: var(--button-color);
-    border: 0.1rem solid var(--header-icon-color);
+    border: 0.05rem solid var(--header-icon-color);
 
     button {
       color: var(--button-text-color);
