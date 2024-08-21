@@ -26,15 +26,15 @@ export const LayoutHeader = () => {
             className="faPlaneDeparture"
             icon={faPlaneDeparture}
           />
-          <TimerEndModal title="타이머" to="/" />
+          <TimerEndModal to="/">타이머</TimerEndModal>
         </div>
 
         <div className="headerFeatureContauner">
           <div className="headerIcon">
-            <TimerEndModal title="로그인" to="/login" />
+            <TimerEndModal to="/login">로그인</TimerEndModal>
           </div>
           <div className="headerIcon">
-            <TimerEndModal title="알림" to="/noticen" />
+            <TimerEndModal to="/noticen">알림</TimerEndModal>
           </div>
           <div className="headerIcon darkModeIcon" onClick={toggleDarkMode}>
             <FontAwesomeIcon icon={faMoon} />

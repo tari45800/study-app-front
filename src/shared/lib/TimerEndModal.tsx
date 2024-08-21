@@ -1,13 +1,14 @@
+import styled from 'styled-components';
 import { useTimerStore } from '../../app/appStore';
 import { useConfirmModal } from './useConfirmModal';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {
-  title: string;
+  children: React.ReactNode;
   to: string;
 };
 
-export const TimerEndModal = ({ title, to }: Props) => {
+export const TimerEndModal = ({ children, to }: Props) => {
   const { seconds, resetTimer } = useTimerStore();
 
   const logoutModal = useConfirmModal();
@@ -32,5 +33,13 @@ export const TimerEndModal = ({ title, to }: Props) => {
     }
   };
 
-  return <div onClick={onConfirm}>{title}</div>;
+  return (
+    <TimerEndModalContainer>
+      <div onClick={onConfirm}>{children}</div>
+    </TimerEndModalContainer>
+  );
 };
+
+const TimerEndModalContainer = styled.div`
+  cursor: pointer;
+`;

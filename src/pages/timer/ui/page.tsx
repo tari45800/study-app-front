@@ -6,6 +6,9 @@ import {
   StopTimerButton,
 } from '../../../widget/TimerConTrols';
 import { TimerAnimation } from '../../../shared/ui/TimerAnimation/TimerAnimation';
+import { TimerEndModal } from '../../../shared/lib/TimerEndModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 export const TimerPage = () => {
   return (
@@ -28,12 +31,13 @@ export const TimerPage = () => {
           <BackGround>
             <div className="timerPageBottom">
               <div className="todoBox">투두</div>
-              <div>
-                그룹,
-                <div>
-                  <ResetTimerButton />
-                </div>
-              </div>
+              {/* <div>그룸가기</div> */}
+              <TimerEndModal to="/">
+                <FontAwesomeIcon
+                  className="resetTimeIcon"
+                  icon={faCircleXmark}
+                />
+              </TimerEndModal>
             </div>
           </BackGround>
         </div>
@@ -45,6 +49,11 @@ export const TimerPage = () => {
 const TimerPageContainer = styled.div`
   display: flex;
   justify-content: center;
+
+  .resetTimeIcon {
+    font-size: 2rem;
+    color: var(--button-text-color);
+  }
 
   .timePageContent {
     flex: 1;

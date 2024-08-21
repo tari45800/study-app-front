@@ -47,7 +47,6 @@ const ButtonContainer = styled.div`
 
     width: 100%;
     height: 2.5rem;
-    padding: 0.7rem;
     border-radius: 0.5rem;
     transition: 0.2s;
     cursor: pointer;
@@ -56,6 +55,9 @@ const ButtonContainer = styled.div`
   button {
     font-weight: 600;
     transition: 0.2s;
+    width: 100%;
+    height: 100%;
+    padding: 0.7rem;
   }
 
   .primary {
