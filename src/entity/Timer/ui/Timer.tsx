@@ -3,31 +3,39 @@ import styled from 'styled-components';
 import { useTimerStore } from '../../../app/appStore';
 
 export const Timer = () => {
-  const { seconds, startTimer, stopTimer, isRunning } = useTimerStore();
+  const {
+    seconds,
+    initializeTimer,
+    pausedTimerSeconds,
+    startTimer,
+    resetTimer,
+  } = useTimerStore();
 
   useEffect(() => {
-    startTimer(); // 컴포넌트 마운트 시 타이머 자동 시작
+    initializeTimer();
+  }, []);
 
-    return () => stopTimer(); // 컴포넌트 언마운트 시 타이머 정리
+  useEffect(() => {
+    startTimer();
+
+    return () => {
+      resetTimer();
+    };
   }, []);
 
   const formatTime = (seconds: number): string => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
+    const totalMinutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-
-    if (hours > 0) {
-      return `${hours}시간 ${minutes}분 ${remainingSeconds}초`;
-    } else if (minutes > 0) {
-      return `${minutes}분 ${remainingSeconds}초`;
-    } else {
-      return `${remainingSeconds}초`;
-    }
+    const formattedSeconds =
+      remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
+    return `${totalMinutes}:${formattedSeconds}`;
   };
 
   return (
     <TimerContainer>
-      <div>{formatTime(seconds)}</div>
+      <div>
+        <div>{formatTime(seconds)}</div>
+      </div>
     </TimerContainer>
   );
 };
@@ -35,4 +43,19 @@ export const Timer = () => {
 const TimerContainer = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
+  }
+
+  h2 {
+    margin: 0;
+  }
 `;

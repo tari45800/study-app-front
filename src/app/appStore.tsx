@@ -1,18 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
 import { create } from 'zustand';
 
-interface Store {
-  count: number;
-  incrementCount: () => void;
-  removeCount: () => void;
-}
-
-export const appStore = create<Store>((set) => ({
-  count: 0,
-  incrementCount: () => set((state) => ({ count: state.count + 1 })),
-  removeCount: () => set({ count: 0 }),
-}));
-
+// 다크모드 스토어
 interface ThemeState {
   isDarkMode: boolean; // boolean 타입으로 수정
   toggleDarkMode: () => void;
@@ -23,7 +11,8 @@ export const useThemeStore = create<ThemeState>((set) => ({
   toggleDarkMode: () => set((state) => ({ isDarkMode: !state.isDarkMode })), // 토글 기능
 }));
 
-// flightVal 타입 정의
+//--------------------------------------------------
+// 여행지 정보 스토어
 interface FlightState {
   flightTime: string;
   changeFlightTime: (newTime: string) => void;
@@ -44,48 +33,116 @@ export const flightStore = create<FlightState>((set) => ({
   changeFlightTime: (newTime) => set(() => ({ flightTime: newTime })),
 }));
 
+//--------------------------------------------------
+// 타이머 스토어
+
 interface TimerState {
-  seconds: number;
-  isRunning: boolean;
+  seconds: number; // 기본 타이머 시간 (감소하는 타이머)
+  pausedTimerSeconds: number; // 일시정지 타이머 시간 (증가하는 타이머)
+  isRunning: boolean; // 기본 타이머 실행 여부
+  isPaused: boolean; // 타이머가 일시정지 상태인지 여부
   startTimer: () => void;
   stopTimer: () => void;
   resetTimer: () => void;
-  incrementTimer: () => void;
+  decrementTimer: () => void;
+  incrementPausedTimer: () => void;
+  initializeTimer: () => void; // 추가: 타이머 초기화 함수
 }
 
-export const useTimerStore = create<TimerState>((set, get) => ({
-  seconds: parseInt(localStorage.getItem('timerSeconds') || '0', 10),
-  isRunning: true, // 기본적으로 타이머가 자동으로 시작
+// 시간을 초 단위로 변환하는 함수
+const timeStringToSeconds = (time: string): number => {
+  const [hours, minutes] = time.split(':').map(Number);
+  return hours * 3600 + minutes * 60;
+};
 
-  startTimer: () => {
-    if (!get().isRunning) {
-      set({ isRunning: true });
-      const timerId = setInterval(() => {
-        const { incrementTimer, isRunning } = get();
-        if (isRunning) {
-          incrementTimer();
+export const useTimerStore = create<TimerState>((set, get) => {
+  return {
+    seconds: 0,
+    pausedTimerSeconds: 0,
+    isRunning: false,
+    isPaused: false,
+
+    initializeTimer: () => {
+      const arrivalInfo = JSON.parse(
+        localStorage.getItem('arrivalInfo') || '{"time": "00:00"}',
+      );
+      const initialSeconds = timeStringToSeconds(arrivalInfo.time);
+      set({ seconds: initialSeconds });
+      localStorage.setItem('timerSeconds', String(initialSeconds));
+    },
+
+    startTimer: () => {
+      const { isPaused, isRunning } = get();
+      if (!isRunning) {
+        set({ isRunning: true, isPaused: false });
+        const timerId = setInterval(() => {
+          const { decrementTimer, isRunning } = get();
+          if (isRunning) {
+            decrementTimer();
+          }
+        }, 1000);
+        localStorage.setItem('timerId', String(timerId));
+      } else if (isPaused) {
+        const pausedTimerId = Number(localStorage.getItem('pausedTimerId'));
+        if (pausedTimerId) clearInterval(pausedTimerId);
+      }
+    },
+
+    stopTimer: () => {
+      const { isRunning } = get();
+      if (isRunning) {
+        set({ isRunning: false, isPaused: true });
+        clearInterval(Number(localStorage.getItem('timerId')));
+
+        const existingPausedTimerId = Number(
+          localStorage.getItem('pausedTimerId'),
+        );
+        if (existingPausedTimerId) {
+          clearInterval(existingPausedTimerId);
         }
-      }, 1000);
-      localStorage.setItem('timerId', String(timerId));
-    }
-  },
 
-  stopTimer: () => {
-    set({ isRunning: false });
-    clearInterval(Number(localStorage.getItem('timerId')));
-  },
+        const pausedTimerId = setInterval(() => {
+          const { incrementPausedTimer, isPaused } = get();
+          if (isPaused) {
+            incrementPausedTimer();
+          }
+        }, 1000);
+        localStorage.setItem('pausedTimerId', String(pausedTimerId));
+      }
+    },
 
-  resetTimer: () => {
-    set({ seconds: 0, isRunning: false });
-    localStorage.setItem('timerSeconds', '0');
-    clearInterval(Number(localStorage.getItem('timerId')));
-  },
+    resetTimer: () => {
+      const arrivalInfo = JSON.parse(
+        localStorage.getItem('arrivalInfo') || '{"time": "00:00"}',
+      );
+      const initialSeconds = timeStringToSeconds(arrivalInfo.time);
 
-  incrementTimer: () => {
-    set((state) => {
-      const newSeconds = state.seconds + 1;
-      localStorage.setItem('timerSeconds', String(newSeconds));
-      return { seconds: newSeconds };
-    });
-  },
-}));
+      set({
+        seconds: initialSeconds,
+        pausedTimerSeconds: 0,
+        isRunning: false,
+        isPaused: false,
+      });
+      localStorage.setItem('timerSeconds', String(initialSeconds));
+      localStorage.setItem('pausedTimerSeconds', '0');
+      clearInterval(Number(localStorage.getItem('timerId')));
+      clearInterval(Number(localStorage.getItem('pausedTimerId')));
+    },
+
+    decrementTimer: () => {
+      set((state) => {
+        const newSeconds = Math.max(state.seconds - 1, 0);
+        localStorage.setItem('timerSeconds', String(newSeconds));
+        return { seconds: newSeconds };
+      });
+    },
+
+    incrementPausedTimer: () => {
+      set((state) => {
+        const newPausedSeconds = state.pausedTimerSeconds + 1;
+        localStorage.setItem('pausedTimerSeconds', String(newPausedSeconds));
+        return { pausedTimerSeconds: newPausedSeconds };
+      });
+    },
+  };
+});
