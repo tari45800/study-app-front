@@ -47,7 +47,7 @@ export const TimerPage = () => {
             </div>
           </BackGround>
         </div>
-        <div className="timerPageWindow">{<TimerAnimation />}</div>
+        {/* <div className="timerPageWindow">{<TimerAnimation />}</div> */}
         <div className="timerLeftAbsoluteBox">
           <BackGround>
             <div className="timerPageBottom">
@@ -117,23 +117,28 @@ const TimerPageContainer = styled.div`
   }
 
   @media (max-height: 45rem) {
+    .timerPageTop,
+    .timerPageBottom {
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     .timerRightAbsoluteBox,
     .timerLeftAbsoluteBox {
       position: fixed;
       bottom: var(--spacing-small);
       z-index: 200;
-
-      width: 100%;
-      max-width: var(--desktop);
-      padding-right: 1.4rem;
+      display: flex;
+      align-items: center;
     }
 
     .timerRightAbsoluteBox {
-      display: flex;
+      right: var(--spacing-small);
     }
     .timerLeftAbsoluteBox {
-      display: flex;
-      justify-content: end;
+      left: var(--spacing-small);
     }
   }
 `;

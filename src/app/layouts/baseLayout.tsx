@@ -3,8 +3,6 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import { LayoutHeader } from '../../widget/LayoutHeader';
-import { BackGround } from '../../shared/ui';
-import { Timer } from '../../entity/Timer';
 
 const BaseLayoutContainer = styled.div`
   background-color: var(--background-color);
