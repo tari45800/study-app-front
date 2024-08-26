@@ -8,8 +8,7 @@ export const timerResultlHandlers = [
     let timerResults = storedData ? JSON.parse(storedData) : [];
 
     // 첫 번째 요소를 가져옴 (없으면 null 반환)
-    const firstItem =
-      timerResults.length > 0 ? timerResults[timerResults.length - 1] : null;
+    const firstItem = timerResults.length > 0 ? timerResults[0] : null;
 
     return HttpResponse.json(firstItem);
   }),

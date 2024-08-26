@@ -8,6 +8,33 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getData } from '../../../shared/lib/server/api/apis';
 
+const formatTime = (seconds: number, arrival?: boolean): string => {
+  if (arrival) {
+    const arrivalInfo = localStorage.getItem('arrivalInfo');
+    if (arrivalInfo) {
+      const timeData = JSON.parse(arrivalInfo);
+      const [hoursStr, minutesStr] = timeData.time.split(':');
+      const storedHours = parseInt(hoursStr, 10);
+      const storedMinutes = parseInt(minutesStr, 10);
+
+      const storedTotalSeconds = storedHours * 3600 + storedMinutes * 60;
+      seconds = storedTotalSeconds - seconds;
+    }
+  }
+
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  if (hours > 0) {
+    return `${hours}시간 ${minutes}분 ${remainingSeconds}초`;
+  } else if (minutes > 0) {
+    return `${minutes}분 ${remainingSeconds}초`;
+  } else {
+    return `${remainingSeconds}초`;
+  }
+};
+
 export const ResultPage = () => {
   const navigate = useNavigate();
   const {
@@ -17,6 +44,7 @@ export const ResultPage = () => {
   } = useQuery({
     queryKey: ['timerResult'],
     queryFn: () => getData('/timerResult'),
+    staleTime: 0,
   });
 
   if (isPending) {
@@ -37,13 +65,17 @@ export const ResultPage = () => {
           <FontAwesomeIcon className="resultPageIcon" icon={faCircleCheck} />
         </div>
         <div className="resultPageTop">
-          <div className="resultPageTime">{timerResult.flightTime}</div>
+          <div className="resultPageTime">
+            {formatTime(timerResult.flightTime, true)}
+          </div>
           <div className="resultPageClear ">비행완료</div>
         </div>
 
         <BackGround>
           <div className="resultPageTimeBox">
-            <div className="resultPageDelay">{timerResult.delayTime}</div>
+            <div className="resultPageDelay">
+              {formatTime(timerResult.delayTime)}
+            </div>
             <ArrivalTimeBox
               departureComponent={timerResult.departureTime}
               arrivalComponent={timerResult.arrivalTime}
