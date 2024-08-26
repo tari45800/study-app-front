@@ -39,7 +39,7 @@ export const TimerPostModal = ({ children, to, postDatas }: Props) => {
       logoutModal.show({
         title: '타이머를 종료합니다.',
         onConfirm: () => {
-          postData('/timerResult', postDatas);
+          postData('/timerPost', postDatas);
           logoutModal.remove();
           resetTimer();
           navigate(to);

@@ -6,10 +6,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { postData } from '../../../shared/lib/server/api/apis';
+import { getData } from '../../../shared/lib/server/api/apis';
 
 export const ResultPage = () => {
   const navigate = useNavigate();
+  const {
+    isPending,
+    error,
+    data: timerResult,
+  } = useQuery({
+    queryKey: ['timerResult'],
+    queryFn: () => getData('/timerResult'),
+  });
+
+  if (isPending) {
+    return <div>loding...</div>;
+  }
+
+  if (error) {
+    console.log(error);
+    return <div>error</div>;
+  }
+
+  console.log(timerResult);
 
   return (
     <ResultPageContainer>
@@ -18,18 +37,16 @@ export const ResultPage = () => {
           <FontAwesomeIcon className="resultPageIcon" icon={faCircleCheck} />
         </div>
         <div className="resultPageTop">
-          <div className="resultPageTime">2시간 30분</div>
+          <div className="resultPageTime">{timerResult.flightTime}</div>
           <div className="resultPageClear ">비행완료</div>
         </div>
 
         <BackGround>
           <div className="resultPageTimeBox">
-            <div className="resultPageDelay">20분 지연</div>
+            <div className="resultPageDelay">{timerResult.delayTime}</div>
             <ArrivalTimeBox
-              departureComponent={<DelayTime />}
-              arrivalComponent={
-                <DelayTime includePausedTimerSeconds={true} offset={'02:00'} />
-              }
+              departureComponent={timerResult.departureTime}
+              arrivalComponent={timerResult.arrivalTime}
             />
           </div>
         </BackGround>
