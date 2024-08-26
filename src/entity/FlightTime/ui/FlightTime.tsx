@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IconLayout } from '../../../shared/ui';
+import { BackGround, IconLayout } from '../../../shared/ui';
 import styled from 'styled-components';
 import { flightStore } from '../../../app/appStore';
 import { convertTimeString } from '../../../shared/lib/convertTime';
@@ -21,7 +21,10 @@ export const FlightTime = () => {
     '30분': '00:30',
     '1시간': '01:00',
     '1시간 30분': '01:30',
-    '2시간': '02:00',
+    // '2시간': '02:00',
+    // '2시간 30분': '02:30',
+    // '3시간': '03:00',
+    // '3시간 30분': '03:30',
   };
 
   return (
@@ -40,8 +43,9 @@ export const FlightTime = () => {
             <FontAwesomeIcon className="faAngleRight" icon={faAngleRight} />
           </div>
         </IconLayout>
+
         {timeModal && (
-          <div className="flightTimeModal">
+          <div className="flightTimeModal scroll">
             {Object.keys(FlightTimes).map((el, idx) => {
               return (
                 <div
@@ -70,19 +74,24 @@ const FlightTimeContainer = styled.div`
   .flightTimeModal {
     position: absolute;
     top: 0;
-    left: 100%;
-    height: 10rem;
+    left: calc(100% + 0.7rem);
+    /* height: fit-content; */
+    /* height: 10rem; */
     width: 10rem;
     overflow: auto;
-    border: 0.2rem solid red;
     background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 0.7rem;
   }
 
   .flightTime {
     padding: 1rem;
-    border-bottom: 0.2rem solid white;
-    background-color: lightgray;
+    border-bottom: 1px solid #ededed;
     cursor: pointer;
+  }
+
+  .flightTime:hover {
+    background-color: #ededed;
   }
 
   .IconLayoutLeft {

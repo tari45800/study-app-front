@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
 import { DelayTime } from '../../../shared/lib/DelayTime';
-import { Button } from '../../../shared/ui';
+import { BackGround, Button } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { postData } from '../../../shared/lib/server/api/apis';
 
 export const ResultPage = () => {
+  const navigate = useNavigate();
+
   return (
     <ResultPageContainer>
       <div className="resultPageContent">
@@ -17,18 +22,20 @@ export const ResultPage = () => {
           <div className="resultPageClear ">비행완료</div>
         </div>
 
-        <div className="resultPageTimeBox">
-          <ArrivalTimeBox
-            departureComponent={<DelayTime />}
-            arrivalComponent={
-              <DelayTime includePausedTimerSeconds={true} offset={'02:00'} />
-            }
-          />
-          <div className="resultPageDelay">20분 지연</div>
-        </div>
+        <BackGround>
+          <div className="resultPageTimeBox">
+            <div className="resultPageDelay">20분 지연</div>
+            <ArrivalTimeBox
+              departureComponent={<DelayTime />}
+              arrivalComponent={
+                <DelayTime includePausedTimerSeconds={true} offset={'02:00'} />
+              }
+            />
+          </div>
+        </BackGround>
 
         <div className="resultPageButtonBox">
-          <Button>홈으로</Button>
+          <Button onClick={() => navigate('/')}>홈으로</Button>
           <Button theme="icon">여행하기</Button>
         </div>
       </div>
@@ -67,6 +74,8 @@ const ResultPageContainer = styled.div`
     }
 
     .resultPageTop {
+      margin-bottom: 2rem;
+
       .resultPageTime {
         font-size: 2.5rem;
         font-weight: bold;
@@ -77,14 +86,14 @@ const ResultPageContainer = styled.div`
     }
     .resultPageTimeBox {
       .arrivalTimeBox {
-        width: 20rem;
+        width: 15rem;
       }
       .arrivalInfoTitle {
         font-size: 1rem;
         font-weight: 600;
       }
       .arrivalInfoContent {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 600;
       }
       .resultPageDelay {
@@ -93,7 +102,7 @@ const ResultPageContainer = styled.div`
       }
     }
     .resultPageButtonBox {
-      margin-top: 5rem;
+      margin-top: 2rem;
       flex-direction: row;
     }
   }

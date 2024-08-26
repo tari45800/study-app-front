@@ -28,7 +28,7 @@ export const Timer = () => {
     const remainingSeconds = seconds % 60;
     const formattedSeconds =
       remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
-    return `${totalMinutes}:${formattedSeconds}`;
+    return `${totalMinutes}분 ${formattedSeconds}초`;
   };
 
   return <TimerContainer>{formatTime(seconds)}</TimerContainer>;
@@ -42,9 +42,8 @@ const TimerContainer = styled.div`
   align-items: center;
   gap: 1rem;
 
-  width: 6rem;
   background-color: var(--background-color);
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border-radius: var(--background-radius);
   box-shadow: inset rgba(0, 0, 0, 0.1) 0px 1px 3px;
 

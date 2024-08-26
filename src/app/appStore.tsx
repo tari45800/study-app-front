@@ -1,5 +1,22 @@
 import { create } from 'zustand';
 
+//--------------------------------------------------
+// 현재 시간 스토어
+interface TimeState {
+  departureTime: string;
+  arrivalTime: string;
+  setDepartureTime: (time: string) => void;
+  setArrivalTime: (time: string) => void;
+}
+
+export const useTimeStore = create<TimeState>((set) => ({
+  departureTime: '',
+  arrivalTime: '',
+  setDepartureTime: (time) => set(() => ({ departureTime: time })),
+  setArrivalTime: (time) => set(() => ({ arrivalTime: time })),
+}));
+
+//--------------------------------------------------
 // 다크모드 스토어
 interface ThemeState {
   isDarkMode: boolean; // boolean 타입으로 수정

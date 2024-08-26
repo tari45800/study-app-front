@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ArrivalTimeBoxProps {
-  departureComponent: React.ReactNode; // 출발 시간에 해당하는 컴포넌트
-  arrivalComponent: React.ReactNode; // 도착 시간에 해당하는 컴포넌트
+  departureComponent: React.ReactNode;
+  arrivalComponent: React.ReactNode;
 }
 
 export const ArrivalTimeBox: React.FC<ArrivalTimeBoxProps> = ({

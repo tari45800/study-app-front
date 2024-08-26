@@ -1,24 +1,47 @@
 import styled from 'styled-components';
 import { BackGround } from '../../../shared/ui';
 import { Timer } from '../../../entity/Timer';
-import {
-  ResetTimerButton,
-  StopTimerButton,
-} from '../../../widget/TimerConTrols';
+import { StopTimerButton } from '../../../widget/TimerConTrols';
 import { TimerAnimation } from '../../../shared/ui/TimerAnimation/TimerAnimation';
-import { TimerEndModal } from '../../../shared/lib/TimerEndModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { CurrentTime } from '../../../shared/lib';
 import { DelayTime } from '../../../shared/lib/DelayTime';
 import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
-
-DelayTime;
+import { TimerPostModal } from '../../../shared/lib/TimerPostModal';
+import { useTimerStore, useTimeStore } from '../../../app/appStore';
 
 export const TimerPage = () => {
   const storedArrivalInfo =
     localStorage.getItem('arrivalInfo') || '{"time": 0}';
   const arrivalInfo = JSON.parse(storedArrivalInfo);
+
+  const { seconds, pausedTimerSeconds } = useTimerStore();
+  const { departureTime, arrivalTime } = useTimeStore();
+
+  const postDatas = {
+    userId: 1,
+    flightTime: `${seconds}`,
+    departureTime,
+    arrivalTime,
+    delayTime: `${pausedTimerSeconds}`,
+    todos: [
+      {
+        todoId: 1,
+        todoContent: '안녕 안녕',
+        todoState: true,
+      },
+      {
+        todoId: 2,
+        todoContent: '나는',
+        todoState: true,
+      },
+      {
+        todoId: 3,
+        todoContent: '지수야',
+        todoState: true,
+      },
+    ],
+  };
 
   return (
     <TimerPageContainer>
@@ -32,11 +55,14 @@ export const TimerPage = () => {
 
               <div className="timerPageTopRight">
                 <ArrivalTimeBox
-                  departureComponent={<DelayTime />}
+                  departureComponent={
+                    <DelayTime updateTarget="departureTime" />
+                  }
                   arrivalComponent={
                     <DelayTime
                       includePausedTimerSeconds={true}
                       offset={arrivalInfo.time}
+                      updateTarget="arrivalTime"
                     />
                   }
                 />
@@ -53,12 +79,12 @@ export const TimerPage = () => {
             <div className="timerPageBottom">
               <div className="todoBox">투두</div>
               {/* <div>그룸가기</div> */}
-              <TimerEndModal to="/resultPage">
+              <TimerPostModal to="/resultPage" postDatas={postDatas}>
                 <FontAwesomeIcon
                   className="resetTimeIcon"
                   icon={faCircleXmark}
                 />
-              </TimerEndModal>
+              </TimerPostModal>
             </div>
           </BackGround>
         </div>
