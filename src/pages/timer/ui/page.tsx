@@ -20,6 +20,7 @@ export const TimerPage = () => {
 
   const postDatas = {
     userId: 1,
+    arrivalInfo,
     flightTime: `${seconds}`,
     departureTime,
     arrivalTime,

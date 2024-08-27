@@ -3,6 +3,7 @@ import { useTimerStore } from '../../app/appStore';
 import { useConfirmModal } from './useConfirmModal';
 import { useNavigate } from 'react-router-dom';
 import { postData } from './server/api/apis';
+import { arrivalInfoType } from '../../shared/model/type';
 
 interface Todo {
   todoId: number;
@@ -12,6 +13,7 @@ interface Todo {
 
 interface PostDatas {
   userId: number;
+  arrivalInfo: arrivalInfoType;
   flightTime: string;
   departureTime: string;
   arrivalTime: string;
