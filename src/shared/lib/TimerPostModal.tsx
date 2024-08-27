@@ -30,19 +30,18 @@ export const TimerPostModal = ({ children, to, postDatas }: Props) => {
 
   const logoutModal = useConfirmModal();
   const navigate = useNavigate();
-
-  const onConfirm = (e: React.MouseEvent<HTMLElement>) => {
+  const onConfirm = async (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     e.preventDefault();
 
     if (isRunning || isPaused) {
       logoutModal.show({
         title: '타이머를 종료합니다.',
-        onConfirm: () => {
-          postData('/timerPost', postDatas);
+        onConfirm: async () => {
+          await postData('/timerPost', postDatas); // postData가 완료될 때까지 기다림
           logoutModal.remove();
           resetTimer();
-          navigate(to);
+          navigate(to); // postData가 완료된 후에 navigate 실행
         },
         onCancel: () => logoutModal.remove(),
         confirmText: '종료하기',
