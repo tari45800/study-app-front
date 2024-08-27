@@ -33,7 +33,41 @@ const formatTime = (seconds: number, arrival?: boolean): string => {
     return `${remainingSeconds}초`;
   }
 };
+const calculateTimeDifference = (arrivalTime: string): string => {
+  // 로컬 스토리지에서 'arrivalInfo'를 가져옵니다.
+  const arrivalInfo = localStorage.getItem('arrivalInfo');
 
+  if (!arrivalInfo) {
+    throw new Error('로컬 스토리지에 저장된 데이터가 없습니다.');
+  }
+
+  // 로컬 스토리지에서 저장된 시간을 가져옵니다.
+  const { time: storedTime } = JSON.parse(arrivalInfo);
+
+  // 시간을 초 단위로 변환하는 헬퍼 함수
+  const timeToSeconds = (time: string): number => {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 3600 + minutes * 60;
+  };
+
+  // 초를 시간 형식으로 변환하는 헬퍼 함수
+  const secondsToTime = (seconds: number): string => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+  };
+
+  // 입력된 시간들을 초 단위로 변환
+  const arrivalTimeInSeconds = timeToSeconds(arrivalTime);
+  const storedTimeInSeconds = timeToSeconds(storedTime);
+
+  // 계산: arrivalTime - storedTime
+  const resultInSeconds = arrivalTimeInSeconds - storedTimeInSeconds;
+
+  // 결과를 시간 형식으로 변환하여 반환
+  return secondsToTime(resultInSeconds);
+};
 export const ResultPage = () => {
   const navigate = useNavigate();
   const {
@@ -77,7 +111,9 @@ export const ResultPage = () => {
             </div>
             <ArrivalTimeBox
               departureComponent={timerResult?.departureTime}
-              arrivalComponent={timerResult?.arrivalTime}
+              arrivalComponent={calculateTimeDifference(
+                timerResult?.arrivalTime,
+              )}
             />
           </div>
         </BackGround>
