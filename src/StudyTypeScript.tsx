@@ -9,9 +9,9 @@ const StudyTypeScript = () => {
     color: string;
   }
 
-  interface Book {
-    price: number;
-  }
+  // interface Book {
+  //   price: number;
+  // }
 
   const user: User = { name: 'a', age: 10 };
   const car: Car = { name: 'bmw', color: 'red' };
