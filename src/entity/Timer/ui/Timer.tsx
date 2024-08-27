@@ -3,13 +3,7 @@ import styled from 'styled-components';
 import { useTimerStore } from '../../../app/appStore';
 
 export const Timer = () => {
-  const {
-    seconds,
-    initializeTimer,
-    pausedTimerSeconds,
-    startTimer,
-    resetTimer,
-  } = useTimerStore();
+  const { seconds, initializeTimer, startTimer, resetTimer } = useTimerStore();
 
   useEffect(() => {
     initializeTimer();

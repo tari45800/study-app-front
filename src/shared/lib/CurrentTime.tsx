@@ -1,5 +1,4 @@
-// src/components/CurrentTime.tsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 type CurrentTimeProps = {
   offset?: string;

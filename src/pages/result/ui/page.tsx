@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
-import { DelayTime } from '../../../shared/lib/DelayTime';
 import { BackGround, Button } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
@@ -66,7 +65,7 @@ export const ResultPage = () => {
         </div>
         <div className="resultPageTop">
           <div className="resultPageTime">
-            {formatTime(timerResult.flightTime, true)}
+            {formatTime(timerResult?.flightTime, true)}
           </div>
           <div className="resultPageClear ">비행완료</div>
         </div>
@@ -74,11 +73,11 @@ export const ResultPage = () => {
         <BackGround>
           <div className="resultPageTimeBox">
             <div className="resultPageDelay">
-              {formatTime(timerResult.delayTime)}
+              {formatTime(timerResult?.delayTime)}
             </div>
             <ArrivalTimeBox
-              departureComponent={timerResult.departureTime}
-              arrivalComponent={timerResult.arrivalTime}
+              departureComponent={timerResult?.departureTime}
+              arrivalComponent={timerResult?.arrivalTime}
             />
           </div>
         </BackGround>

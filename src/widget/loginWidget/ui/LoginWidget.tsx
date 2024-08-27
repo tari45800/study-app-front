@@ -1,7 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { api } from '../../../shared/lib/server/api/api';
 import { getData } from '../../../shared/lib/server/api/apis';
 
 interface Todo {
@@ -12,10 +10,6 @@ interface Todo {
 }
 
 export const LoginWidget = () => {
-  // const count = appStore((state) => state.count);
-  // const incrementCount = appStore((state) => state.incrementCount);
-  // const removeCount = appStore((state) => state.removeCount);
-
   const {
     isPending,
     error,

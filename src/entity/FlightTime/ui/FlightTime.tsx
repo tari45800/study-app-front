@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { BackGround, IconLayout } from '../../../shared/ui';
 import styled from 'styled-components';
 import { flightStore } from '../../../app/appStore';
 import { convertTimeString } from '../../../shared/lib/convertTime';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { IconLayout } from '../../../shared/ui';
 
 export const FlightTime = () => {
   const { flightTime, changeFlightTime } = flightStore();

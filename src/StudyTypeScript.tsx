@@ -1,5 +1,3 @@
-import React from 'react';
-
 const StudyTypeScript = () => {
   interface User {
     name: string;
@@ -17,7 +15,7 @@ const StudyTypeScript = () => {
 
   const user: User = { name: 'a', age: 10 };
   const car: Car = { name: 'bmw', color: 'red' };
-  const book: Book = { price: 3000 };
+  // const book: Book = { price: 3000 };
 
   // 제네릭 함수에서 타입 매개변수 T를 사용하고 있으며,
   // T가 어떤 타입인지 명확히 지정하지 않아서

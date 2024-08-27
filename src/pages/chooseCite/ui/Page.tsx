@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BackGround, IconLayout } from '../../../shared/ui';
+import { BackGround } from '../../../shared/ui';
 import { FlightTimeWidget } from '../../../widget/FlightTimeWidget';
 import { DepatureArrival } from '../../../entity/DepatureArrival';
 import { useQuery } from '@tanstack/react-query';
