@@ -8,9 +8,9 @@ import { Provider as ModalProvider } from '@ebay/nice-modal-react';
 import { useThemeStore } from './appStore';
 
 async function enableMocking() {
-  if (process.env.NODE_ENV !== 'development') {
-    return;
-  }
+  // if (process.env.NODE_ENV !== 'development') {
+  //   return;
+  // }
 
   const { worker } = await import('./apiMockWorker');
   return worker.start();
