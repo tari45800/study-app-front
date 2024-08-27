@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
-import { getData } from '../../../shared/lib/server/api/apis';
-import { useAlertModal } from '../../../shared/lib';
-import { useConfirmModal } from '../../../shared/lib';
+// import { useQuery } from '@tanstack/react-query';
+// import { getData } from '../../../shared/lib/server/api/apis';
+// import { useAlertModal } from '../../../shared/lib';
+// import { useConfirmModal } from '../../../shared/lib';
 
 interface Todo {
   userId: number;
