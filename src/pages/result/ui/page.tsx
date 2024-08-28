@@ -33,40 +33,47 @@ const formatTime = (seconds: number, arrival?: boolean): string => {
     return `${remainingSeconds}초`;
   }
 };
-const calculateTimeDifference = (arrivalTime: string): string => {
-  // 로컬 스토리지에서 'arrivalInfo'를 가져옵니다.
-  const arrivalInfo = localStorage.getItem('arrivalInfo');
+const calculateArrivalTime = (
+  departureTime: string, // "18:05" 형태의 시각
+  flightTime: string, // "5399" 초 단위 시간
+  delayTime: string, // "69" 초 단위 지연 시간
+): string => {
+  // localStorage에서 arrivalInfo를 불러옴
+  const arrivalInfoString = localStorage.getItem('arrivalInfo');
+  if (!arrivalInfoString)
+    throw new Error('arrivalInfo가 localStorage에 없습니다.');
 
-  if (!arrivalInfo) {
-    throw new Error('로컬 스토리지에 저장된 데이터가 없습니다.');
-  }
+  // arrivalInfo를 JSON으로 파싱
+  const arrivalInfo = JSON.parse(arrivalInfoString);
 
-  // 로컬 스토리지에서 저장된 시간을 가져옵니다.
-  const { time: storedTime } = JSON.parse(arrivalInfo);
+  // arrivalInfo.time을 Date 객체로 변환 (기준 시간)
+  const [arrivalHours, arrivalMinutes] = arrivalInfo.time
+    .split(':')
+    .map(Number);
+  let baseTime = new Date();
+  baseTime.setHours(arrivalHours, arrivalMinutes, 0, 0);
 
-  // 시간을 초 단위로 변환하는 헬퍼 함수
-  const timeToSeconds = (time: string): number => {
-    const [hours, minutes] = time.split(':').map(Number);
-    return hours * 3600 + minutes * 60;
-  };
+  // flightTime을 초 단위로 가져와 분 및 초로 변환하여 기준 시간에서 뺌
+  baseTime.setSeconds(baseTime.getSeconds() - parseInt(flightTime));
 
-  // 초를 시간 형식으로 변환하는 헬퍼 함수
-  const secondsToTime = (seconds: number): string => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
+  // departureTime을 Date 객체로 변환
+  const [depHours, depMinutes] = departureTime.split(':').map(Number);
+  let departureDate = new Date();
+  departureDate.setHours(depHours, depMinutes, 0, 0);
 
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-  };
+  // baseTime (arrivalInfo.time - flightTime) 결과를 departureTime에 더함
+  departureDate.setHours(departureDate.getHours() + baseTime.getHours());
+  departureDate.setMinutes(departureDate.getMinutes() + baseTime.getMinutes());
+  departureDate.setSeconds(departureDate.getSeconds() + baseTime.getSeconds());
 
-  // 입력된 시간들을 초 단위로 변환
-  const arrivalTimeInSeconds = timeToSeconds(arrivalTime);
-  const storedTimeInSeconds = timeToSeconds(storedTime);
+  // delayTime을 초 단위로 더함
+  departureDate.setSeconds(departureDate.getSeconds() + parseInt(delayTime));
 
-  // 계산: arrivalTime - storedTime
-  const resultInSeconds = arrivalTimeInSeconds - storedTimeInSeconds;
+  // 최종 시간을 HH:MM 형식으로 반환
+  const resultHours = departureDate.getHours().toString().padStart(2, '0');
+  const resultMinutes = departureDate.getMinutes().toString().padStart(2, '0');
 
-  // 결과를 시간 형식으로 변환하여 반환
-  return secondsToTime(resultInSeconds);
+  return `${resultHours}:${resultMinutes}`;
 };
 export const ResultPage = () => {
   const navigate = useNavigate();
@@ -111,8 +118,10 @@ export const ResultPage = () => {
             </div>
             <ArrivalTimeBox
               departureComponent={timerResult?.departureTime}
-              arrivalComponent={calculateTimeDifference(
-                timerResult?.arrivalTime,
+              arrivalComponent={calculateArrivalTime(
+                timerResult?.departureTime,
+                timerResult?.flightTime,
+                timerResult?.delayTime,
               )}
             />
           </div>
