@@ -46,7 +46,7 @@ export const ChooseCitePage = () => {
         <div className="chooseCiteBottom">
           <div className="flightTimeWidget">
             <BackGround>
-              <FlightTimeWidget></FlightTimeWidget>
+              <FlightTimeWidget />
             </BackGround>
           </div>
           <div className="cityRanking">

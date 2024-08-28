@@ -27,9 +27,7 @@ export const BoardingInfo = () => {
   const storedArrivalInfo = localStorage.getItem('arrivalInfo');
 
   // 로컬 스토리지에 값이 있으면 그것을 사용하고, 그렇지 않으면 arrival[0] 사용
-  const arrivalInfo = storedArrivalInfo
-    ? JSON.parse(storedArrivalInfo)
-    : arrival && arrival[0];
+  const arrivalInfo = storedArrivalInfo ? JSON.parse(storedArrivalInfo) : null;
 
   return (
     <BoardingInfoContainer>
@@ -38,7 +36,13 @@ export const BoardingInfo = () => {
       </div>
       <ArrivalTimeBox
         departureComponent={<CurrentTime />}
-        arrivalComponent={<CurrentTime offset={arrivalInfo.time} />}
+        arrivalComponent={
+          arrivalInfo ? (
+            <CurrentTime offset={arrivalInfo.time} />
+          ) : (
+            <CurrentTime />
+          )
+        }
       />
       <div className="arrivalCountBox">
         <div className="arrivalTimeContent">

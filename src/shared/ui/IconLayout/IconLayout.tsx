@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 type Props = {
   children: React.ReactNode;
+  className?: string;
 };
 
 export const IconLayout = ({ children }: Props) => {

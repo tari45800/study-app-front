@@ -9,7 +9,7 @@ interface Props {
 
 export const DepatureArrival = ({ arrivalInfo, displayUi = false }: Props) => {
   return (
-    <DepatureArrivalContainer displayUi={displayUi}>
+    <DepatureArrivalContainer as="div" $displayUi={displayUi}>
       <div className="depatureBox">
         <div className="arrivalInfoTItle">서울 / 인천</div>
         <div className="depatureCite">ICN</div>
@@ -18,18 +18,24 @@ export const DepatureArrival = ({ arrivalInfo, displayUi = false }: Props) => {
       <div className="arrowBox">→</div>
 
       <Link className="link" to="/chooseCite">
-        <div className="arrivalBox">
-          <div className="arrival">
-            <div className="arrivalInfoTItle">{`${arrivalInfo.city} / ${arrivalInfo.airport}`}</div>
-            <div className="arrivalCite">{arrivalInfo.arrival}</div>
+        {arrivalInfo ? (
+          <div className="arrivalBox">
+            <div className="arrival">
+              <div className="arrivalInfoTItle">{`${arrivalInfo.city} / ${arrivalInfo.airport}`}</div>
+              <div className="arrivalCite">{arrivalInfo.arrival}</div>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="arrivalBox">
+            <div className="arrival chooseCiteButton">여행지 선택</div>
+          </div>
+        )}
       </Link>
     </DepatureArrivalContainer>
   );
 };
 
-const DepatureArrivalContainer = styled.div<{ displayUi: boolean }>`
+const DepatureArrivalContainer = styled.div<{ $displayUi: boolean }>`
   display: flex;
   align-items: center;
   font-size: 0.7rem;
@@ -63,14 +69,13 @@ const DepatureArrivalContainer = styled.div<{ displayUi: boolean }>`
   .arrival {
     width: 100%;
     height: fit-content;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    ${({ displayUi }) =>
-      displayUi &&
+    ${({ $displayUi }) =>
+      $displayUi &&
       `
       background: var(--background-color);
       border-radius: var(--background-radius);
@@ -81,11 +86,11 @@ const DepatureArrivalContainer = styled.div<{ displayUi: boolean }>`
 
     .arrivalInfoTItle,
     .arrivalCite {
-      ${({ displayUi }) => displayUi && 'transition: 0.2s;'}
+      ${({ $displayUi }) => $displayUi && 'transition: 0.2s;'}
     }
 
-    ${({ displayUi }) =>
-      displayUi &&
+    ${({ $displayUi }) =>
+      $displayUi &&
       `
       &:hover {
         width: calc(100% - 0.2rem);
@@ -100,5 +105,14 @@ const DepatureArrivalContainer = styled.div<{ displayUi: boolean }>`
         }
       }
     `}
+  }
+
+  .chooseCiteButton {
+    border: none;
+    height: 100%;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--prime-color);
   }
 `;

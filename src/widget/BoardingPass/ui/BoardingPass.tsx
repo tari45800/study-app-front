@@ -5,9 +5,20 @@ import { Button } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlane } from '@fortawesome/free-solid-svg-icons';
 
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const BoardingPass = () => {
+  const navigate = useNavigate();
+  const arrivalInfo = localStorage.getItem('arrivalInfo');
+
+  const makeReservation = () => {
+    if (arrivalInfo) {
+      navigate('/timerPage');
+    } else {
+      alert('여행지를 선택해주세요!)');
+    }
+  };
+
   return (
     <BoardingPassContainer>
       <RightCard>
@@ -30,10 +41,8 @@ export const BoardingPass = () => {
         <div className="bPTop">{formattedDate}</div>
         <div className="bPContentBox">
           <div className="bPtodoWidget">투두 위젯</div>
-          <div className="bPbuttonBox">
-            <Link className="link" to="/timerPage">
-              <Button theme="primary">예약하기</Button>
-            </Link>
+          <div className="bPbuttonBox" onClick={makeReservation}>
+            <Button theme={arrivalInfo ? 'primary' : 'icon'}>예약하기</Button>
           </div>
         </div>
         {/* <div className="bPBottom"></div> */}
