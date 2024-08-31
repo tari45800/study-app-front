@@ -1,1 +1,1 @@
-export { ArrivalTimeBox } from './ui/ArrivalTimeBox';
+export { ArrivalTimeBox } from '../arrivalTimeBox';

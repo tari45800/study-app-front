@@ -1,29 +1,9 @@
 import styled from 'styled-components';
 import { DepatureArrival } from '../../../entity/DepatureArrival';
 import { CurrentTime } from '../../../shared/lib';
-import { getData } from '../../../shared/lib/server/api/apis';
-import { useQuery } from '@tanstack/react-query';
 import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
 
 export const BoardingInfo = () => {
-  const {
-    isPending,
-    error,
-    data: arrival,
-  } = useQuery({
-    queryKey: ['arrivalInfo'],
-    queryFn: () => getData('/arrival'),
-  });
-
-  if (isPending) {
-    return <div>loding...</div>;
-  }
-
-  if (error) {
-    console.log(error);
-    return <div>error</div>;
-  }
-
   const storedArrivalInfo = localStorage.getItem('arrivalInfo');
 
   // 로컬 스토리지에 값이 있으면 그것을 사용하고, 그렇지 않으면 arrival[0] 사용
