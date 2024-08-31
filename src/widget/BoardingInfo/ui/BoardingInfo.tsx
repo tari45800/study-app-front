@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { DepatureArrival } from '../../../entity/DepatureArrival';
 import { CurrentTime } from '../../../shared/lib';
 import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
+import { QRCodeSVG } from 'qrcode.react';
 
 export const BoardingInfo = () => {
   const storedArrivalInfo = localStorage.getItem('arrivalInfo');
@@ -31,7 +32,12 @@ export const BoardingInfo = () => {
         </div>
         <div className="arrivalTimeContent"></div>
         <div className="arrivalTimeContent">
-          <div className="arrivalInfoContent">QR</div>
+          <div className="arrivalInfoContent">
+            <QRCodeSVG
+              className="QRCode"
+              value="친구 초대기능을 준비 중 입니다:)"
+            />
+          </div>
         </div>
       </div>
     </BoardingInfoContainer>
@@ -66,5 +72,13 @@ const BoardingInfoContainer = styled.div`
 
   .arrivalInfoContent {
     font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .QRCode {
+    width: 2.8rem;
+    height: 2.8rem;
   }
 `;
