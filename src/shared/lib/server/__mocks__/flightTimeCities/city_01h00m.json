@@ -1,10 +1,23 @@
 [
-  { "arrival": "CJU", "city": "제주", "airport": "제주", "time": "01:00" },
-  { "arrival": "GMP", "city": "서울", "airport": "김포", "time": "01:00" },
+  {
+    "arrival": "CJU",
+    "city": "제주",
+    "airport": "제주",
+    "time": "01:00",
+    "gonfalonImg": "https://flagicons.lipis.dev/flags/4x3/kr.svg"
+  },
+  {
+    "arrival": "GMP",
+    "city": "서울",
+    "airport": "김포",
+    "time": "01:00",
+    "gonfalonImg": "https://flagicons.lipis.dev/flags/4x3/kr.svg"
+  },
   {
     "arrival": "FUK",
     "city": "후쿠오카",
     "airport": "후쿠오카",
-    "time": "01:00"
+    "time": "01:00",
+    "gonfalonImg": "https://flagicons.lipis.dev/flags/4x3/jp.svg"
   }
 ]

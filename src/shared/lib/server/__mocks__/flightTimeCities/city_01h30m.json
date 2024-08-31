@@ -1,4 +1,16 @@
 [
-  { "arrival": "KIX", "city": "오사카", "airport": "간사이", "time": "01:30" },
-  { "arrival": "HND", "city": "도쿄", "airport": "하네다", "time": "01:30" }
+  {
+    "arrival": "KIX",
+    "city": "오사카",
+    "airport": "간사이",
+    "time": "01:30",
+    "gonfalonImg": "https://flagicons.lipis.dev/flags/4x3/jp.svg"
+  },
+  {
+    "arrival": "HND",
+    "city": "도쿄",
+    "airport": "하네다",
+    "time": "01:30",
+    "gonfalonImg": "https://flagicons.lipis.dev/flags/4x3/jp.svg"
+  }
 ]

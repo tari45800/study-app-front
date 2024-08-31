@@ -1,1 +1,9 @@
-[{ "arrival": "PUS", "city": "부산", "airport": "김해", "time": "00:30" }]
+[
+  {
+    "arrival": "PUS",
+    "city": "부산",
+    "airport": "김해",
+    "time": "00:30",
+    "gonfalonImg": "https://flagicons.lipis.dev/flags/4x3/kr.svg"
+  }
+]

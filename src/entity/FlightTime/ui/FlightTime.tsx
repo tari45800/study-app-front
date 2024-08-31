@@ -33,16 +33,18 @@ export const FlightTime = () => {
         className="flightTimeContent"
         onClick={() => flightTimModalcontroller('')}
       >
-        <IconLayout>
-          <div className="IconLayoutRight">✈️</div>
-          <div className="IconLayoutMiddleBox">
-            <div className="IconLayoutBottom">비행시간</div>
-          </div>
-          <div className="IconLayoutLeft">
-            <div className="faAngleRight">{convertTimeString(flightTime)}</div>
-            <FontAwesomeIcon className="faAngleRight" icon={faAngleRight} />
-          </div>
-        </IconLayout>
+        <IconLayout
+          left={<div className="iconOverflowBox icon">✈️</div>}
+          bottom="비행시간"
+          right={
+            <>
+              <div className="faAngleRight">
+                {convertTimeString(flightTime)}
+              </div>
+              <FontAwesomeIcon className="faAngleRight" icon={faAngleRight} />
+            </>
+          }
+        />
 
         {timeModal && (
           <div className="flightTimeModal scroll">
@@ -71,6 +73,10 @@ const FlightTimeContainer = styled.div`
     cursor: pointer;
   }
 
+  .iconLayoutBottom {
+    font-size: 1.2rem;
+  }
+
   .flightTimeModal {
     position: absolute;
     top: 0;
@@ -94,8 +100,12 @@ const FlightTimeContainer = styled.div`
     background-color: #ededed;
   }
 
-  .IconLayoutLeft {
+  .iconLayoutRight {
     display: flex;
     gap: 0.5rem;
+  }
+
+  .icon {
+    font-size: 1.5rem;
   }
 `;

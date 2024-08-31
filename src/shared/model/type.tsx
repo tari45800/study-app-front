@@ -3,4 +3,5 @@ export interface arrivalInfoType {
   city: string;
   airport: string;
   time: string;
+  gonfalonImg: string;
 }

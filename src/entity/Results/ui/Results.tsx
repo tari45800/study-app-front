@@ -42,16 +42,16 @@ export const Results = () => {
               return (
                 <div className="resultBox" key={idx}>
                   <IconLayout>
-                    <div className="IconLayoutRight">🙂</div>
-                    <div className="IconLayoutMiddleBox">
-                      <div className="IconLayoutTop">
+                    <div className="iconLayoutRight">🙂</div>
+                    <div className="iconLayoutMiddleBox">
+                      <div className="iconLayoutTop">
                         {el.departureTime} 출발
                       </div>
-                      <div className="IconLayoutBottom">
+                      <div className="iconLayoutBottom">
                         {`${el.arrivalInfo.city}/${el.arrivalInfo.airport}`}
                       </div>
                     </div>
-                    <div className="IconLayoutLeft">
+                    <div className="iconLayoutLeft">
                       <FontAwesomeIcon
                         className="faAngleRight"
                         icon={faAngleRight}

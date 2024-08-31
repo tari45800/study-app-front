@@ -26,16 +26,19 @@ export const FlightTimeCities = ({ cities }: Props) => {
           className="flightTimeCity"
           key={idx}
         >
-          <IconLayout>
-            <div className="IconLayoutRight">🙂</div>
-            <div className="IconLayoutMiddleBox">
-              <div className="IconLayoutTop">비행시간</div>
-              <div className="IconLayoutBottom">{el.city}</div>
-            </div>
-            <div className="IconLayoutLeft">
+          <IconLayout
+            left={
+              <div className="iconOverflowBox">
+                <img src={el.gonfalonImg} alt="국기 이미지" />
+              </div>
+            }
+            top="비행시간"
+            bottom={el.city}
+            right={
               <FontAwesomeIcon className="faAngleRight" icon={faAngleRight} />
-            </div>
-          </IconLayout>
+            }
+            border={true}
+          />
         </div>
       ))}
     </FlightTimeCitiesContainer>
@@ -52,5 +55,10 @@ const FlightTimeCitiesContainer = styled.div`
 
   .flightTimeCity {
     cursor: pointer;
+  }
+
+  img {
+    width: 1.8rem;
+    height: 1.8rem;
   }
 `;
