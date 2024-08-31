@@ -96,8 +96,6 @@ export const ResultPage = () => {
     return <div>error</div>;
   }
 
-  console.log(timerResult);
-
   return (
     <ResultPageContainer>
       <div className="resultPageContent">

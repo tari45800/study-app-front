@@ -17,7 +17,6 @@ export const IconLayout = ({
   iconBackgrondColor = 'none',
   border = false,
 }: Props) => {
-  console.log(left);
   return (
     <IconLayoutContainer
       $iconBackgrondColor={iconBackgrondColor}

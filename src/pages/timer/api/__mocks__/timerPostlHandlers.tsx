@@ -15,7 +15,7 @@ export const timerPostHandlers = [
     // 배열을 다시 로컬 스토리지에 저장
     localStorage.setItem('timerResults', JSON.stringify(updatedResults));
 
-    console.log(updatedResults);
+    // console.log(updatedResults);
     return HttpResponse.json({ status: 201 });
   }),
 ];

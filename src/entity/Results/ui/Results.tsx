@@ -3,6 +3,7 @@ import { BackGround, IconLayout } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { arrivalInfoType } from '../../../shared/model/type';
+import { Link } from 'react-router-dom';
 
 interface Todo {
   todoId: number;
@@ -34,27 +35,29 @@ export const Results = () => {
             timerResults.map((el, idx) => {
               console.log(el);
               return (
-                <div className="resultBox" key={idx}>
-                  <IconLayout
-                    left={
-                      <div className="iconOverflowBox">
-                        <img
-                          src={el.arrivalInfo.gonfalonImg}
-                          alt="국기 이미지"
+                <Link to={'/flightTime'} state={{ idx }}>
+                  <div className="resultBox" key={idx}>
+                    <IconLayout
+                      left={
+                        <div className="iconOverflowBox">
+                          <img
+                            src={el.arrivalInfo.gonfalonImg}
+                            alt="국기 이미지"
+                          />
+                        </div>
+                      }
+                      top={`${el.departureTime} 출발`}
+                      bottom={`${el.arrivalInfo.city}/${el.arrivalInfo.airport}`}
+                      right={
+                        <FontAwesomeIcon
+                          className="faAngleRight"
+                          icon={faAngleRight}
                         />
-                      </div>
-                    }
-                    top={`${el.departureTime} 출발`}
-                    bottom={`${el.arrivalInfo.city}/${el.arrivalInfo.airport}`}
-                    right={
-                      <FontAwesomeIcon
-                        className="faAngleRight"
-                        icon={faAngleRight}
-                      />
-                    }
-                    border={true}
-                  />
-                </div>
+                      }
+                      border={true}
+                    />
+                  </div>
+                </Link>
               );
             })
           ) : (
@@ -81,6 +84,7 @@ const ResultsContainer = styled.div`
       font-weight: bold;
       font-size: 1.5rem;
       margin-bottom: 1rem;
+      margin-top: 0.5rem;
     }
     .resultBox {
       cursor: pointer;

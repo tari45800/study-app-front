@@ -5,6 +5,7 @@ import { MainPage } from '../pages/main';
 import { ChooseCitePage } from '../pages/chooseCite';
 import { TimerPage } from '../pages/timer';
 import { ResultPage } from '../pages/result';
+import { FlightRecordPage } from '../pages/flightRecord';
 
 export const appRouter = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const appRouter = createBrowserRouter([
       {
         path: '/resultPage',
         element: <ResultPage />,
+      },
+      {
+        path: '/flightTime',
+        element: <FlightRecordPage />,
       },
     ],
   },

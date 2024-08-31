@@ -115,4 +115,8 @@ const DepatureArrivalContainer = styled.div<{ $displayUi: boolean }>`
     color: white;
     background-color: var(--prime-color);
   }
+
+  .chooseCiteButton:hover {
+    font-size: 0.75rem;
+  }
 `;
