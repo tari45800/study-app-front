@@ -3,9 +3,31 @@ import { BackGround, IconLayout } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
+interface ArrivalInfo {
+  arrival: string;
+  city: string;
+  airport: string;
+  time: string;
+}
+
+interface Todo {
+  todoId: number;
+  todoContent: string;
+  todoState: boolean;
+}
+
+interface FlightResult {
+  arrivalInfo: ArrivalInfo;
+  arrivalTime: string;
+  delayTime: string;
+  departureTime: string;
+  flightTime: string;
+  todos: Todo[];
+}
+
 export const Results = () => {
   const storedtimerResultso = localStorage.getItem('timerResults');
-  const timerResults = storedtimerResultso
+  const timerResults: FlightResult[] | null = storedtimerResultso
     ? JSON.parse(storedtimerResultso)
     : null;
 
