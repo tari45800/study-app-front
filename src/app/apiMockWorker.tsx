@@ -5,6 +5,7 @@ import { depatureArrivalHandlers } from '../entity/DepatureArrival/api/__mocks__
 import { flightTimeCitiesHandlers } from '../entity/FlightTimeCities/__mocks__/flightTimeHandlers';
 import { timerResultlHandlers } from '../pages/result/api/__mocks__/timerResultlHandlers';
 import { timerPostHandlers } from '../pages/timer/api/__mocks__/timerPostlHandlers';
+import { flightRecordHandlers } from '../pages/flightRecord/__mocks__/flightRecordHandlers';
 
 export const worker = setupWorker(
   ...loginWidgetHandlers,
@@ -12,4 +13,5 @@ export const worker = setupWorker(
   ...flightTimeCitiesHandlers,
   ...timerResultlHandlers,
   ...timerPostHandlers,
+  ...flightRecordHandlers,
 );

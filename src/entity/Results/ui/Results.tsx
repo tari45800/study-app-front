@@ -2,27 +2,12 @@ import styled from 'styled-components';
 import { BackGround, IconLayout } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { arrivalInfoType } from '../../../shared/model/type';
 import { Link } from 'react-router-dom';
-
-interface Todo {
-  todoId: number;
-  todoContent: string;
-  todoState: boolean;
-}
-
-interface FlightResult {
-  arrivalInfo: arrivalInfoType;
-  arrivalTime: string;
-  delayTime: string;
-  departureTime: string;
-  flightTime: string;
-  todos: Todo[];
-}
+import { FlightResultType } from '../../../shared/model/type';
 
 export const Results = () => {
   const storedtimerResultso = localStorage.getItem('timerResults');
-  const timerResults: FlightResult[] | null = storedtimerResultso
+  const timerResults: FlightResultType[] | null = storedtimerResultso
     ? JSON.parse(storedtimerResultso)
     : null;
 
