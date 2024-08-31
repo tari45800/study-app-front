@@ -20,8 +20,8 @@ export const IconLayout = ({
   console.log(left);
   return (
     <IconLayoutContainer
-      iconBackgrondColor={iconBackgrondColor}
-      border={border}
+      $iconBackgrondColor={iconBackgrondColor}
+      $border={border}
     >
       <div className="iconLayoutLeft">{left}</div>
       <div className="iconLayoutMiddleBox">
@@ -33,7 +33,10 @@ export const IconLayout = ({
   );
 };
 
-const IconLayoutContainer = styled.div<Props>`
+const IconLayoutContainer = styled.div<{
+  $iconBackgrondColor: string;
+  $border: boolean;
+}>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,7 +64,7 @@ const IconLayoutContainer = styled.div<Props>`
   }
 
   .iconOverflowBox {
-    background-color: ${({ iconBackgrondColor }) => iconBackgrondColor};
+    background-color: ${({ $iconBackgrondColor }) => $iconBackgrondColor};
     border-radius: 50%;
     width: 2.5rem;
     height: 2.5rem;
@@ -70,6 +73,6 @@ const IconLayoutContainer = styled.div<Props>`
     align-items: center;
     overflow: hidden;
     font-size: 1.8rem;
-    border: ${({ border }) => (border ? '1px solid #e8e8e8;' : 'none')};
+    border: ${({ $border }) => ($border ? '1px solid #e8e8e8;' : 'none')};
   }
 `;

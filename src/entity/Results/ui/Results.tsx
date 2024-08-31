@@ -2,13 +2,7 @@ import styled from 'styled-components';
 import { BackGround, IconLayout } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-
-interface ArrivalInfo {
-  arrival: string;
-  city: string;
-  airport: string;
-  time: string;
-}
+import { arrivalInfoType } from '../../../shared/model/type';
 
 interface Todo {
   todoId: number;
@@ -17,7 +11,7 @@ interface Todo {
 }
 
 interface FlightResult {
-  arrivalInfo: ArrivalInfo;
+  arrivalInfo: arrivalInfoType;
   arrivalTime: string;
   delayTime: string;
   departureTime: string;
@@ -41,23 +35,25 @@ export const Results = () => {
               console.log(el);
               return (
                 <div className="resultBox" key={idx}>
-                  <IconLayout>
-                    <div className="iconLayoutRight">🙂</div>
-                    <div className="iconLayoutMiddleBox">
-                      <div className="iconLayoutTop">
-                        {el.departureTime} 출발
+                  <IconLayout
+                    left={
+                      <div className="iconOverflowBox">
+                        <img
+                          src={el.arrivalInfo.gonfalonImg}
+                          alt="국기 이미지"
+                        />
                       </div>
-                      <div className="iconLayoutBottom">
-                        {`${el.arrivalInfo.city}/${el.arrivalInfo.airport}`}
-                      </div>
-                    </div>
-                    <div className="iconLayoutLeft">
+                    }
+                    top={`${el.departureTime} 출발`}
+                    bottom={`${el.arrivalInfo.city}/${el.arrivalInfo.airport}`}
+                    right={
                       <FontAwesomeIcon
                         className="faAngleRight"
                         icon={faAngleRight}
                       />
-                    </div>
-                  </IconLayout>
+                    }
+                    border={true}
+                  />
                 </div>
               );
             })
