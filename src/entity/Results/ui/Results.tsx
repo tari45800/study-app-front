@@ -75,7 +75,7 @@ const ResultsContainer = styled.div`
   .resultsContentBox {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-small);
+    gap: 0.5rem;
 
     .resultsTitle {
       font-weight: bold;
@@ -84,7 +84,7 @@ const ResultsContainer = styled.div`
     }
     .resultBox {
       cursor: pointer;
-      padding: 0.5rem;
+      padding: 0 0.5rem;
     }
     .ResultsNull {
       color: var(--light-text-color);

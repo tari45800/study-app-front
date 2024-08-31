@@ -40,6 +40,13 @@ const IconLayoutContainer = styled.div<{
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.5rem;
+  border-radius: var(--background-radius);
+  transition: 0.2s;
+
+  &:hover {
+    box-shadow: inset rgba(0, 0, 0, 0.2) 0px 0px 3px;
+  }
 
   .iconLayoutMiddleBox {
     flex: 1;
