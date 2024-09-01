@@ -51,7 +51,7 @@ const ModalContainer = styled.div`
     transform: translate(50%, -50%);
     background: white;
     box-shadow: 0 2px 8px 0 rgba(34, 60, 80, 0.4);
-    color: var(--text-color);
+    color: #303644;
     z-index: 1001;
 
     display: flex;

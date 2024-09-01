@@ -35,10 +35,11 @@ const TimerAnimationContainer = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #619ff4, var(--prime-color));
+    background: linear-gradient(135deg, #619ff4, #3182f7);
     border-radius: 3rem;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 8px;
-    background-color: var(--prime-color);
+    /* box-shadow: rgba(255, 255, 255, 0.8) 0px 1px 4rem; */
+    background-color: #3182f7;
     overflow: hidden;
     cursor: pointer;
   }
