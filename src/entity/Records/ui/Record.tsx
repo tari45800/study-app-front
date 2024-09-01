@@ -86,13 +86,13 @@ export const Record = ({ timerResult }: Props) => {
   return (
     <RecordContainer>
       <div className="resultPageContent">
-        <Observer>
+        <Observer id="FlightResult">
           <div>
             <FontAwesomeIcon className="resultPageIcon" icon={faCircleCheck} />
           </div>
         </Observer>
 
-        <Observer delay={0.5}>
+        <Observer delay={0.5} id="FlightResult">
           <div className="resultPageTop">
             <div className="resultPageTime">
               {formatTime(Number(timerResult?.flightTime), true)}
@@ -101,7 +101,7 @@ export const Record = ({ timerResult }: Props) => {
           </div>
         </Observer>
 
-        <Observer delay={0.8}>
+        <Observer delay={0.8} id="FlightResult">
           <BackGround>
             <div className="resultPageTimeBox">
               <div className="resultPageDelay">
@@ -119,7 +119,7 @@ export const Record = ({ timerResult }: Props) => {
           </BackGround>
         </Observer>
 
-        <Observer delay={1.5}>
+        <Observer delay={1.5} id="FlightResult">
           <div className="resultPageButtonBox">
             <Button onClick={() => navigate('/')}>홈으로</Button>
             <Button theme="icon">여행하기</Button>
