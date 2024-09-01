@@ -78,6 +78,8 @@ const BoardingInfoContainer = styled.div`
   }
 
   .QRCode {
+    background-color: white;
+    padding: 0.1rem;
     width: 2.8rem;
     height: 2.8rem;
   }
