@@ -4,6 +4,7 @@ import { FlightTimeWidget } from '../../../widget/FlightTimeWidget';
 import { DepatureArrival } from '../../../entity/DepatureArrival';
 import { useQuery } from '@tanstack/react-query';
 import { getData } from '../../../shared/lib/server/api/apis';
+import Observer from '../../../shared/ui/Observer/Observer';
 
 export const ChooseCitePage = () => {
   const {
@@ -45,14 +46,18 @@ export const ChooseCitePage = () => {
 
         <div className="chooseCiteBottom">
           <div className="flightTimeWidget">
-            <BackGround>
-              <FlightTimeWidget />
-            </BackGround>
+            <Observer id="FlightTimeBackGround">
+              <BackGround>
+                <FlightTimeWidget />
+              </BackGround>
+            </Observer>
           </div>
           <div className="cityRanking">
-            <BackGround>
-              <div>여행지 둘러보기</div>
-            </BackGround>
+            <Observer id="FlightTimeBackGround" delay={0.5}>
+              <BackGround>
+                <div>여행지 둘러보기</div>
+              </BackGround>
+            </Observer>
           </div>
         </div>
       </div>
@@ -95,6 +100,7 @@ const ChooseCitePageContainer = styled.div`
 
   .flightTimeWidget {
     flex: 1;
+    z-index: 100;
   }
 
   .cityRanking {

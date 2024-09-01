@@ -5,6 +5,7 @@ import { BackGround, Button } from '../../../shared/ui';
 import { ArrivalTimeBox } from '../../arrivalTimeBox';
 import { FlightResultType } from '../../../shared/model/type';
 import { useNavigate } from 'react-router-dom';
+import Observer from '../../../shared/ui/Observer/Observer';
 
 const formatTime = (seconds: number, arrival?: boolean): string => {
   if (arrival) {
@@ -85,36 +86,45 @@ export const Record = ({ timerResult }: Props) => {
   return (
     <RecordContainer>
       <div className="resultPageContent">
-        <div>
-          <FontAwesomeIcon className="resultPageIcon" icon={faCircleCheck} />
-        </div>
-        <div className="resultPageTop">
-          <div className="resultPageTime">
-            {formatTime(Number(timerResult?.flightTime), true)}
+        <Observer>
+          <div>
+            <FontAwesomeIcon className="resultPageIcon" icon={faCircleCheck} />
           </div>
-          <div className="resultPageClear ">비행완료</div>
-        </div>
+        </Observer>
 
-        <BackGround>
-          <div className="resultPageTimeBox">
-            <div className="resultPageDelay">
-              {formatTime(Number(timerResult?.delayTime))}
+        <Observer delay={0.5}>
+          <div className="resultPageTop">
+            <div className="resultPageTime">
+              {formatTime(Number(timerResult?.flightTime), true)}
             </div>
-            <ArrivalTimeBox
-              departureComponent={timerResult?.departureTime}
-              arrivalComponent={calculateArrivalTime(
-                timerResult?.departureTime,
-                timerResult?.flightTime,
-                timerResult?.delayTime,
-              )}
-            />
+            <div className="resultPageClear ">비행완료</div>
           </div>
-        </BackGround>
+        </Observer>
 
-        <div className="resultPageButtonBox">
-          <Button onClick={() => navigate('/')}>홈으로</Button>
-          <Button theme="icon">여행하기</Button>
-        </div>
+        <Observer delay={0.8}>
+          <BackGround>
+            <div className="resultPageTimeBox">
+              <div className="resultPageDelay">
+                {formatTime(Number(timerResult?.delayTime))}
+              </div>
+              <ArrivalTimeBox
+                departureComponent={timerResult?.departureTime}
+                arrivalComponent={calculateArrivalTime(
+                  timerResult?.departureTime,
+                  timerResult?.flightTime,
+                  timerResult?.delayTime,
+                )}
+              />
+            </div>
+          </BackGround>
+        </Observer>
+
+        <Observer delay={1.5}>
+          <div className="resultPageButtonBox">
+            <Button onClick={() => navigate('/')}>홈으로</Button>
+            <Button theme="icon">여행하기</Button>
+          </div>
+        </Observer>
       </div>
     </RecordContainer>
   );

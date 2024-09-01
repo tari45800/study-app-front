@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { FlightResultType } from '../../../shared/model/type';
+import Observer from '../../../shared/ui/Observer/Observer';
 
 export const Results = () => {
   const storedtimerResultso = localStorage.getItem('timerResults');
@@ -13,45 +14,47 @@ export const Results = () => {
 
   return (
     <ResultsContainer>
-      <BackGround>
-        <div className="resultsContentBox">
-          <div className="resultsTitle">비행 기록</div>
-          {timerResults ? (
-            timerResults.map((el, idx) => {
-              console.log(el);
-              return (
-                <Link to={'/flightTime'} state={{ idx }}>
-                  <div className="resultBox" key={idx}>
-                    <IconLayout
-                      left={
-                        <div className="iconOverflowBox">
-                          <img
-                            src={el.arrivalInfo.gonfalonImg}
-                            alt="국기 이미지"
+      <Observer id="ResultsBackGround">
+        <BackGround>
+          <div className="resultsContentBox">
+            <div className="resultsTitle">비행 기록</div>
+            {timerResults ? (
+              timerResults.map((el, idx) => {
+                console.log(el);
+                return (
+                  <Link to={'/flightTime'} state={{ idx }}>
+                    <div className="resultBox" key={idx}>
+                      <IconLayout
+                        left={
+                          <div className="iconOverflowBox">
+                            <img
+                              src={el.arrivalInfo.gonfalonImg}
+                              alt="국기 이미지"
+                            />
+                          </div>
+                        }
+                        top={`${el.departureTime} 출발`}
+                        bottom={`${el.arrivalInfo.city}/${el.arrivalInfo.airport}`}
+                        right={
+                          <FontAwesomeIcon
+                            className="faAngleRight"
+                            icon={faAngleRight}
                           />
-                        </div>
-                      }
-                      top={`${el.departureTime} 출발`}
-                      bottom={`${el.arrivalInfo.city}/${el.arrivalInfo.airport}`}
-                      right={
-                        <FontAwesomeIcon
-                          className="faAngleRight"
-                          icon={faAngleRight}
-                        />
-                      }
-                      border={true}
-                    />
-                  </div>
-                </Link>
-              );
-            })
-          ) : (
-            <div className="ResultsNull">
-              비행 기록이 없습니다. 여행을 떠나보세요!
-            </div>
-          )}
-        </div>
-      </BackGround>
+                        }
+                        border={true}
+                      />
+                    </div>
+                  </Link>
+                );
+              })
+            ) : (
+              <div className="ResultsNull">
+                비행 기록이 없습니다. 여행을 떠나보세요!
+              </div>
+            )}
+          </div>
+        </BackGround>
+      </Observer>
     </ResultsContainer>
   );
 };

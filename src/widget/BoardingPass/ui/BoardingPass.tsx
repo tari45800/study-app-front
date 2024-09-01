@@ -4,8 +4,8 @@ import { BoardingInfo } from '../../BoardingInfo';
 import { Button } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlane } from '@fortawesome/free-solid-svg-icons';
-
 import { useNavigate } from 'react-router-dom';
+import Observer from '../../../shared/ui/Observer/Observer';
 
 export const BoardingPass = () => {
   const navigate = useNavigate();
@@ -37,6 +37,7 @@ export const BoardingPass = () => {
         </div>
         {/* <div className="bPBottom"></div> */}
       </RightCard>
+
       <LeftCard>
         <div className="bPTop">{formattedDate}</div>
         <div className="bPContentBox">
@@ -57,7 +58,6 @@ const BoardingPassContainer = styled.div`
   height: 15rem;
   display: flex;
   gap: 0.1rem;
-  /* color: #303644; */
 
   .bPTop {
     border-bottom: 0.1rem solid var(--background-color);

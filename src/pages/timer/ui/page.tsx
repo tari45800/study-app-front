@@ -9,6 +9,7 @@ import { DelayTime } from '../../../shared/lib/DelayTime';
 import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
 import { TimerPostModal } from '../../../shared/lib/TimerPostModal';
 import { useTimerStore, useTimeStore } from '../../../app/appStore';
+import Observer from '../../../shared/ui/Observer/Observer';
 
 export const TimerPage = () => {
   const storedArrivalInfo =
@@ -74,20 +75,26 @@ export const TimerPage = () => {
             </div>
           </BackGround>
         </div>
-        <div className="timerPageWindow">{<TimerAnimation />}</div>
+
+        <Observer id="TimerAnimation">
+          <div className="timerPageWindow">{<TimerAnimation />}</div>
+        </Observer>
+
         <div className="timerLeftAbsoluteBox">
-          <BackGround>
-            <div className="timerPageBottom">
-              <div className="todoBox">투두</div>
-              {/* <div>그룸가기</div> */}
-              <TimerPostModal to="/resultPage" postDatas={postDatas}>
-                <FontAwesomeIcon
-                  className="resetTimeIcon"
-                  icon={faCircleXmark}
-                />
-              </TimerPostModal>
-            </div>
-          </BackGround>
+          <Observer id="timerPageBottomBackGround" delay={0.5}>
+            <BackGround>
+              <div className="timerPageBottom">
+                <div className="todoBox">투두</div>
+                {/* <div>그룸가기</div> */}
+                <TimerPostModal to="/resultPage" postDatas={postDatas}>
+                  <FontAwesomeIcon
+                    className="resetTimeIcon"
+                    icon={faCircleXmark}
+                  />
+                </TimerPostModal>
+              </div>
+            </BackGround>
+          </Observer>
         </div>
       </div>
     </TimerPageContainer>
