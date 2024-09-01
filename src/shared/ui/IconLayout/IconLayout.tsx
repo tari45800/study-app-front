@@ -39,7 +39,7 @@ const IconLayoutContainer = styled.div<{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.8rem;
   border-radius: var(--background-radius);
   transition: 0.2s;
 
