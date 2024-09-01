@@ -24,8 +24,15 @@ interface ThemeState {
 }
 
 export const useThemeStore = create<ThemeState>((set) => ({
-  isDarkMode: true, // 초기 상태는 라이트 모드로 설정
-  toggleDarkMode: () => set((state) => ({ isDarkMode: !state.isDarkMode })), // 토글 기능
+  // 로컬 스토리지에서 값을 불러와 초기 상태를 설정
+  isDarkMode: JSON.parse(localStorage.getItem('isDarkMode') || 'false'),
+
+  toggleDarkMode: () =>
+    set((state) => {
+      const newMode = !state.isDarkMode;
+      localStorage.setItem('isDarkMode', JSON.stringify(newMode)); // 로컬 스토리지에 값 저장
+      return { isDarkMode: newMode };
+    }),
 }));
 
 //--------------------------------------------------

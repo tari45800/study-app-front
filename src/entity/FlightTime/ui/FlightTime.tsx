@@ -81,23 +81,21 @@ const FlightTimeContainer = styled.div`
     position: absolute;
     top: 0;
     left: calc(100% + 0.7rem);
-    /* height: fit-content; */
-    /* height: 10rem; */
     width: 10rem;
     overflow: auto;
-    background-color: white;
-    border: 1px solid lightgray;
+    background-color: var(--background-ui-color);
+    border: 1px solid var(--flightTime-color);
     border-radius: 0.7rem;
   }
 
   .flightTime {
     padding: 1rem;
-    border-bottom: 1px solid #ededed;
+    border-bottom: 1px solid var(--flightTime-color);
     cursor: pointer;
   }
 
   .flightTime:hover {
-    background-color: #ededed;
+    background-color: var(--flightTime-color);
   }
 
   .iconLayoutRight {

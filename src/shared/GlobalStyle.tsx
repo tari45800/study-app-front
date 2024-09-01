@@ -20,6 +20,7 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
       --prime-color:#292d3a; 
       --blur-button-color:#363c49;  
       --blur-button-text-color:#848C98;
+      --flightTime-color: #363c49;  
     `
         : `
       --background-ui-color: #FFFFFF;
@@ -27,7 +28,8 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
       --text-color: #303644;
       --prime-color:#3182F7;
       --blur-button-color:#B0B9C2; 
-      --blur-button-text-color:#FFFFFF;    
+      --blur-button-text-color:#FFFFFF;   
+      --flightTime-color: #ededed; 
       `}
 
     // 컬러
