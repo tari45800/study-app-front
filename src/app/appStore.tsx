@@ -24,7 +24,7 @@ interface ThemeState {
 }
 
 export const useThemeStore = create<ThemeState>((set) => ({
-  isDarkMode: false, // 초기 상태는 라이트 모드로 설정
+  isDarkMode: true, // 초기 상태는 라이트 모드로 설정
   toggleDarkMode: () => set((state) => ({ isDarkMode: !state.isDarkMode })), // 토글 기능
 }));
 

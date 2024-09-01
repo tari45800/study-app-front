@@ -85,10 +85,10 @@ const ButtonContainer = styled.div`
   }
 
   .icon {
-    background-color: var(--header-icon-color);
+    background-color: var(--blur-button-color);
 
     button {
-      color: var(--background-color);
+      color: var(--blur-button-text-color);
       font-weight: bold;
     }
   }

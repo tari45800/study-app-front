@@ -17,18 +17,23 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
       --background-ui-color: #3b414f;
       --background-color: #303644;
       --text-color: #FFFFFF;
+      --prime-color:#292d3a; 
+      --blur-button-color:#363c49;  
+      --blur-button-text-color:#848C98;
     `
         : `
       --background-ui-color: #FFFFFF;
       --background-color: #F3F4F6;
       --text-color: #303644;
-    `}
+      --prime-color:#3182F7;
+      --blur-button-color:#B0B9C2; 
+      --blur-button-text-color:#FFFFFF;    
+      `}
 
     // 컬러
-    --prime-color:#3182F7;
     --button-color:#F9FAFC;
     --header-icon-color:#B0B9C2;
-
+     
     --light-text-color: #848C98;
     --button-text-color: #545869;
 

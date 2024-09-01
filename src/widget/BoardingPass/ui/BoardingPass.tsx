@@ -15,7 +15,7 @@ export const BoardingPass = () => {
     if (arrivalInfo) {
       navigate('/timerPage');
     } else {
-      alert('여행지를 선택해주세요!)');
+      alert('여행지를 선택해주세요!');
     }
   };
 
@@ -57,6 +57,7 @@ const BoardingPassContainer = styled.div`
   height: 15rem;
   display: flex;
   gap: 0.1rem;
+  /* color: #303644; */
 
   .bPTop {
     border-bottom: 0.1rem solid var(--background-color);
@@ -97,7 +98,7 @@ const RightCard = styled.div`
   display: flex;
   flex-direction: column;
 
-  background-color: white;
+  background-color: var(--background-ui-color);
   border-radius: var(--background-radius);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
 
@@ -124,7 +125,7 @@ const LeftCard = styled.div`
   display: flex;
   flex-direction: column;
 
-  background-color: white;
+  background-color: var(--background-ui-color);
   border-radius: var(--background-radius);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
 
