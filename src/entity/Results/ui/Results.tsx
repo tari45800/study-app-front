@@ -79,4 +79,9 @@ const ResultsContainer = styled.div`
       color: var(--light-text-color);
     }
   }
+
+  img {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
 `;

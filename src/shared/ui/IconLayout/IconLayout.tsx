@@ -14,7 +14,7 @@ export const IconLayout = ({
   top,
   bottom,
   right,
-  iconBackgrondColor = 'none',
+  iconBackgrondColor = 'white',
   border = false,
 }: Props) => {
   return (
