@@ -10,6 +10,7 @@ import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
 import { TimerPostModal } from '../../../shared/lib/TimerPostModal';
 import { useTimerStore, useTimeStore } from '../../../app/appStore';
 import Observer from '../../../shared/ui/Observer/Observer';
+import { EndPageTransition } from '../../../shared/ui/PageTransition/EndPageTransition';
 
 export const TimerPage = () => {
   const storedArrivalInfo =
@@ -47,6 +48,7 @@ export const TimerPage = () => {
 
   return (
     <TimerPageContainer>
+      <EndPageTransition />
       <div className="timePageContent">
         <div className="timerRightAbsoluteBox">
           <BackGround>

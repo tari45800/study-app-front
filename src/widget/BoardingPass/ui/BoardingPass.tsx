@@ -4,16 +4,16 @@ import { BoardingInfo } from '../../BoardingInfo';
 import { Button } from '../../../shared/ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlane } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
-import Observer from '../../../shared/ui/Observer/Observer';
+import { useState } from 'react';
+import { StartPageTransition } from '../../../shared/ui/PageTransition/StartPageTransition';
 
 export const BoardingPass = () => {
-  const navigate = useNavigate();
   const arrivalInfo = localStorage.getItem('arrivalInfo');
+  const [transition, setTransition] = useState(false);
 
   const makeReservation = () => {
     if (arrivalInfo) {
-      navigate('/timerPage');
+      setTransition(true);
     } else {
       alert('여행지를 선택해주세요!');
     }
@@ -21,6 +21,7 @@ export const BoardingPass = () => {
 
   return (
     <BoardingPassContainer>
+      {transition && <StartPageTransition />}
       <RightCard>
         <div className="bPTop bPTopRight">
           {/* <FontAwesomeIcon className="faPlane" icon={faPlane} /> */}
