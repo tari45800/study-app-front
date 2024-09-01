@@ -1,19 +1,32 @@
 import styled from 'styled-components';
-import { LoginWidget } from '../../../widget/loginWidget';
 
 export const LoginPage = () => {
   return (
     <LoginPageContainer>
-      <h1>나는 로그인 페이지</h1>
-
-      <LoginWidget />
+      <div className="loginPageContent">
+        <h1>로그인 페이지</h1>
+        <div>준비 중 입니다:&#41;</div>
+      </div>
     </LoginPageContainer>
   );
 };
 
 const LoginPageContainer = styled.div`
-  border: 0.5rem solid blue;
-  padding: 1rem;
-  margin-top: 1rem;
-  color: var(--text-color);
+  padding: var(--spacing-small);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .loginPageContent {
+    width: 100%;
+    max-width: var(--desktop);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
 `;
