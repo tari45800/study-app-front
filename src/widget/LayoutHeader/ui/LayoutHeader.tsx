@@ -5,6 +5,7 @@ import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { useThemeStore } from '../../../app/appStore';
 import { TimerEndModal } from '../../../shared/lib/TimerEndModal';
+import { preparing } from '../../../shared/lib/preparing';
 
 export const LayoutHeader = () => {
   // useThemeStore를 훅처럼 호출하여 상태와 함수를 가져옵니다.
@@ -29,11 +30,14 @@ export const LayoutHeader = () => {
         </div>
 
         <div className="headerFeatureContauner">
-          <div className="headerIcon">
-            <TimerEndModal to="/login">로그인</TimerEndModal>
+          <div className="headerIcon" onClick={preparing}>
+            {/* <TimerEndModal to="/login">로그인</TimerEndModal> */}
+            로그인
           </div>
-          <div className="headerIcon">
-            <TimerEndModal to="/noticen">알림</TimerEndModal>
+          <div className="headerIcon" onClick={preparing}>
+            {/* <TimerEndModal to="/">알림</TimerEndModal>
+             */}
+            알림
           </div>
           <div className="headerIcon darkModeIcon" onClick={toggleDarkMode}>
             <FontAwesomeIcon icon={faMoon} />
@@ -81,6 +85,7 @@ const LayoutHeaderContainer = styled.div`
     color: var(--header-icon-color);
     font-size: 1rem;
     font-weight: bold;
+    cursor: pointer;
   }
 
   .headerIconLeft {
