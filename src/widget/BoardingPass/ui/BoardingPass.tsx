@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlane } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { StartPageTransition } from '../../../shared/ui/PageTransition/StartPageTransition';
+import { TodoBox } from '../../\bTodoBox/ui/BoardingInfo';
 
 export const BoardingPass = () => {
   const arrivalInfo = localStorage.getItem('arrivalInfo');
@@ -42,7 +43,9 @@ export const BoardingPass = () => {
       <LeftCard>
         <div className="bPTop">{formattedDate}</div>
         <div className="bPContentBox">
-          <div className="bPtodoWidget">투두 위젯</div>
+          <div className="bPtodoWidget">
+            <TodoBox></TodoBox>
+          </div>
           <div className="bPbuttonBox" onClick={makeReservation}>
             <Button theme={arrivalInfo ? 'primary' : 'icon'}>예약하기</Button>
           </div>
@@ -134,6 +137,7 @@ const LeftCard = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-small);
     padding: 1rem;
 
     .bPtodoWidget {
