@@ -1,1 +1,1 @@
-export { BoardingInfo } from './ui/BoardingInfo';
+export { TodoBox } from './ui/TodoBox';

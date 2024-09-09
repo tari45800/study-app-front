@@ -11,6 +11,7 @@ import { TimerPostModal } from '../../../shared/lib/TimerPostModal';
 import { useTimerStore, useTimeStore } from '../../../app/appStore';
 import Observer from '../../../shared/ui/Observer/Observer';
 import { EndPageTransition } from '../../../shared/ui/PageTransition/EndPageTransition';
+import { TodoBox } from '../../../widget/\bTodoBox/ui/TodoBox';
 
 export const TimerPage = () => {
   const storedArrivalInfo =
@@ -20,6 +21,10 @@ export const TimerPage = () => {
   const { seconds, pausedTimerSeconds } = useTimerStore();
   const { departureTime, arrivalTime } = useTimeStore();
 
+  // 로컬 스토리지에서 todos를 가져옴
+  const storedTodos = localStorage.getItem('todos') || '[]';
+  const todos = JSON.parse(storedTodos); // [{ todoId, todoContent, todoState }]
+
   const postDatas = {
     userId: 1,
     arrivalInfo,
@@ -27,23 +32,7 @@ export const TimerPage = () => {
     departureTime,
     arrivalTime,
     delayTime: `${pausedTimerSeconds}`,
-    todos: [
-      {
-        todoId: 1,
-        todoContent: '안녕 안녕',
-        todoState: true,
-      },
-      {
-        todoId: 2,
-        todoContent: '나는',
-        todoState: true,
-      },
-      {
-        todoId: 3,
-        todoContent: '지수야',
-        todoState: true,
-      },
-    ],
+    todos, // 로컬 스토리지에서 가져온 todos 추가
   };
 
   return (
@@ -86,8 +75,10 @@ export const TimerPage = () => {
           <Observer id="timerPageBottomBackGround" delay={0.5}>
             <BackGround>
               <div className="timerPageBottom">
-                <div className="todoBox">투두</div>
-                {/* <div>그룸가기</div> */}
+                <div className="todoBox">
+                  <div></div>
+                  <TodoBox />
+                </div>
                 <TimerPostModal to="/resultPage" postDatas={postDatas}>
                   <FontAwesomeIcon
                     className="resetTimeIcon"

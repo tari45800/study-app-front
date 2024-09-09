@@ -41,7 +41,8 @@ export const TimerPostModal = ({ children, to, postDatas }: Props) => {
         title: '타이머를 종료합니다.',
         onConfirm: async () => {
           try {
-            await postData('/timerPost', postDatas); // postData가 완료될 때까지 기다림
+            await postData('/timerPost', postDatas); // postData 요청
+            localStorage.removeItem('todos'); // postData 요청 후 todos 삭제
           } catch {
             alert('포스트 요청에 실패했습니다.');
             logoutModal.remove();

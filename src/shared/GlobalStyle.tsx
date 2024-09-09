@@ -103,4 +103,5 @@ export const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
     padding: 0;
     cursor: pointer;
   }
+
 `;

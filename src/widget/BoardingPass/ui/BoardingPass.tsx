@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlane } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { StartPageTransition } from '../../../shared/ui/PageTransition/StartPageTransition';
-import { TodoBox } from '../../\bTodoBox/ui/BoardingInfo';
+import { TodoBox } from '../../TodoBox/ui/TodoBox';
 
 export const BoardingPass = () => {
   const arrivalInfo = localStorage.getItem('arrivalInfo');
