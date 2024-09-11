@@ -44,7 +44,7 @@ export const TodoBox = () => {
     }
 
     const newTodo: Todo = {
-      todoId: todos.length + 1, // 간단한 ID 생성 로직
+      todoId: todos.length + 1,
       todoContent: todo,
       todoState: false, // 처음엔 완료되지 않은 상태로 설정
     };
