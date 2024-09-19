@@ -7,10 +7,12 @@ import { faPlane } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { StartPageTransition } from '../../../shared/ui/PageTransition/StartPageTransition';
 import { TodoBox } from '../../TodoBox/ui/TodoBox';
+import { Card } from '../../../shared/ui/Card/Card';
 
 export const BoardingPass = () => {
   const arrivalInfo = localStorage.getItem('arrivalInfo');
   const [transition, setTransition] = useState(false);
+  const userId = 'tari45800님';
 
   const makeReservation = () => {
     if (arrivalInfo) {
@@ -23,35 +25,28 @@ export const BoardingPass = () => {
   return (
     <BoardingPassContainer>
       {transition && <StartPageTransition />}
-      <RightCard>
-        <div className="bPTop bPTopRight">
-          {/* <FontAwesomeIcon className="faPlane" icon={faPlane} /> */}
-          <div>tari45800님</div>
-          탑승권
-        </div>
-        <div className="bPContentBox">
-          <div className="image">
+
+      <Card cardTitle={`${userId} 탑승권`}>
+        <div className="leftCard cardContentBox">
+          <div className="cardImage">
             <FontAwesomeIcon className="faPlaneDeparture" icon={faPlane} />
           </div>
-          <div className="bPInFo">
+          <div className="boardingInfoBox">
             <BoardingInfo />
           </div>
         </div>
-        {/* <div className="bPBottom"></div> */}
-      </RightCard>
+      </Card>
 
-      <LeftCard>
-        <div className="bPTop">{formattedDate}</div>
-        <div className="bPContentBox">
-          <div className="bPtodoWidget">
+      <Card cardTitle={`${formattedDate}`}>
+        <div className="rightCard cardContentBox">
+          <div className="cardTodoBox">
             <TodoBox></TodoBox>
           </div>
-          <div className="bPbuttonBox" onClick={makeReservation}>
+          <div className="cardButtonBox" onClick={makeReservation}>
             <Button theme={arrivalInfo ? 'primary' : 'icon'}>예약하기</Button>
           </div>
         </div>
-        {/* <div className="bPBottom"></div> */}
-      </LeftCard>
+      </Card>
     </BoardingPassContainer>
   );
 };
@@ -60,51 +55,43 @@ const BoardingPassContainer = styled.div`
   width: 100%;
   max-width: var(--desktop);
   height: 15rem;
+
   display: flex;
   gap: 0.1rem;
 
-  .bPTop {
-    border-bottom: 0.1rem solid var(--background-color);
-    padding: 0.7rem 1rem;
-    font-weight: 500;
-    font-size: 0.8rem;
+  .cardContentBox {
+    height: 100%;
+    padding: 1rem;
 
-    background-color: var(--prime-color);
-    color: white;
-    border-top-right-radius: var(--background-radius);
-    border-top-left-radius: var(--background-radius);
-  }
-
-  .bPTopRight {
     display: flex;
-    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
   }
 
-  .bPBottom {
-    height: 1rem;
-    background-color: var(--prime-color);
-    border-bottom-left-radius: var(--background-radius);
-    border-bottom-right-radius: var(--background-radius);
+  .leftCard {
+    width: 100%;
+    justify-content: space-between;
+
+    .faPlaneDeparture {
+      font-size: 6rem;
+      color: var(--light-text-color);
+    }
+    .boardingInfoBox {
+      width: 17rem;
+      height: 100%;
+    }
   }
 
-  .faPlane {
+  .rightCard {
+    width: 20rem;
+    flex-direction: column;
+  }
+
+  /* .faPlane {
     margin-right: 0.5rem;
   }
 
-  .faPlaneDeparture {
-    font-size: 6rem;
-    color: var(--light-text-color);
-  }
-`;
 
-const RightCard = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-
-  background-color: var(--background-ui-color);
-  border-radius: var(--background-radius);
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
 
   .bPContentBox {
     display: flex;
@@ -121,30 +108,5 @@ const RightCard = styled.div`
     .bPInFo {
       width: 17rem;
     }
-  }
-`;
-
-const LeftCard = styled.div`
-  width: 20rem;
-  display: flex;
-  flex-direction: column;
-
-  background-color: var(--background-ui-color);
-  border-radius: var(--background-radius);
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
-
-  .bPContentBox {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-small);
-    padding: 1rem;
-
-    .bPtodoWidget {
-      flex: 1;
-    }
-
-    .bPbuttonBox {
-    }
-  }
+  } */
 `;
