@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { arrivalInfoType } from '../../../shared/model/type';
 
 interface Props {
-  arrivalInfo: arrivalInfoType;
+  arrivalInfo: arrivalInfoType | null;
   displayUi?: boolean;
 }
 
 export const DepatureArrival = ({ arrivalInfo, displayUi = false }: Props) => {
   return (
-    <DepatureArrivalContainer as="div" $displayUi={displayUi}>
+    <DepatureArrivalContainer displayUi={displayUi}>
+      {/* 출발지 */}
       <div className="depatureBox">
         <div className="arrivalInfoTItle">서울 / 인천</div>
         <div className="depatureCite">ICN</div>
@@ -17,7 +18,8 @@ export const DepatureArrival = ({ arrivalInfo, displayUi = false }: Props) => {
 
       <div className="arrowBox">→</div>
 
-      <Link className="link" to="/chooseCite">
+      {/* 도착지 */}
+      <Link className="linkBox" to="/chooseCite">
         {arrivalInfo ? (
           <div className="arrivalBox">
             <div className="arrival">
@@ -35,12 +37,12 @@ export const DepatureArrival = ({ arrivalInfo, displayUi = false }: Props) => {
   );
 };
 
-const DepatureArrivalContainer = styled.div<{ $displayUi: boolean }>`
+const DepatureArrivalContainer = styled.div<{ displayUi: boolean }>`
   display: flex;
   align-items: center;
   font-size: 0.7rem;
 
-  .link {
+  .linkBox {
     flex: 1;
   }
 
@@ -74,8 +76,8 @@ const DepatureArrivalContainer = styled.div<{ $displayUi: boolean }>`
     justify-content: center;
     align-items: center;
 
-    ${({ $displayUi }) =>
-      $displayUi &&
+    ${({ displayUi }) =>
+      displayUi &&
       `
       background: var(--background-color);
       border-radius: var(--background-radius);
@@ -86,11 +88,11 @@ const DepatureArrivalContainer = styled.div<{ $displayUi: boolean }>`
 
     .arrivalInfoTItle,
     .arrivalCite {
-      ${({ $displayUi }) => $displayUi && 'transition: 0.2s;'}
+      ${({ displayUi }) => displayUi && 'transition: 0.2s;'}
     }
 
-    ${({ $displayUi }) =>
-      $displayUi &&
+    ${({ displayUi }) =>
+      displayUi &&
       `
       &:hover {
         width: calc(100% - 0.2rem);
