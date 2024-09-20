@@ -3,33 +3,34 @@ import { DepatureArrival } from '../../../entity/DepatureArrival';
 import { CurrentTime } from '../../../shared/lib';
 import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
 import { QRCodeSVG } from 'qrcode.react';
+import { getStoragedData } from '../../../shared/lib/getStorageData';
+import { arrivalInfoType } from '../../../shared/model/type';
 
 export const BoardingInfo = () => {
-  const storedArrivalInfo = localStorage.getItem('arrivalInfo');
-
-  // 로컬 스토리지에 값이 있으면 그것을 사용하고, 그렇지 않으면 arrival[0] 사용
-  const arrivalInfo = storedArrivalInfo ? JSON.parse(storedArrivalInfo) : null;
+  const arrivalInfo = getStoragedData<arrivalInfoType>('arrivalInfo');
 
   return (
     <BoardingInfoContainer>
-      <div className="arrivalNameBox">
-        <DepatureArrival arrivalInfo={arrivalInfo} displayUi={true} />
-      </div>
+      {/* 여행지 선택 칸 */}
+      <DepatureArrival arrivalInfo={arrivalInfo} displayUi={true} />
+
+      {/* 출발,도착 시간 */}
       <ArrivalTimeBox
+        // 출발 시간
         departureComponent={<CurrentTime />}
+        // 도착 시간
         arrivalComponent={
-          arrivalInfo ? (
-            <CurrentTime offset={arrivalInfo.time} />
-          ) : (
-            <CurrentTime />
-          )
+          arrivalInfo ? <CurrentTime offset={arrivalInfo.time} /> : '시간 미정'
         }
       />
-      <div className="arrivalCountBox">
+
+      {/* 인원 초대, 큐알코드 */}
+      <div className="arrivalinvitationBox">
         <div className="arrivalTimeContent">
           <div className="arrivalInfoTItle">인원</div>
           <div className="arrivalInfoContent">1</div>
         </div>
+        {/* 공백 */}
         <div className="arrivalTimeContent"></div>
         <div className="arrivalTimeContent">
           <div className="arrivalInfoContent">
@@ -45,13 +46,13 @@ export const BoardingInfo = () => {
 };
 
 const BoardingInfoContainer = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: space-between;
 
   .arrivalTimeBox,
-  .arrivalCountBox {
+  .arrivalinvitationBox {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,22 +66,22 @@ const BoardingInfoContainer = styled.div`
   }
 
   .arrivalInfoTItle {
-    font-size: 0.7rem;
-    color: var(--light-text-color);
     margin-bottom: 0.2rem;
+    color: var(--light-text-color);
+    font-size: 0.7rem;
   }
 
   .arrivalInfoContent {
-    font-size: 1.1rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.1rem;
   }
 
   .QRCode {
-    background-color: white;
-    padding: 0.1rem;
     width: 2.8rem;
     height: 2.8rem;
+    padding: 0.1rem;
+    background-color: white;
   }
 `;
