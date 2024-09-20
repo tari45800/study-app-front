@@ -79,7 +79,7 @@ export const TodoBox = () => {
 
   return (
     <TodoBoxContainer>
-      <div className="todoBoxContent">
+      <div className="todoBoxContent scroll">
         <div className="todoList">
           {todos &&
             todos.map((el) => {

@@ -14,6 +14,7 @@ export const BoardingPass = () => {
   const [transition, setTransition] = useState(false);
   const userId = 'tari45800님';
 
+  // 예약하기 기능
   const makeReservation = () => {
     if (arrivalInfo) {
       setTransition(true);
@@ -28,7 +29,7 @@ export const BoardingPass = () => {
 
       <Card cardTitle={`${userId} 탑승권`}>
         <div className="leftCard cardContentBox">
-          <div className="cardImage">
+          <div className="cardImageBox">
             <FontAwesomeIcon className="faPlaneDeparture" icon={faPlane} />
           </div>
           <div className="boardingInfoBox">
@@ -37,10 +38,10 @@ export const BoardingPass = () => {
         </div>
       </Card>
 
-      <Card cardTitle={`${formattedDate}`}>
+      <Card cardTitle={`${formattedDate}`} cardWidth={30}>
         <div className="rightCard cardContentBox">
           <div className="cardTodoBox">
-            <TodoBox></TodoBox>
+            <TodoBox />
           </div>
           <div className="cardButtonBox" onClick={makeReservation}>
             <Button theme={arrivalInfo ? 'primary' : 'icon'}>예약하기</Button>
@@ -59,6 +60,7 @@ const BoardingPassContainer = styled.div`
   display: flex;
   gap: 0.1rem;
 
+  // children 요소 공통 스타일
   .cardContentBox {
     height: 100%;
     padding: 1rem;
@@ -68,45 +70,42 @@ const BoardingPassContainer = styled.div`
     align-items: center;
   }
 
+  // 왼쪽 요소 스타일
   .leftCard {
-    width: 100%;
     justify-content: space-between;
+
+    // 이미지 중앙 정렬
+    .cardImageBox {
+      flex: 1;
+      height: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     .faPlaneDeparture {
       font-size: 6rem;
       color: var(--light-text-color);
     }
+
     .boardingInfoBox {
       width: 17rem;
       height: 100%;
     }
   }
 
+  // 오른쪽 요소 스타일
   .rightCard {
-    width: 20rem;
     flex-direction: column;
-  }
 
-  /* .faPlane {
-    margin-right: 0.5rem;
-  }
-
-
-
-  .bPContentBox {
-    display: flex;
-    flex: 1;
-    padding: 1rem;
-
-    .image {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .cardTodoBox {
+      width: 100%;
+      height: 100%;
     }
 
-    .bPInFo {
-      width: 17rem;
+    .cardButtonBox {
+      width: 100%;
     }
-  } */
+  }
 `;

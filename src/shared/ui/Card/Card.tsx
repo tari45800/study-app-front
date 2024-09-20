@@ -3,12 +3,13 @@ import styled from 'styled-components';
 
 type Props = {
   cardTitle: string;
+  cardWidth?: number;
   children: ReactNode;
 };
 
-export const Card = ({ cardTitle, children }: Props) => {
+export const Card = ({ cardWidth, cardTitle, children }: Props) => {
   return (
-    <CardContainer>
+    <CardContainer cardWidth={cardWidth}>
       <div className="cardContent">
         <div className="cardTop">{cardTitle}</div>
         <div className="cardBody"> {children}</div>
@@ -17,7 +18,10 @@ export const Card = ({ cardTitle, children }: Props) => {
   );
 };
 
-const CardContainer = styled.div`
+// props를 styled-component에 넘겨줄 때 타입을 지정해주지 않으면 오류가 난다.
+const CardContainer = styled.div<{ cardWidth?: number }>`
+  width: ${({ cardWidth }) => (cardWidth ? `${cardWidth}rem` : `100%`)};
+
   .cardContent {
     height: 100%;
     background-color: var(--background-ui-color);
