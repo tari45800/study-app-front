@@ -1,15 +1,15 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-interface ArrivalTimeBoxProps {
-  departureComponent: React.ReactNode;
-  arrivalComponent: React.ReactNode;
+interface Props {
+  departureComponent: ReactNode;
+  arrivalComponent: ReactNode;
 }
 
-export const ArrivalTimeBox: React.FC<ArrivalTimeBoxProps> = ({
+export const ArrivalTimeBox = ({
   departureComponent,
   arrivalComponent,
-}) => {
+}: Props) => {
   return (
     <ArrivalTimeBoxContainer className="arrivalTimeBox">
       <div className="arrivalTimeContent">
@@ -39,9 +39,9 @@ const ArrivalTimeBoxContainer = styled.div`
   }
 
   .arrivalInfoTitle {
+    margin-bottom: 0.2rem;
     font-size: 0.7rem;
     color: var(--light-text-color);
-    margin-bottom: 0.2rem;
   }
 
   .arrivalInfoContent {
