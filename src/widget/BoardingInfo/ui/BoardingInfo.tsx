@@ -16,9 +16,7 @@ export const BoardingInfo = () => {
 
       {/* 출발,도착 시간 */}
       <ArrivalTimeBox
-        // 출발 시간
         departureComponent={<CurrentTime />}
-        // 도착 시간
         arrivalComponent={
           arrivalInfo ? <CurrentTime offset={arrivalInfo.time} /> : '시간 미정'
         }
@@ -30,7 +28,6 @@ export const BoardingInfo = () => {
           <div className="arrivalInfoTItle">인원</div>
           <div className="arrivalInfoContent">1</div>
         </div>
-        {/* 공백 */}
         <div className="arrivalTimeContent"></div>
         <div className="arrivalTimeContent">
           <div className="arrivalInfoContent">

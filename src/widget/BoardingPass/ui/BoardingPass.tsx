@@ -27,6 +27,7 @@ export const BoardingPass = () => {
     <BoardingPassContainer>
       {transition && <StartPageTransition />}
 
+      {/* 탑승권 정보 */}
       <Card cardTitle={`${userId} 탑승권`}>
         <div className="leftCard cardContentBox">
           <div className="cardImageBox">
@@ -38,6 +39,7 @@ export const BoardingPass = () => {
         </div>
       </Card>
 
+      {/* 탑승권 todo */}
       <Card cardTitle={`${formattedDate}`} cardWidth={30}>
         <div className="rightCard cardContentBox">
           <div className="cardTodoBox">
