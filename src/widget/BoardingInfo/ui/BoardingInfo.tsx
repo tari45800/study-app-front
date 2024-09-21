@@ -12,7 +12,7 @@ export const BoardingInfo = () => {
   return (
     <BoardingInfoContainer>
       {/* 여행지 선택 칸 */}
-      <DepatureArrival arrivalInfo={arrivalInfo} displayUi={true} />
+      <DepatureArrival arrivalInfo={arrivalInfo} arrivalButtonUi={true} />
 
       {/* 출발,도착 시간 */}
       <ArrivalTimeBox
