@@ -1,26 +1,68 @@
 import { useState, useEffect, ChangeEvent, KeyboardEvent } from 'react';
 import styled from 'styled-components';
+import { getStoragedData } from '../../../shared/lib/getStorageData';
 
-interface Todo {
+interface Props {
   todoId: number;
   todoContent: string;
   todoState: boolean;
 }
 
 export const TodoBox = () => {
-  const [todos, setTodos] = useState<Todo[]>(() => {
-    const savedTodos = localStorage.getItem('todos');
-    return savedTodos ? JSON.parse(savedTodos) : [];
-  });
-  const [todo, setTodo] = useState<string>('');
+  // 투두 인풋 스테이트
+  const [todoInput, setTodoInput] = useState<string>('');
 
-  const maxTodoLength = 25;
-  const maxTodosCount = 10;
+  // 투두 배열 스테이트
+  const [todoList, setTodoList] = useState<Props[]>(() => {
+    const storageTodos = getStoragedData<Props[]>('todos');
+    return storageTodos ? storageTodos : [];
+  });
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+  }, [todoList]);
 
+  // 투두 문자열 길이
+  const maxTodoLength = 25;
+  // 투두를 추가 할 수 있는 갯수
+  const maxTodosCount = 10;
+
+  // 할 일을 추가하는 함수
+  const addTodo = () => {
+    if (todoInput.trim() === '') {
+      return;
+    }
+
+    if (todoList.length >= maxTodosCount) {
+      alert(`할 일은 최대 ${maxTodosCount}개까지만 추가할 수 있습니다.`);
+      return;
+    }
+
+    const newTodo: Props = {
+      todoId: todoList.length + 1,
+      todoContent: todoInput,
+      todoState: false, // 초기는 완료되지 않은 상태로 설정
+    };
+
+    setTodoList([...todoList, newTodo]);
+    setTodoInput('');
+  };
+
+  // 할 일을 삭제하는 함수
+  const deleteTodo = (todoId: number) => {
+    const updatedTodos = todoList.filter((todo) => todo.todoId !== todoId);
+    setTodoList(updatedTodos);
+  };
+
+  // 할 일의 완료 상태를 토글하는 함수
+  const toggleComplete = (todoId: number) => {
+    const updatedTodos = todoList.map((todo) =>
+      todo.todoId === todoId ? { ...todo, todoState: !todo.todoState } : todo,
+    );
+    setTodoList(updatedTodos);
+  };
+
+  // 인풋의 변화를 감지하는 함수
   const handleTodo = (event: ChangeEvent<HTMLInputElement>) => {
     const newTodo = event.target.value;
 
@@ -29,50 +71,17 @@ export const TodoBox = () => {
       return;
     }
 
-    setTodo(newTodo);
+    setTodoInput(newTodo);
   };
 
-  // 할 일을 추가하는 함수
-  const addTodo = () => {
-    if (todo.trim() === '') {
-      return;
-    }
-
-    if (todos.length >= maxTodosCount) {
-      alert(`할 일은 최대 ${maxTodosCount}개까지만 추가할 수 있습니다.`);
-      return;
-    }
-
-    const newTodo: Todo = {
-      todoId: todos.length + 1,
-      todoContent: todo,
-      todoState: false, // 처음엔 완료되지 않은 상태로 설정
-    };
-
-    setTodos([...todos, newTodo]);
-    setTodo('');
-  };
-
-  // 할 일을 삭제하는 함수
-  const deleteTodo = (todoId: number) => {
-    const updatedTodos = todos.filter((todo) => todo.todoId !== todoId);
-    setTodos(updatedTodos);
-  };
-
-  // 할 일의 완료 상태를 토글하는 함수
-  const toggleComplete = (todoId: number) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.todoId === todoId ? { ...todo, todoState: !todo.todoState } : todo,
-    );
-    setTodos(updatedTodos);
-  };
-
+  // 엔터를 눌리면 투두를 추가하는 함수
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       addTodo();
     }
   };
 
+  // 포커스가 나간다면 투두를 추가하는 함수
   const handleBlur = () => {
     addTodo();
   };
@@ -80,21 +89,27 @@ export const TodoBox = () => {
   return (
     <TodoBoxContainer>
       <div className="todoBoxContent scroll">
+        {/* 투두 리스트 */}
         <div className="todoList">
-          {todos &&
-            todos.map((el) => {
+          {todoList &&
+            todoList.map((el) => {
               return (
                 <div
                   key={el.todoId}
                   className={`todoItem ${el.todoState ? 'completed' : ''}`}
                 >
+                  {/* 체크박스 */}
                   <input
                     type="checkbox"
                     className="todoCheckbox"
                     checked={el.todoState}
                     onChange={() => toggleComplete(el.todoId)}
                   />
+
+                  {/* 투두 */}
                   <span>{el.todoContent}</span>
+
+                  {/* 삭제버튼 */}
                   <button
                     onClick={() => deleteTodo(el.todoId)}
                     className="deleteButton"
@@ -104,15 +119,16 @@ export const TodoBox = () => {
                 </div>
               );
             })}
+
           <input
             className="addTodo"
             type="text"
-            value={todo}
+            value={todoInput}
             onChange={handleTodo}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
             onBlur={handleBlur}
             placeholder="+ 할 일 추가"
-            style={{ width: `${todo.length * 0.65}rem` }}
+            style={{ width: `${todoInput.length * 0.65}rem` }}
           />
         </div>
       </div>
@@ -139,10 +155,11 @@ const TodoBoxContainer = styled.div`
   }
 
   .todoItem {
+    height: 2rem;
     display: flex;
     align-items: center;
     padding: 0.5rem;
-    height: 2rem;
+
     border-radius: 0.7rem;
     background-color: var(--background-color);
     color: var(--light-text-color);
@@ -160,14 +177,15 @@ const TodoBoxContainer = styled.div`
   }
 
   .addTodo {
-    padding: 0.5rem;
     min-width: 5rem;
     height: 2rem;
-    color: var(--light-text-color);
-    font-size: 0.7rem;
+    padding: 0.5rem;
+
     border: none;
     border-radius: 0.7rem;
+    color: var(--light-text-color);
     background-color: var(--background-color);
+    font-size: 0.7rem;
     cursor: pointer;
   }
 `;
