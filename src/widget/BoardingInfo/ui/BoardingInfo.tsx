@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 import { DepatureArrival } from '../../../entity/DepatureArrival';
-import { CurrentTime } from '../../../shared/lib';
 import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
 import { QRCodeSVG } from 'qrcode.react';
 import { getStoragedData } from '../../../shared/lib/getStorageData';
 import { arrivalInfoType } from '../../../shared/model/type';
+import { useCurrentTime } from '../../../shared/lib';
 
 export const BoardingInfo = () => {
   const arrivalInfo = getStoragedData<arrivalInfoType>('arrivalInfo');
+  const currentTime = useCurrentTime();
+  const offset = arrivalInfo ? useCurrentTime(arrivalInfo.time) : '시간 미정';
 
   return (
     <BoardingInfoContainer>
@@ -16,10 +18,8 @@ export const BoardingInfo = () => {
 
       {/* 출발,도착 시간 */}
       <ArrivalTimeBox
-        departureComponent={<CurrentTime />}
-        arrivalComponent={
-          arrivalInfo ? <CurrentTime offset={arrivalInfo.time} /> : '시간 미정'
-        }
+        departureComponent={currentTime}
+        arrivalComponent={offset}
       />
 
       {/* 인원 초대, 큐알코드 */}

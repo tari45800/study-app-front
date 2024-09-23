@@ -1,9 +1,8 @@
-import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  departureComponent: ReactNode;
-  arrivalComponent: ReactNode;
+  departureComponent: string;
+  arrivalComponent: string;
 }
 
 export const ArrivalTimeBox = ({
