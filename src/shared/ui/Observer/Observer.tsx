@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { useRef, useEffect, useState, ReactNode } from 'react';
 
 interface ObserverContainerProps {
-  isVisible: boolean;
+  $isVisible: boolean;
   delay?: number;
 }
 
 const ObserverContainer = styled.div<ObserverContainerProps>`
-  opacity: ${(props) => (props.isVisible ? 1 : 0)};
-  transform: translateY(${(props) => (props.isVisible ? 0 : '20px')});
+  opacity: ${(props) => (props.$isVisible ? 1 : 0)};
+  transform: translateY(${(props) => (props.$isVisible ? 0 : '20px')});
   transition:
     opacity 0.5s,
     transform 0.5s;
@@ -55,7 +55,7 @@ function Observer({ children, delay, id }: ObserverProps) {
   }, [isVisible, id]);
 
   return (
-    <ObserverContainer ref={observerRef} isVisible={isVisible} delay={delay}>
+    <ObserverContainer ref={observerRef} $isVisible={isVisible} delay={delay}>
       {children}
     </ObserverContainer>
   );

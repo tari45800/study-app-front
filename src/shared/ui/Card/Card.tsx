@@ -9,7 +9,7 @@ type Props = {
 
 export const Card = ({ cardWidth, cardTitle, children }: Props) => {
   return (
-    <CardContainer cardWidth={cardWidth}>
+    <CardContainer $cardWidth={cardWidth}>
       <div className="cardContent">
         <div className="cardTop">{cardTitle}</div>
         <div className="cardBody"> {children}</div>
@@ -19,8 +19,8 @@ export const Card = ({ cardWidth, cardTitle, children }: Props) => {
 };
 
 // props를 styled-component에 넘겨줄 때 타입을 지정해주지 않으면 오류가 난다.
-const CardContainer = styled.div<{ cardWidth?: number }>`
-  width: ${({ cardWidth }) => (cardWidth ? `${cardWidth}rem` : `100%`)};
+const CardContainer = styled.div<{ $cardWidth?: number }>`
+  width: ${({ $cardWidth }) => ($cardWidth ? `${$cardWidth}rem` : `100%`)};
 
   .cardContent {
     height: 100%;

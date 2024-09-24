@@ -12,7 +12,8 @@ export const DepatureArrival = ({
   arrivalButtonUi = false,
 }: Props) => {
   return (
-    <DepatureArrivalContainer arrivalButtonUi={arrivalButtonUi}>
+    // $ 접두사를 사용하면 해당 prop이 "transient" prop임을 나타냅니다. 이 접두사가 있는 prop은 styled-component로 전달되지만, 실제 HTML 요소로 전달되지 않습니다.
+    <DepatureArrivalContainer $arrivalButtonUi={arrivalButtonUi}>
       {/* 출발지 */}
       <div className="depatureBox">
         <div className="depatureArrivalTItle">서울 / 인천</div>
@@ -42,7 +43,7 @@ export const DepatureArrival = ({
   );
 };
 
-const DepatureArrivalContainer = styled.div<{ arrivalButtonUi: boolean }>`
+const DepatureArrivalContainer = styled.div<{ $arrivalButtonUi: boolean }>`
   display: flex;
   align-items: center;
   font-size: 0.7rem;
@@ -85,8 +86,8 @@ const DepatureArrivalContainer = styled.div<{ arrivalButtonUi: boolean }>`
       transition: 0.2s;
     }
 
-    ${({ arrivalButtonUi }) =>
-      arrivalButtonUi &&
+    ${({ $arrivalButtonUi }) =>
+      $arrivalButtonUi &&
       `
       background: var(--background-color);
       border: 0.01rem solid var(--light-text-color);
