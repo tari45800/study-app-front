@@ -12,7 +12,9 @@ export const DepatureArrival = ({
   arrivalButtonUi = false,
 }: Props) => {
   return (
-    // $ 접두사를 사용하면 해당 prop이 "transient" prop임을 나타냅니다. 이 접두사가 있는 prop은 styled-component로 전달되지만, 실제 HTML 요소로 전달되지 않습니다.
+    // $ 접두사를 사용하면 해당 prop이 "transient" prop임을 나타냅니다.
+    // 이 접두사가 있는 prop은 styled-component로 전달되지만,
+    // 실제 HTML 요소로 전달되지 않습니다.
     <DepatureArrivalContainer $arrivalButtonUi={arrivalButtonUi}>
       {/* 출발지 */}
       <div className="depatureBox">

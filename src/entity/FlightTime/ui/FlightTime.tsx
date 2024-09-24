@@ -10,29 +10,45 @@ export const FlightTime = () => {
   const { flightTime, changeFlightTime } = flightStore();
   const [timeModal, setTimeModal] = useState(false);
 
-  const flightTimModalcontroller = (e: string) => {
+  // 비행시간 선택 모달 컨트롤러
+  const flightTimModalHandler = (e: string) => {
     setTimeModal(!timeModal);
     if (e) {
       changeFlightTime(e);
     }
   };
 
+  // 비행시간 리스트
   const FlightTimes: { [key: string]: string } = {
     '30분': '00:30',
     '1시간': '01:00',
     '1시간 30분': '01:30',
-    // '2시간': '02:00',
-    // '2시간 30분': '02:30',
-    // '3시간': '03:00',
-    // '3시간 30분': '03:30',
   };
+
+  // 비행시간 모달 ui
+  const modalUi = timeModal && (
+    <div className="flightTimeModal scroll">
+      {Object.keys(FlightTimes).map((el, idx) => {
+        return (
+          <div
+            className="flightTime"
+            onClick={() => flightTimModalHandler(FlightTimes[el])}
+            key={idx}
+          >
+            {`${el}`}
+          </div>
+        );
+      })}
+    </div>
+  );
 
   return (
     <FlightTimeContainer>
       <div
         className="flightTimeContent"
-        onClick={() => flightTimModalcontroller('')}
+        onClick={() => flightTimModalHandler('')}
       >
+        {/* 비행시간 ui */}
         <IconLayout
           left={<div className="iconOverflowBox icon">✈️</div>}
           bottom="비행시간"
@@ -46,21 +62,8 @@ export const FlightTime = () => {
           }
         />
 
-        {timeModal && (
-          <div className="flightTimeModal scroll">
-            {Object.keys(FlightTimes).map((el, idx) => {
-              return (
-                <div
-                  className="flightTime"
-                  onClick={() => flightTimModalcontroller(FlightTimes[el])}
-                  key={idx}
-                >
-                  {`${el}`}
-                </div>
-              );
-            })}
-          </div>
-        )}
+        {/* 모달 ui */}
+        {modalUi}
       </div>
     </FlightTimeContainer>
   );

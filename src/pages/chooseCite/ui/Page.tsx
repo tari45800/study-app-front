@@ -5,8 +5,11 @@ import { DepatureArrival } from '../../../entity/DepatureArrival';
 import { useQuery } from '@tanstack/react-query';
 import { getData } from '../../../shared/lib/server/api/apis';
 import { Observer } from '../../../shared/ui/Observer/Observer';
+import { getStoragedData } from '../../../shared/lib/getStorageData';
+import { arrivalInfoType } from '../../../shared/model/type';
 
 export const ChooseCitePage = () => {
+  // 최근 여행지 정보를 받아오는 쿼리
   const {
     isPending,
     error,
@@ -25,19 +28,18 @@ export const ChooseCitePage = () => {
     return <div>error</div>;
   }
 
-  const storedArrivalInfo = localStorage.getItem('arrivalInfo');
+  const storedArrivalInfo = getStoragedData<arrivalInfoType>('arrivalInfo');
 
-  // 로컬 스토리지에 값이 있으면 그것을 사용하고, 그렇지 않으면 arrival[0] 사용
-  const arrivalInfo = storedArrivalInfo
-    ? JSON.parse(storedArrivalInfo)
-    : arrival && arrival[0];
+  // 로컬 스토리지에 값이 있으면 사용하고, 그렇지 않으면 서버 데이터 사용
+  const arrivalInfo = storedArrivalInfo || (arrival && arrival[0]);
 
   return (
     <ChooseCitePageContainer>
       <div className="chooseCitePageContent">
+        {/* 여행지 선택 탑 */}
         <BackGround>
           <div className="chooseCiteTop">
-            <div className="CCTDepatureArrival">
+            <div className="chooseCiteTopDepatureArrival">
               <DepatureArrival arrivalInfo={arrivalInfo} />
             </div>
             <div className="image"></div>
@@ -45,6 +47,7 @@ export const ChooseCitePage = () => {
         </BackGround>
 
         <div className="chooseCiteBottom">
+          {/* 비행시간 */}
           <div className="flightTimeWidget">
             <Observer id="FlightTimeBackGround">
               <BackGround>
@@ -52,6 +55,8 @@ export const ChooseCitePage = () => {
               </BackGround>
             </Observer>
           </div>
+
+          {/* 여행지 둘러보기 */}
           <div className="cityRanking">
             <Observer id="FlightTimeBackGround" delay={0.5}>
               <BackGround>
@@ -83,7 +88,7 @@ const ChooseCitePageContainer = styled.div`
     flex: 1;
     display: flex;
 
-    .CCTDepatureArrival {
+    .chooseCiteTopDepatureArrival {
       width: 17rem;
     }
 

@@ -7,10 +7,12 @@ import { flightStore } from '../../../app/appStore';
 import { useEffect } from 'react';
 import { arrivalInfoType } from '../../../shared/model/type';
 import { Line } from '../../../shared/ui';
+import { getStoragedData } from '../../../shared/lib/getStorageData';
 
 export const FlightTimeWidget = () => {
   const { flightTime, changeFlightTime } = flightStore();
 
+  // 최근 여행지 정보를 받아오는 쿼리
   const { isPending: flightPending, data: arrival } = useQuery<
     arrivalInfoType[]
   >({
@@ -18,14 +20,7 @@ export const FlightTimeWidget = () => {
     queryFn: () => getData('/arrival'),
   });
 
-  useEffect(() => {
-    const localStorageArrivalInfo = localStorage.getItem('arrivalInfo');
-
-    if (!localStorageArrivalInfo && !flightPending && arrival) {
-      changeFlightTime(arrival[0].time);
-    }
-  }, [flightPending, arrival]);
-
+  // 선택할 수 있는 여행지 정보 받아오는 쿼리
   const {
     isPending,
     error,
@@ -34,6 +29,19 @@ export const FlightTimeWidget = () => {
     queryKey: ['flightTimeCities', flightTime],
     queryFn: () => getData(`/flights?flightTime=${flightTime}`),
   });
+
+  // 스토리지에 데이터가 없다면 최근 여행지의 시간으로 초기화하는 코드
+  useEffect(() => {
+    const storageArrivalInfo = getStoragedData('arrivalInfo');
+
+    // 만약 스토리지에 데이터가 없고
+    // 최근 여행지를 받아오는 중이 아니고
+    // 최근 여행지가 있다면
+    // 비행시간을 최근 여행지의 시간으로 설정
+    if (!storageArrivalInfo && arrival) {
+      changeFlightTime(arrival[0].time);
+    }
+  }, [flightPending]);
 
   if (isPending) {
     return <div>loding...</div>;
