@@ -1,29 +1,52 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlane } from '@fortawesome/free-solid-svg-icons'; // 비행기 아이콘을 사용
+import { faPlane } from '@fortawesome/free-solid-svg-icons';
+
+export const StartPageTransition = () => {
+  const navigate = useNavigate();
+  const fillScreenRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // 페이지 이동 함수
+    const handleAnimationEnd = () => {
+      navigate('/timerPage');
+    };
+
+    const element = fillScreenRef.current;
+    element?.addEventListener('animationend', handleAnimationEnd);
+
+    return () => {
+      element?.removeEventListener('animationend', handleAnimationEnd);
+    };
+  }, [navigate]);
+
+  return (
+    <FillScreen ref={fillScreenRef} className="FillScreen">
+      <FontAwesomeIcon icon={faPlane} className="plane-icon" />
+      <FontAwesomeIcon icon={faPlane} className="plane-icon-shadow" />
+    </FillScreen>
+  );
+};
 
 const fillAnimation = keyframes`
   0% {
     width: 0;
     height: 100vh;
     left: 0;
-
   }
 
   50%{
     width: 50vw;
     height: 100vh;
     left: 0;
-
   }
 
   100%{
     width: 200vw;
     height: 100vh;
     left: 0;
-
   }
 `;
 
@@ -38,7 +61,6 @@ const FillScreen = styled.div`
   justify-content: flex-end;
   align-items: center;
 
-  /* 비행기 아이콘 스타일링 */
   .plane-icon {
     position: absolute;
     right: -6rem;
@@ -65,31 +87,5 @@ const FillScreen = styled.div`
     right: -1.5rem;
     height: 100vh;
     width: 3rem;
-    /* transform: rotate(2.5deg); */
   }
 `;
-
-export const StartPageTransition = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const handleAnimationEnd = () => {
-      navigate('/timerPage');
-    };
-
-    const element = document.querySelector('.FillScreen');
-    element?.addEventListener('animationend', handleAnimationEnd);
-
-    // Clean up event listener when component unmounts
-    return () => {
-      element?.removeEventListener('animationend', handleAnimationEnd);
-    };
-  }, [navigate]);
-
-  return (
-    <FillScreen className="FillScreen">
-      <FontAwesomeIcon icon={faPlane} className="plane-icon" />
-      <FontAwesomeIcon icon={faPlane} className="plane-icon-shadow" />
-    </FillScreen>
-  );
-};
