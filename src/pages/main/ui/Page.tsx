@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { BoardingPass } from '../../../widget/BoardingPass';
-import { Results } from '../../../entity/Results/ui/Results';
+import { Results } from '../../../widget/Results/ui/Results';
 
 export const MainPage = () => {
   return (
