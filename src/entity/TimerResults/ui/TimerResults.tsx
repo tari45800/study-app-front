@@ -37,7 +37,7 @@ export const TimerResults = ({ timerResultsData }: Props) => {
           );
         })
       ) : (
-        <div className="ResultsNull">
+        <div className="resultsNull">
           비행 기록이 없습니다. 여행을 떠나보세요!
         </div>
       )}
@@ -45,4 +45,18 @@ export const TimerResults = ({ timerResultsData }: Props) => {
   );
 };
 
-const TimerResultsContianer = styled.div``;
+const TimerResultsContianer = styled.div`
+  .resultBox {
+    cursor: pointer;
+    padding: 0 0.5rem;
+  }
+
+  .resultsNull {
+    color: var(--light-text-color);
+  }
+
+  img {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+`;

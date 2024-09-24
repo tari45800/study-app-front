@@ -30,24 +30,12 @@ const ResultsContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
-
-    .resultsTitle {
-      font-weight: bold;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      margin-top: 0.5rem;
-    }
-    .resultBox {
-      cursor: pointer;
-      padding: 0 0.5rem;
-    }
-    .ResultsNull {
-      color: var(--light-text-color);
-    }
   }
 
-  img {
-    width: 1.8rem;
-    height: 1.8rem;
+  .resultsTitle {
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    font-size: 1.5rem;
   }
 `;
