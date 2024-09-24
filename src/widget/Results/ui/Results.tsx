@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { BackGround } from '../../../shared/ui';
 import { FlightResultType } from '../../../shared/model/type';
-import Observer from '../../../shared/ui/Observer/Observer';
+import { Observer } from '../../../shared/ui/Observer/Observer';
 import { getStoragedData } from '../../../shared/lib/getStorageData';
 import { TimerResults } from '../../../entity/TimerResults';
 

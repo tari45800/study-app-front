@@ -9,7 +9,7 @@ import { DelayTime } from '../../../shared/lib/DelayTime';
 import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
 import { TimerPostModal } from '../../../shared/lib/TimerPostModal';
 import { useTimerStore, useTimeStore } from '../../../app/appStore';
-import Observer from '../../../shared/ui/Observer/Observer';
+import { Observer } from '../../../shared/ui/Observer/Observer';
 import { EndPageTransition } from '../../../shared/ui/PageTransition/EndPageTransition';
 import { TodoBox } from '../../../widget/TodoBox/ui/TodoBox';
 

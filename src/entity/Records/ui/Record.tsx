@@ -5,7 +5,7 @@ import { BackGround, Button, IconLayout } from '../../../shared/ui';
 import { ArrivalTimeBox } from '../../arrivalTimeBox';
 import { FlightResultType } from '../../../shared/model/type';
 import { useNavigate } from 'react-router-dom';
-import Observer from '../../../shared/ui/Observer/Observer';
+import { Observer } from '../../../shared/ui/Observer/Observer';
 
 const formatTime = (seconds: number, arrival?: boolean): string => {
   if (arrival) {

@@ -3,17 +3,8 @@ import { useRef, useEffect, useState, ReactNode } from 'react';
 
 interface ObserverContainerProps {
   $isVisible: boolean;
-  delay?: number;
+  $delay?: number;
 }
-
-const ObserverContainer = styled.div<ObserverContainerProps>`
-  opacity: ${(props) => (props.$isVisible ? 1 : 0)};
-  transform: translateY(${(props) => (props.$isVisible ? 0 : '20px')});
-  transition:
-    opacity 0.5s,
-    transform 0.5s;
-  transition-delay: ${(props) => (props.delay ? `${props.delay}s` : '0.2s')};
-`;
 
 interface ObserverProps {
   children: ReactNode;
@@ -21,7 +12,7 @@ interface ObserverProps {
   id: string; // 로컬 스토리지 키로 사용할 ID
 }
 
-function Observer({ children, delay, id }: ObserverProps) {
+export const Observer = ({ children, delay, id }: ObserverProps) => {
   // 로컬 스토리지에서 초기 상태를 가져옴
   const initialVisibility = localStorage.getItem(`observer-${id}`) === 'true';
   const [isVisible, setIsVisible] = useState<boolean>(initialVisibility);
@@ -55,10 +46,17 @@ function Observer({ children, delay, id }: ObserverProps) {
   }, [isVisible, id]);
 
   return (
-    <ObserverContainer ref={observerRef} $isVisible={isVisible} delay={delay}>
+    <ObserverContainer ref={observerRef} $isVisible={isVisible} $delay={delay}>
       {children}
     </ObserverContainer>
   );
-}
+};
 
-export default Observer;
+const ObserverContainer = styled.div<ObserverContainerProps>`
+  opacity: ${(props) => (props.$isVisible ? 1 : 0)};
+  transform: translateY(${(props) => (props.$isVisible ? 0 : '20px')});
+  transition:
+    opacity 0.5s,
+    transform 0.5s;
+  transition-delay: ${(props) => (props.$delay ? `${props.$delay}s` : '0.2s')};
+`;

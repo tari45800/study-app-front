@@ -4,7 +4,7 @@ import { FlightTimeWidget } from '../../../widget/FlightTimeWidget';
 import { DepatureArrival } from '../../../entity/DepatureArrival';
 import { useQuery } from '@tanstack/react-query';
 import { getData } from '../../../shared/lib/server/api/apis';
-import Observer from '../../../shared/ui/Observer/Observer';
+import { Observer } from '../../../shared/ui/Observer/Observer';
 
 export const ChooseCitePage = () => {
   const {
