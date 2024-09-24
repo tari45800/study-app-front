@@ -5,7 +5,7 @@ import { StopTimerButton } from '../../../widget/TimerConTrols';
 import { TimerAnimation } from '../../../shared/ui/TimerAnimation/TimerAnimation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { DelayTime } from '../../../shared/lib/DelayTime';
+import { useDelayTime } from '../../../shared/lib/useDelayTime';
 import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
 import { TimerPostModal } from '../../../shared/lib/TimerPostModal';
 import { useTimerStore, useTimeStore } from '../../../app/appStore';
@@ -35,6 +35,10 @@ export const TimerPage = () => {
     todos, // 로컬 스토리지에서 가져온 todos 추가
   };
 
+  const delayTime = useDelayTime('departureTime', false, '00:00');
+
+  const offset = useDelayTime('arrivalTime', true, arrivalInfo.time);
+
   return (
     <TimerPageContainer>
       <EndPageTransition />
@@ -48,16 +52,8 @@ export const TimerPage = () => {
 
               <div className="timerPageTopRight">
                 <ArrivalTimeBox
-                  departureComponent={
-                    <DelayTime updateTarget="departureTime" />
-                  }
-                  arrivalComponent={
-                    <DelayTime
-                      includePausedTimerSeconds={true}
-                      offset={arrivalInfo.time}
-                      updateTarget="arrivalTime"
-                    />
-                  }
+                  departureComponent={delayTime}
+                  arrivalComponent={offset}
                 />
                 <div>
                   <StopTimerButton />

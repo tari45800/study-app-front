@@ -1,12 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTimerStore } from '../../app/appStore';
 import { useTimeStore } from '../../app/appStore';
-
-interface DelayTimeProps {
-  includePausedTimerSeconds?: boolean; // pausedTimerSeconds를 더할지 여부
-  offset?: string; // 추가로 더할 시간 ("HH:MM" 형식)
-  updateTarget: 'departureTime' | 'arrivalTime'; // 업데이트할 타겟 설정
-}
 
 // HH:MM 형식의 문자열을 초 단위로 변환하는 함수
 const timeStringToSeconds = (time: string): number => {
@@ -23,11 +17,12 @@ const secondsToTimeString = (seconds: number): string => {
     .padStart(2, '0')}`;
 };
 
-export const DelayTime: React.FC<DelayTimeProps> = ({
-  includePausedTimerSeconds = false,
-  offset = '00:00',
-  updateTarget,
-}) => {
+export const useDelayTime = (
+  // 필수 파라미터 우선 작성
+  updateTarget: 'departureTime' | 'arrivalTime',
+  includePausedTimerSeconds: boolean,
+  offset: string,
+) => {
   const { pausedTimerSeconds } = useTimerStore(); // 타이머 스토어에서 pausedTimerSeconds 가져옴
   const { setDepartureTime, setArrivalTime } = useTimeStore(); // 타임 스토어에서 set 함수들 가져옴
   const [initialTimeInSeconds, setInitialTimeInSeconds] = useState(0);
@@ -73,5 +68,5 @@ export const DelayTime: React.FC<DelayTimeProps> = ({
     updateTarget,
   ]);
 
-  return <div>{delayTime}</div>;
+  return delayTime;
 };
