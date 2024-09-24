@@ -14,6 +14,7 @@ async function enableMocking() {
 
   const { worker } = await import('./apiMockWorker');
   return worker.start({
+    // 모킹을 설정하지 않는 요청을 MSW가 무시하는 옵션
     onUnhandledRequest: 'bypass',
   });
 }
