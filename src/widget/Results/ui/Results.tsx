@@ -1,16 +1,12 @@
 import styled from 'styled-components';
-import { BackGround, IconLayout } from '../../../shared/ui';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { BackGround } from '../../../shared/ui';
 import { FlightResultType } from '../../../shared/model/type';
 import Observer from '../../../shared/ui/Observer/Observer';
+import { getStoragedData } from '../../../shared/lib/getStorageData';
+import { TimerResults } from '../../../entity/TimerResults';
 
 export const Results = () => {
-  const storedtimerResultso = localStorage.getItem('timerResults');
-  const timerResults: FlightResultType[] | null = storedtimerResultso
-    ? JSON.parse(storedtimerResultso)
-    : null;
+  const timerResultsData = getStoragedData<FlightResultType[]>('timerResults');
 
   return (
     <ResultsContainer>
@@ -18,40 +14,7 @@ export const Results = () => {
         <BackGround>
           <div className="resultsContentBox">
             <div className="resultsTitle">비행 기록</div>
-            {timerResults ? (
-              timerResults.map((el, idx) => {
-                console.log(el);
-                return (
-                  <Link to={'/flightTime'} state={{ idx }}>
-                    <div className="resultBox" key={idx}>
-                      <IconLayout
-                        left={
-                          <div className="iconOverflowBox">
-                            <img
-                              src={el.arrivalInfo.gonfalonImg}
-                              alt="국기 이미지"
-                            />
-                          </div>
-                        }
-                        top={`${el.departureTime} 출발`}
-                        bottom={`${el.arrivalInfo.city}/${el.arrivalInfo.airport}`}
-                        right={
-                          <FontAwesomeIcon
-                            className="faAngleRight"
-                            icon={faAngleRight}
-                          />
-                        }
-                        border={true}
-                      />
-                    </div>
-                  </Link>
-                );
-              })
-            ) : (
-              <div className="ResultsNull">
-                비행 기록이 없습니다. 여행을 떠나보세요!
-              </div>
-            )}
+            <TimerResults timerResultsData={timerResultsData} />
           </div>
         </BackGround>
       </Observer>
