@@ -80,12 +80,4 @@ const FillScreen = styled.div`
     color: var(--button-text-color);
     z-index: 101;
   }
-
-  .FillScreen-line {
-    background-color: white;
-    position: absolute;
-    right: -1.5rem;
-    height: 100vh;
-    width: 3rem;
-  }
 `;
