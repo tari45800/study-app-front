@@ -9,7 +9,6 @@ const fillAnimation = keyframes`
     width: 200vw;
     height: 100vh;
     left: -10%;
-
   }
 
   100%{

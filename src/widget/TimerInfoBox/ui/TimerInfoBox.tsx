@@ -15,9 +15,12 @@ export const TimerInfoBox = ({ delayTime, offset }: Props) => {
       <div className="timerRightAbsoluteBox">
         <BackGround>
           <div className="timerPageTop">
+            {/* 타이머 */}
             <div className="timerBox">
               <Timer />
             </div>
+
+            {/* 출발, 도착 시간, 일시정지 버튼 */}
             <div className="timerPageTopRight">
               <ArrivalTimeBox
                 departureComponent={delayTime}
