@@ -34,4 +34,20 @@ export const TimerInfoBox = ({ delayTime, offset }: Props) => {
   );
 };
 
-const TimerInfoBoxContainer = styled.div``;
+const TimerInfoBoxContainer = styled.div`
+  .timerPageTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .timerPageTopRight {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+
+  .arrivalTimeBox {
+    width: 10rem;
+  }
+`;

@@ -39,4 +39,19 @@ export const TimerTodoBox = ({ postDatas }: Props) => {
   );
 };
 
-const TimerTodoBoxContainer = styled.div``;
+const TimerTodoBoxContainer = styled.div`
+  .timerPageBottom {
+    display: flex;
+
+    .todoBox {
+      flex: 1;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+
+  .resetTimeIcon {
+    font-size: 2rem;
+    color: var(--button-text-color);
+  }
+`;

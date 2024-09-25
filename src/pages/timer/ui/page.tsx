@@ -65,15 +65,6 @@ const TimerPageContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  .arrivalTimeBox {
-    width: 10rem;
-  }
-
-  .resetTimeIcon {
-    font-size: 2rem;
-    color: var(--button-text-color);
-  }
-
   .timePageContent {
     flex: 1;
     max-width: var(--desktop);
@@ -84,30 +75,8 @@ const TimerPageContainer = styled.div`
     gap: var(--spacing-small);
   }
 
-  .timerPageTop {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .timerPageTopRight {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-  }
-
   .timerPageWindow {
     height: 30rem;
-  }
-
-  .timerPageBottom {
-    display: flex;
-
-    .todoBox {
-      flex: 1;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
   }
 
   @media (max-height: 45rem) {
