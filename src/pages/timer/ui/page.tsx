@@ -12,19 +12,23 @@ import { useTimerStore, useTimeStore } from '../../../app/appStore';
 import { Observer } from '../../../shared/ui/Observer/Observer';
 import { EndPageTransition } from '../../../shared/ui/PageTransition/EndPageTransition';
 import { TodoBox } from '../../../widget/TodoBox/ui/TodoBox';
+import { getStoragedData } from '../../../shared/lib/getStorageData';
+import { TodoType } from '../../../shared/model/type';
+import { arrivalInfoType } from '../../../shared/model/type';
 
 export const TimerPage = () => {
-  const storedArrivalInfo =
-    localStorage.getItem('arrivalInfo') || '{"time": 0}';
-  const arrivalInfo = JSON.parse(storedArrivalInfo);
-
   const { seconds, pausedTimerSeconds } = useTimerStore();
   const { departureTime, arrivalTime } = useTimeStore();
 
-  // 로컬 스토리지에서 todos를 가져옴
-  const storedTodos = localStorage.getItem('todos') || '[]';
-  const todos = JSON.parse(storedTodos); // [{ todoId, todoContent, todoState }]
+  // 로컬 스토리지에서 최근 목적지 정보를 가져옴
+  const storedArrivalInfo = getStoragedData<arrivalInfoType>('arrivalInfo');
+  const arrivalInfo = storedArrivalInfo;
 
+  // 로컬 스토리지에서 투두를 가져옴
+  const storedTodos = getStoragedData<TodoType[]>('todos');
+  const todos = storedTodos || [];
+
+  // 포스트 데이터
   const postDatas = {
     userId: 1,
     arrivalInfo,
@@ -32,24 +36,29 @@ export const TimerPage = () => {
     departureTime,
     arrivalTime,
     delayTime: `${pausedTimerSeconds}`,
-    todos, // 로컬 스토리지에서 가져온 todos 추가
+    todos,
   };
 
   const delayTime = useDelayTime('departureTime', false, '00:00');
-
-  const offset = useDelayTime('arrivalTime', true, arrivalInfo.time);
+  const offset = useDelayTime(
+    'arrivalTime',
+    true,
+    `${arrivalInfo ? arrivalInfo.time : '00:00'}`,
+  );
 
   return (
     <TimerPageContainer>
+      {/* 비행기 화면 트렌지션 */}
       <EndPageTransition />
+
       <div className="timePageContent">
         <div className="timerRightAbsoluteBox">
+          {/* 타이머, 출발시간, 도착시간 박스 */}
           <BackGround>
             <div className="timerPageTop">
               <div className="timerBox">
                 <Timer />
               </div>
-
               <div className="timerPageTopRight">
                 <ArrivalTimeBox
                   departureComponent={delayTime}
@@ -63,6 +72,7 @@ export const TimerPage = () => {
           </BackGround>
         </div>
 
+        {/* 구름 애니메이션 박스 */}
         <Observer id="TimerAnimation">
           <div className="timerPageWindow">{<TimerAnimation />}</div>
         </Observer>
@@ -71,10 +81,13 @@ export const TimerPage = () => {
           <Observer id="timerPageBottomBackGround" delay={0.5}>
             <BackGround>
               <div className="timerPageBottom">
+                {/* 투두 박스 */}
                 <div className="todoBox">
                   <div></div>
                   <TodoBox />
                 </div>
+
+                {/* 타이머 종료버튼 */}
                 <TimerPostModal to="/resultPage" postDatas={postDatas}>
                   <FontAwesomeIcon
                     className="resetTimeIcon"

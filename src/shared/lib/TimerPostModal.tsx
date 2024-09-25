@@ -13,7 +13,7 @@ interface Todo {
 
 interface PostDatas {
   userId: number;
-  arrivalInfo: arrivalInfoType;
+  arrivalInfo: arrivalInfoType | null;
   flightTime: string;
   departureTime: string;
   arrivalTime: string;
@@ -24,7 +24,7 @@ interface PostDatas {
 type Props = {
   children: React.ReactNode;
   to: string;
-  postDatas: PostDatas; // 프롭스로 postData를 전달받음
+  postDatas: PostDatas;
 };
 
 export const TimerPostModal = ({ children, to, postDatas }: Props) => {
