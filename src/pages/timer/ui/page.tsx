@@ -1,18 +1,14 @@
 import styled from 'styled-components';
-import { BackGround } from '../../../shared/ui';
 import { TimerAnimation } from '../../../shared/ui/TimerAnimation/TimerAnimation';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDelayTime } from '../../../shared/lib/useDelayTime';
-import { TimerPostModal } from '../../../shared/lib/TimerPostModal';
 import { useTimerStore, useTimeStore } from '../../../app/appStore';
 import { Observer } from '../../../shared/ui/Observer/Observer';
 import { EndPageTransition } from '../../../shared/ui/PageTransition/EndPageTransition';
-import { TodoBox } from '../../../widget/TodoBox/ui/TodoBox';
 import { getStoragedData } from '../../../shared/lib/getStorageData';
 import { TodoType } from '../../../shared/model/type';
 import { arrivalInfoType } from '../../../shared/model/type';
 import { TimerInfoBox } from '../../../widget/TimerInfoBox';
+import { TimerTodoBox } from '../../../widget/TimerTodoBox';
 
 export const TimerPage = () => {
   const { seconds, pausedTimerSeconds } = useTimerStore();
@@ -58,27 +54,8 @@ export const TimerPage = () => {
           <div className="timerPageWindow">{<TimerAnimation />}</div>
         </Observer>
 
-        <div className="timerLeftAbsoluteBox">
-          <Observer id="timerPageBottomBackGround" delay={0.5}>
-            <BackGround>
-              <div className="timerPageBottom">
-                {/* 투두 박스 */}
-                <div className="todoBox">
-                  <div></div>
-                  <TodoBox />
-                </div>
-
-                {/* 타이머 종료버튼 */}
-                <TimerPostModal to="/resultPage" postDatas={postDatas}>
-                  <FontAwesomeIcon
-                    className="resetTimeIcon"
-                    icon={faCircleXmark}
-                  />
-                </TimerPostModal>
-              </div>
-            </BackGround>
-          </Observer>
-        </div>
+        {/* 투두 박스  */}
+        <TimerTodoBox postDatas={postDatas} />
       </div>
     </TimerPageContainer>
   );

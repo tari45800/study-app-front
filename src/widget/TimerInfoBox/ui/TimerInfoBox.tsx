@@ -34,20 +34,4 @@ export const TimerInfoBox = ({ delayTime, offset }: Props) => {
   );
 };
 
-const TimerInfoBoxContainer = styled.div`
-  width: 100%;
-  max-width: var(--desktop);
-
-  .resultsContentBox {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .resultsTitle {
-    margin-bottom: 1rem;
-    margin-top: 0.5rem;
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
-`;
+const TimerInfoBoxContainer = styled.div``;
