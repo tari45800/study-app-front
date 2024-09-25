@@ -5,9 +5,10 @@ import { TodoBox } from '../../TodoBox';
 import { TimerPostModal } from '../../../shared/lib/TimerPostModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { PostDatasTyoe } from '../../../shared/model/type';
 
 interface Props {
-  postDatas: string;
+  postDatas: PostDatasTyoe;
 }
 
 export const TimerTodoBox = ({ postDatas }: Props) => {

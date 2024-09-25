@@ -4,27 +4,12 @@ import { useConfirmModal } from './useConfirmModal';
 import { useNavigate } from 'react-router-dom';
 import { postData } from './server/api/apis';
 import { arrivalInfoType } from '../../shared/model/type';
-
-interface Todo {
-  todoId: number;
-  todoContent: string;
-  todoState: boolean;
-}
-
-interface PostDatas {
-  userId: number;
-  arrivalInfo: arrivalInfoType | null;
-  flightTime: string;
-  departureTime: string;
-  arrivalTime: string;
-  delayTime: string;
-  todos: Todo[];
-}
+import { PostDatasTyoe } from '../../shared/model/type';
 
 type Props = {
   children: React.ReactNode;
   to: string;
-  postDatas: PostDatas;
+  postDatas: PostDatasTyoe;
 };
 
 export const TimerPostModal = ({ children, to, postDatas }: Props) => {

@@ -20,3 +20,13 @@ export interface FlightResultType {
   flightTime: string;
   todos: TodoType[];
 }
+
+export interface PostDatasTyoe {
+  userId: number;
+  arrivalInfo: arrivalInfoType | null;
+  flightTime: string;
+  departureTime: string;
+  arrivalTime: string;
+  delayTime: string;
+  todos: TodoType[];
+}
