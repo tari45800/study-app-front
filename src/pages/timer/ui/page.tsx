@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 import { BackGround } from '../../../shared/ui';
-import { Timer } from '../../../entity/Timer';
-import { StopTimerButton } from '../../../widget/TimerConTrols';
 import { TimerAnimation } from '../../../shared/ui/TimerAnimation/TimerAnimation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDelayTime } from '../../../shared/lib/useDelayTime';
-import { ArrivalTimeBox } from '../../../entity/arrivalTimeBox';
 import { TimerPostModal } from '../../../shared/lib/TimerPostModal';
 import { useTimerStore, useTimeStore } from '../../../app/appStore';
 import { Observer } from '../../../shared/ui/Observer/Observer';
@@ -15,6 +12,7 @@ import { TodoBox } from '../../../widget/TodoBox/ui/TodoBox';
 import { getStoragedData } from '../../../shared/lib/getStorageData';
 import { TodoType } from '../../../shared/model/type';
 import { arrivalInfoType } from '../../../shared/model/type';
+import { TimerInfoBox } from '../../../widget/TimerInfoBox';
 
 export const TimerPage = () => {
   const { seconds, pausedTimerSeconds } = useTimerStore();
@@ -52,25 +50,8 @@ export const TimerPage = () => {
       <EndPageTransition />
 
       <div className="timePageContent">
-        <div className="timerRightAbsoluteBox">
-          {/* 타이머, 출발시간, 도착시간 박스 */}
-          <BackGround>
-            <div className="timerPageTop">
-              <div className="timerBox">
-                <Timer />
-              </div>
-              <div className="timerPageTopRight">
-                <ArrivalTimeBox
-                  departureComponent={delayTime}
-                  arrivalComponent={offset}
-                />
-                <div>
-                  <StopTimerButton />
-                </div>
-              </div>
-            </div>
-          </BackGround>
-        </div>
+        {/* 타이머, 출발시간, 도착시간 박스 */}
+        <TimerInfoBox delayTime={delayTime} offset={offset} />
 
         {/* 구름 애니메이션 박스 */}
         <Observer id="TimerAnimation">
