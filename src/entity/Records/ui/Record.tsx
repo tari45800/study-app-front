@@ -87,6 +87,7 @@ export const Record = ({ timerResult }: Props) => {
   const completedTodos = todos.filter((todo) => todo.todoState === true);
   const incompleteTodos = todos.filter((todo) => todo.todoState === false);
 
+  console.log(timerResult);
   return (
     <RecordContainer>
       <div className="resultPageContent">

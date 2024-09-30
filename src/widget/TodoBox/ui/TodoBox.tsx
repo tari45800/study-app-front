@@ -19,14 +19,15 @@ export const TodoBox = () => {
   const [todoInput, setTodoInput] = useState<string>('');
   const [isComposing, setIsComposing] = useState<boolean>(false); // 한글 입력 중인지 여부
 
-  // 투두 배열 스테이트
+  // 투두 배열 스테이트 (키 이름 'todoList'로 변경)
   const [todoList, setTodoList] = useState<Props[]>(() => {
-    const storageTodos = getStoragedData<Props[]>('todos');
+    const storageTodos = getStoragedData<Props[]>('todoList'); // 키를 'todoList'로 일치시킴
     return storageTodos ? storageTodos : [];
   });
 
+  // 투두 리스트를 localStorage에 저장
   useEffect(() => {
-    localStorage.setItem('todoList', JSON.stringify(todoList));
+    localStorage.setItem('todoList', JSON.stringify(todoList)); // 'todoList'로 저장
   }, [todoList]);
 
   // 투두 문자열 길이

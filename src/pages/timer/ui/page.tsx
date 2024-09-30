@@ -19,7 +19,7 @@ export const TimerPage = () => {
   const arrivalInfo = storedArrivalInfo;
 
   // 로컬 스토리지에서 투두를 가져옴
-  const storedTodos = getStoragedData<TodoType[]>('todos');
+  const storedTodos = getStoragedData<TodoType[]>('todoList');
   const todos = storedTodos || [];
 
   // 포스트 데이터
