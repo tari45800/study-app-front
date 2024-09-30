@@ -1,4 +1,10 @@
-import { useState, useEffect, ChangeEvent, KeyboardEvent } from 'react';
+import {
+  useState,
+  useEffect,
+  ChangeEvent,
+  KeyboardEvent,
+  CompositionEvent,
+} from 'react';
 import styled from 'styled-components';
 import { getStoragedData } from '../../../shared/lib/getStorageData';
 
@@ -11,6 +17,7 @@ interface Props {
 export const TodoBox = () => {
   // 투두 인풋 스테이트
   const [todoInput, setTodoInput] = useState<string>('');
+  const [isComposing, setIsComposing] = useState<boolean>(false); // 한글 입력 중인지 여부
 
   // 투두 배열 스테이트
   const [todoList, setTodoList] = useState<Props[]>(() => {
@@ -76,14 +83,29 @@ export const TodoBox = () => {
 
   // 엔터를 눌리면 투두를 추가하는 함수
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && !isComposing) {
       addTodo();
     }
   };
 
   // 포커스가 나간다면 투두를 추가하는 함수
   const handleBlur = () => {
-    addTodo();
+    if (!isComposing) {
+      addTodo();
+    }
+  };
+
+  // 한글 입력이 시작될 때
+  const handleCompositionStart = (
+    event: CompositionEvent<HTMLInputElement>,
+  ) => {
+    setIsComposing(true);
+  };
+
+  // 한글 입력이 끝났을 때
+  const handleCompositionEnd = (event: CompositionEvent<HTMLInputElement>) => {
+    setIsComposing(false);
+    setTodoInput(event.currentTarget.value);
   };
 
   return (
@@ -127,6 +149,8 @@ export const TodoBox = () => {
             onChange={handleTodo}
             onKeyDown={handleKeyPress}
             onBlur={handleBlur}
+            onCompositionStart={handleCompositionStart}
+            onCompositionEnd={handleCompositionEnd}
             placeholder="+ 할 일 추가"
             style={{ width: `${todoInput.length * 0.65}rem` }}
           />
@@ -135,7 +159,6 @@ export const TodoBox = () => {
     </TodoBoxContainer>
   );
 };
-
 const TodoBoxContainer = styled.div`
   width: 100%;
   height: 100%;

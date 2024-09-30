@@ -3,7 +3,6 @@ import { useTimerStore } from '../../app/appStore';
 import { useConfirmModal } from './useConfirmModal';
 import { useNavigate } from 'react-router-dom';
 import { postData } from './server/api/apis';
-import { arrivalInfoType } from '../../shared/model/type';
 import { PostDatasTyoe } from '../../shared/model/type';
 
 type Props = {
