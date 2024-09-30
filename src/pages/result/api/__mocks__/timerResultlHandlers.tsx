@@ -9,6 +9,7 @@ export const timerResultlHandlers = [
 
     // 첫 번째 요소를 가져옴 (없으면 null 반환)
     const firstItem = timerResults.length > 0 ? timerResults[0] : null;
+    localStorage.setItem('todoList', JSON.stringify([]));
 
     return HttpResponse.json(firstItem);
   }),
