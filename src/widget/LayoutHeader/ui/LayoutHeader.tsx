@@ -32,7 +32,7 @@ export const LayoutHeader = () => {
         <div className="headerFeatureContauner">
           <div className="headerIcon" onClick={preparing}>
             {/* <TimerEndModal to="/login">로그인</TimerEndModal> */}
-            로그인
+            고그인
           </div>
           <div className="headerIcon" onClick={preparing}>
             {/* <TimerEndModal to="/">알림</TimerEndModal>

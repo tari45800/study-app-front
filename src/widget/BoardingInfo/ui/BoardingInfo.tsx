@@ -11,7 +11,6 @@ export const BoardingInfo = () => {
   const currentTime = useCurrentTime();
   const offset = arrivalInfo ? useCurrentTime(arrivalInfo.time) : '시간 미정';
 
-  // 빌드 자동화 테스트
   return (
     <BoardingInfoContainer>
       {/* 여행지 선택 칸 */}
