@@ -97,11 +97,11 @@ export const TodoBox = () => {
   };
 
   // 한글 입력이 시작될 때
-  const handleCompositionStart = (
-    event: CompositionEvent<HTMLInputElement>,
-  ) => {
-    setIsComposing(true);
-  };
+  const handleCompositionStart = () =>
+    // event: CompositionEvent<HTMLInputElement>,
+    {
+      setIsComposing(true);
+    };
 
   // 한글 입력이 끝났을 때
   const handleCompositionEnd = (event: CompositionEvent<HTMLInputElement>) => {
